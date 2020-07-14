@@ -6,8 +6,8 @@
         <fileset id="fileset" name="Log4j" removed="false">
           <file>file://$MODULE_DIR$/src/main/webapp/WEB-INF/log4j.xml</file>
         </fileset>
-        <fileset id="fileset2" name="Logbac" removed="false">
-          <file>file://$MODULE_DIR$/src/main/resources/logbac.xml</file>
+        <fileset id="fileset2" name="Logback" removed="false">
+          <file>file://$MODULE_DIR$/src/main/resources/logback.xml</file>
         </fileset>
         <fileset id="fileset3" name="Mapper" removed="false">
           <file>file://$MODULE_DIR$/src/main/resources/mappers/Mapper.xml</file>
