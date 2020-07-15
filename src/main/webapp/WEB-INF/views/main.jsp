@@ -8,10 +8,16 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Title</title>
-    <title>Title</title>
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/CSS/reset.css"/>
 </head>
 <body>
+    <div id = "main_header">
+    HI
+    </div>
+
+    <div id = "main_footer">
+
+    </div>
 
 </body>
 </html>
