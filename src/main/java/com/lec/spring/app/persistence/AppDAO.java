@@ -1,4 +1,4 @@
 package com.lec.spring.app.persistence;
 
-public class a {
+public class AppDAO {
 }
