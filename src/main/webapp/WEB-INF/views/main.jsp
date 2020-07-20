@@ -12,12 +12,13 @@
 </head>
 <body>
     <div id = "main_header">
-    HI
+    header
     </div>
-
     <div id = "main_footer">
-
+    footer
     </div>
+
+
 
 </body>
 </html>
