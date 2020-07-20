@@ -1,4 +1,4 @@
 package com.lec.spring.user.persistence;
 
-public class a {
+public class baby {
 }
