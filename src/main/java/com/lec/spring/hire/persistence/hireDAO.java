@@ -1,4 +1,4 @@
 package com.lec.spring.hire.persistence;
 
-public class a {
+public class hireDAO {
 }
