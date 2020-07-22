@@ -1,0 +1,112 @@
+
+
+nav#header_nav{
+    width: 100%;
+    background-color: rgb(255, 210, 3);
+    padding: 20px;
+
+}
+nav#header_nav a,nav#header_nav i{
+    font-size: medium;
+    color: #ffffff;
+    font-weight: bold;
+    margin: 20px 5px;
+}
+div.div_1260{
+    width: 1260px;
+
+    margin: 0 auto;
+}
+div#main_header_log{
+    background-image: url("https://i.imgur.com/53agFAB.gif");
+    height: 60px;
+    width: 120px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    margin-top: 50px;
+    margin-bottom: 20px;
+
+
+}
+.inline{
+    display: inline;
+}
+
+div#main_header_search{
+    position: relative;
+    top: -20px;
+}
+div#main_header_search input{
+    padding: 15px;
+    border: 0.4px solid #ddd;
+
+}
+#header_search{
+    background-color: #555555;
+    color: white;
+    border: none;
+}
+
+div#main_footer{
+    width: 100%;
+    position: absolute;
+    bottom: 0px;
+    background-color: rgb(248,248,248);
+    border-top: 2px solid rgb(230,230,230);
+}
+div#main_footer_nav, div#main_footer_content{
+    padding-bottom: 50px;
+    padding-top: 50px;
+    color: #666666;
+    font-weight: lighter;
+    font-size: x-small;
+}
+div#main_footer_nav ul{
+    text-align: center;
+}
+div#main_footer_nav li{
+    display: inline;
+    margin-left: 30px;
+}
+div#main_header_search form{
+    box-shadow: 2px 2px 4px 2px rgb(248,248,248);
+}
+h2#main_header_sub{
+    position: absolute;
+    bottom: 20px;
+    font-weight: bold;
+    font-family: 'Nanum Pen Script', cursive;
+    font-size: 35px;
+    color: #555555;
+    font-weight: 500;
+}
+div.demo{
+    position: absolute;
+    bottom: 0px
+
+}
+div#header_sub_nav1{
+    background-color: #fff;
+    position: absolute;
+    top: 55px;
+    padding: 20px;
+    font-weight: bold;
+    color: #555555;
+    width: 118px;
+    text-align: center;
+    border: 2px solid rgb(255, 210, 3);
+    border-top: 0px;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+    font-size: x-small;
+    z-index: 5;
+    right: 318px;
+}
+div#header_sub_nav1 li{
+    margin-bottom: 10px;
+}
+div#main_footer_img{
+    background-image: url("https://i.imgur.com/qO9CbKK.png");
+    background-size: contain;
+    background-repeat: no-repeat;
+}
