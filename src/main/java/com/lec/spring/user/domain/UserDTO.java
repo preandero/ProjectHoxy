@@ -1,4 +1,5 @@
 package com.lec.spring.user.domain;
 
-public class User {
+public class UserDTO {
+
 }
