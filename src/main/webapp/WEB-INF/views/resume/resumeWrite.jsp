@@ -53,7 +53,7 @@ To change this template use File | Settings | File Templates.
                       <button class="dropdown-item" type="button">구직중</button>
                       <button class="dropdown-item" type="button">재직중</button>
                     </div>
-                        <form action="/upload" method="post" enctype="multipart/form-data">
+                        <form action="/resume/upload" method="post" enctype="multipart/form-data">
                                 <input type="file" name="file"/>
                                 <input type="submit" value="Upload"/>
                         </form>
