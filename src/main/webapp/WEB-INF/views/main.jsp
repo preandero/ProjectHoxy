@@ -8,7 +8,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-
+    <title>NEXT</title>
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -45,6 +45,11 @@
             interval : 100
         })
     </script>
+
+
+<%--icon--%>
+    <link rel="shortcut icon" type="image/x-icon"
+          href="https://i.imgur.com/8AyMFrx.png">
 </head>
 <script src="https://kit.fontawesome.com/a076d05399.js"></script>
 <body>

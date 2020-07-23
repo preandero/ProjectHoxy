@@ -3,8 +3,21 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.lec.spring.resume.persistence.resumeDAO">
+<mapper namespace="com.lec.spring.app.persistence.AppDAO">
 
+    <insert id="insert" flushCache="true"
+            parameterType="com.lec.spring.app.domain.AppDTO">
+        insert into application
+            (a_uid, a_view, u_uid, h_uid, r_uid)
+        values
+            (SEQ_Application_A_uid.nextval, 0,#{u_uid},#{h_uid},#{r_uid})
 
+   </insert>
+
+    <select id="selectByUid" resultType="com.lec.spring.app.domain.AppDTO">
+			select *from Application a left outer join HUSER u on a.u_uid= u.U_UID
+            left outer join RESUME r on a.r_uid=r.R_UID
+            where a.u_uid=1
+	</select>
 
 </mapper>
