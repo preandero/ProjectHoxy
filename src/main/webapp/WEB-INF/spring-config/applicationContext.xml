@@ -23,7 +23,7 @@
         <beans:property name="suffix" value=".jsp" />
     </beans:bean>
 
-    <context:component-scan base-package="com.lec.spring" />
+    <context:component-scan base-package="com.lec"/>
 
     <!-- spring-jdbc 빈 객체 생성 -->
     <!-- DataSource 객체 -->
@@ -35,16 +35,14 @@
     </beans:bean>
     <!-- JdbcTemplate -->
 
-    <!--
-    <beans:bean name="template" class="org.springframework.jdbc.core.JdbcTemplate">
+     <beans:bean name="template" class="org.springframework.jdbc.core.JdbcTemplate">
         <beans:property name="dataSource" ref="dataSource"/>
     </beans:bean>
-     -->
 
     <!-- MyBatis 설정 -->
     <beans:bean name="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
         <beans:property name="dataSource" ref="dataSource"/>
-<!--        <beans:property name="configLocation" value="classpath*:/mybatis-config.xml"/>-->
+        <!--<beans:property name="configLocation" value="classpath*:/mybatis-config.xml"/>-->
         <beans:property name="mapperLocations" value="classpath*:com/lec/mappers/*.xml"/>
     </beans:bean>
 
@@ -62,6 +60,23 @@
                 class="org.springframework.transaction.support.TransactionTemplate">
         <beans:property name="transactionManager" ref="transactionManager"/>
     </beans:bean>
+
+<!--    naver-->
+    <beans:bean id="naverLoginBO" class="com.lec.spring.user.controller.NaverLoginBO" />
+
+    <!-- google Class Bean설정 추가-->
+    <!-- 클라이언트ID와 보안비밀 세팅-->
+    <beans:bean id="googleConnectionFactory"
+                class="org.springframework.social.google.connect.GoogleConnectionFactory">
+        <beans:constructor-arg value="559051476356-5rbc6osusm3286en2n1pjtlb44tt699i.apps.googleusercontent.com" />
+        <beans:constructor-arg value="2RnW1Xv7WhkRIZ1vZwgYOLnt" />
+    </beans:bean>
+    <!-- 승인된 자바스크립트 원본과 승인된 리디렉션 URI -->
+    <beans:bean id="googleOAuth2Parameters" class="org.springframework.social.oauth2.OAuth2Parameters">
+        <beans:property name="scope" value="https://www.googleapis.com/auth/plus.login" />
+        <beans:property name="redirectUri" value="http://localhost:8084" />
+    </beans:bean>
+
 
 
 </beans:beans>
