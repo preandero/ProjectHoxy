@@ -7,7 +7,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 @Repository
-public class FileUploadDAOImpl{
+public class FileUploadDAOImpl {
 
 //    @Autowired
 //    private SessionFactory sessionFactory;

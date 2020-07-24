@@ -1,6 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<beans xmlns="http://www.springframework.org/schema/beans"
-       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-</beans>
+<mapper namespace="com.lec.spring.app.persistence.AppDAO">
+
+    <insert id="insert" flushCache="true"
+            parameterType="com.lec.spring.app.domain.AppDTO">
+        insert into application
+            (a_uid, a_view, u_uid, h_uid, r_uid)
+        values
+            (SEQ_Application_A_uid.nextval, 0,#{u_uid},#{h_uid},#{r_uid})
+
+   </insert>
+
+    <select id="selectByUid" resultType="com.lec.spring.app.domain.AppDTO">
+			select *from Application a left outer join HUSER u on a.u_uid= u.U_UID
+            left outer join RESUME r on a.r_uid=r.R_UID
+            where a.u_uid=1
+	</select>
+
+    <select id="selectRByUid" resultType="com.lec.spring.app.domain.AppDTO">
+        select r_uid, r_title from resume where u_uid = #{u_uid}
+    </select>
+
+</mapper>
