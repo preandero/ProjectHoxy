@@ -6,6 +6,9 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <html>
 <head>
 
@@ -90,7 +93,12 @@
         <button id="btnWrite" class="org_Btn inline col-md-3">즉시지원</button>
     </div>
     <div class="main_box_content">
-
+        <c:forEach var="RList" items="${Rlist }">
+            <tr>
+                <td>${RList.r_uid }</td>
+                <td>${RList.r_title }</td>
+            </tr>
+        </c:forEach>
 
     </div>
     <div class="main_box_content">

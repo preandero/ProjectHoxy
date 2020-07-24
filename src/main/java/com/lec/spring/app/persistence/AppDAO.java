@@ -8,5 +8,9 @@ public interface AppDAO {
     int insert(final AppDTO dto);
     public List<AppDTO> selectByUid(final int uid);
     public List<AppDTO> selectByHid(final int hid);
+    
+    
+    public List<AppDTO> selectRByUid(final int uid);
+
 }
 

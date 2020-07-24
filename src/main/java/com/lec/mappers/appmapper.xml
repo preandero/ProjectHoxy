@@ -20,4 +20,8 @@
             where a.u_uid=1
 	</select>
 
+    <select id="selectRByUid" resultType="com.lec.spring.app.domain.AppDTO">
+        select r_uid, r_title from resume where u_uid = #{u_uid}
+    </select>
+
 </mapper>
