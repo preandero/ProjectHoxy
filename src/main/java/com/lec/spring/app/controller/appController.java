@@ -3,6 +3,7 @@ package com.lec.spring.app.controller;
 import com.lec.spring.app.ACommand;
 import com.lec.spring.app.AWriteCommand;
 import com.lec.spring.app.C;
+import com.lec.spring.app.RListCommand;
 import com.lec.spring.app.domain.AppDTO;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,7 +28,9 @@ public class appController {
     }
 
     @RequestMapping("/hireDetail")
-    public String hireDetail(Model model) {
+    public String hireDetail(int u_uid,Model model) {
+        model.addAttribute("u_uid", u_uid);
+        new RListCommand().execute(model);
         return "/hire/hireDetail";
     }
 
