@@ -204,11 +204,11 @@
     </dependency>
 
     <!-- NAVER -->
-    <dependency>
+    <!--<dependency>
       <groupId>com.github.scribejava</groupId>
       <artifactId>scribejava-core</artifactId>
       <version>5.6.0</version>
-    </dependency>
+    </dependency>-->
     <!-- google -->
     <dependency>
       <groupId>org.springframework.social</groupId>
@@ -272,7 +272,6 @@
       <artifactId>spring-security-core</artifactId>
       <version>3.2.5.RELEASE</version>
     </dependency>
-
 
   </dependencies>
 
