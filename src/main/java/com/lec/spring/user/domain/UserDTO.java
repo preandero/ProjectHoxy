@@ -17,4 +17,6 @@ public class UserDTO {
     private String u_jumin;
     private String u_email;
     private String u_phoneNum;
+    private String u_auth;
+    private String enabled;
 }

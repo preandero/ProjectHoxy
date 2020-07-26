@@ -2,27 +2,36 @@ package com.lec.spring.user.controller;
 
 import com.lec.spring.user.domain.UserDTO;
 import com.lec.spring.user.service.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.ModelAndView;
 
 import javax.inject.Inject;
 
 @Controller
 @RequestMapping("/user")
 public class userRegisterController {
-    private final UserService userService;
-    @Inject
-    public userRegisterController(UserService userService){
-        this.userService = userService;
-    }
+
+    @Autowired
+    private UserService userService;
+
     @RequestMapping(value = "/register", method = RequestMethod.GET)
-    public String regGet() throws Exception{
-        return "/user/register";
+    public ModelAndView register(ModelAndView mav){
+        mav.setViewName("user/register");
+        return mav;
     }
+
     @RequestMapping(value = "/register", method = RequestMethod.POST)
-    public String regPost(UserDTO userDTO) throws Exception{
+    public ModelAndView register(UserDTO userDTO, ModelAndView mav) throws Exception {
         userService.register(userDTO);
-        return "/user/register";
+        mav.setViewName("login");
+        return mav;
     }
+
+
+
+
 }
