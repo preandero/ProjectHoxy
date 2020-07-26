@@ -39,6 +39,12 @@
             <input type="text" name="u_phoneNum" placeholder="phone">
         </div>
         <div>
+            <input type="text" name="u_auth" placeholder="auth">
+        </div>
+        <div>
+            <input type="text" name="enabled" placeholder="enabled">
+        </div>
+        <div>
             <button type="submit">가입</button>
         </div>
     </form>
