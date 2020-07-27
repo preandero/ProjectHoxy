@@ -20,24 +20,6 @@ public class LoginController {
         return "login/login";
     }
 
-    //네이버 로그인 성공시 callback호출 메소드
-    @RequestMapping(value = "/callback", method = { RequestMethod.GET, RequestMethod.POST })
-    public String callback(Model model, @RequestParam String code, @RequestParam String state, HttpSession session)
-            throws IOException {
-        System.out.println("여기는 callback");
-
-        /* 네이버 로그인 성공 페이지 View 호출 */
-        return "login/naver/naverSuccess";
-    }
-
-    // 구글 Callback호출 메소드
-    @RequestMapping(value = "/oauth2callback", method = { RequestMethod.GET, RequestMethod.POST })
-    public String googleCallback(Model model, @RequestParam String code) throws IOException {
-        System.out.println("여기는 googleCallback");
-
-        return "login/google/googleSuccess";
-    }
-
     //기본 로그인폼
     @RequestMapping(value="/loginform.it", method = RequestMethod.GET)
     public String loginform() {

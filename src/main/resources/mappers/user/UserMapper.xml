@@ -5,7 +5,15 @@
 <mapper namespace="com.lec.spring.user.persistence.UserDAO">
 
 	<insert id="register" parameterType="com.lec.spring.user.domain.UserDTO">
-		INSERT INTO HUser VALUES (
+		INSERT INTO HUser (
+        u_uid,
+         u_id,
+         u_pw,
+         u_name,
+         u_jumin,
+         u_email,
+         u_phoneNum
+    ) VALUES (
         SEQ_HUser_u_uid.nextval
         , #{u_id}
         , #{u_pw}
@@ -13,8 +21,19 @@
         , #{u_jumin}
         , #{u_email}
         , #{u_phoneNum}
-        , #{u_auth}
-        , #{enabled}
     )
 	</insert>
+
+    <select id="checkOverId" parameterType="string" resultType="int">
+        Select count(*) from HUser where u_id = #{u_id}
+    </select>
+
+
+    <insert id="GetKey" parameterType="map">
+        update HUser set u_key = #{param2} WHERE u_id = #{param1}
+    </insert>
+
+    <update id="alter_userKey" parameterType="map">
+        update HUser set u_key = 'Y' WHERE u_id = #{param1} and u_key = #{param2}
+    </update>
 </mapper>

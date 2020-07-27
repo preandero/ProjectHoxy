@@ -1,37 +1,50 @@
 package com.lec.spring.user.controller;
 
 import com.lec.spring.user.domain.UserDTO;
+import com.lec.spring.user.service.UserMailSendService;
 import com.lec.spring.user.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
-import javax.inject.Inject;
+import javax.servlet.http.HttpServletRequest;
 
 @Controller
-@RequestMapping("/user")
 public class userRegisterController {
 
     @Autowired
     private UserService userService;
 
-    @RequestMapping(value = "/register", method = RequestMethod.GET)
-    public ModelAndView register(ModelAndView mav){
-        mav.setViewName("user/register");
-        return mav;
+    @Autowired
+    private UserMailSendService mailSender;
+
+    @RequestMapping(value = "/user/idCheck", method = RequestMethod.GET)
+    @ResponseBody
+    public int idCheck(@RequestParam("u_id") String u_id){
+        return userService.userIdCheck(u_id);
     }
 
-    @RequestMapping(value = "/register", method = RequestMethod.POST)
-    public ModelAndView register(UserDTO userDTO, ModelAndView mav) throws Exception {
-        userService.register(userDTO);
-        mav.setViewName("login");
-        return mav;
+    @RequestMapping(value = "/user/register", method = RequestMethod.GET)
+    public String regGet() throws Exception{
+        return "user/register";
     }
 
+    @RequestMapping(value = "/user/register", method = RequestMethod.POST)
+    public String register(UserDTO userDTO, Model model, HttpServletRequest request) throws Exception {
+        userService.regist(userDTO);
+        mailSender.mailSendWithUserKey(userDTO.getU_email(), userDTO.getU_id(), request);
+        return "redirect:/";
 
+    }
 
+    @RequestMapping(value = "/user/key_alter", method = RequestMethod.GET)
+    public String key_alterConfirm(@RequestParam("u_id") String u_id, @RequestParam("u_key") String u_key){
+        mailSender.alter_userKey_service(u_id, u_key);
+        return "user/regSuccess";
+    }
 
 }

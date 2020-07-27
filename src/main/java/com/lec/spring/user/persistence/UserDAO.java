@@ -5,17 +5,11 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-@Repository("UserDAO")
-public class UserDAO {
+public interface UserDAO {
 
-    @Autowired
-    private SqlSession session;
+    int register(UserDTO userDTO) throws Exception;
+    int checkOverId(String u_id);
+    int GetKey(String u_id, String u_key);
+    int alter_userKey(String u_id, String key);
 
-    public UserDAO(){
-        System.out.println("dao 객체생성");
-    }
-
-    public void register(UserDTO userDTO){
-        session.insert("UserDAO.register", userDTO);
-    }
 }
