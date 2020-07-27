@@ -1,9 +1,6 @@
 package com.lec.spring.app.controller;
 
-import com.lec.spring.app.ACommand;
-import com.lec.spring.app.AWriteCommand;
-import com.lec.spring.app.C;
-import com.lec.spring.app.RListCommand;
+import com.lec.spring.app.*;
 import com.lec.spring.app.domain.AppDTO;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,7 +39,33 @@ public class appController {
     }
 
     @RequestMapping("/appmyList")
-    public String appmyList(Model model) {
+    public String appmyList(int u_uid,Model model) {
+
+        model.addAttribute("u_uid", u_uid);
+        new AListCommand().execute(model);
+        new RListCommand().execute(model);
         return "/application/appmyList";
+    }
+
+    @RequestMapping("/appDelete")
+    public String appDelete(int a_uid,Model model) {
+
+        model.addAttribute("a_uid", a_uid);
+        new ADeleteCommand().execute(model);
+        return "/application/appDeleteOk";
+    }
+    @RequestMapping("/appUpdate")
+    public String appUpdate(int a_uid,int r_uid,Model model) {
+
+        model.addAttribute("a_uid", a_uid);
+        model.addAttribute("r_uid", r_uid);
+        new AUpdateCommand().execute(model);
+        return "/application/appUpdateOk";
+    }
+
+    @RequestMapping("/color")
+    public String color(Model model) {
+
+        return "index";
     }
 }

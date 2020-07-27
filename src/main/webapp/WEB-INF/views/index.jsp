@@ -1,16 +1,21 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: bhd44
-  Date: 2020-07-23
-  Time: 오후 1:11
-  To change this template use File | Settings | File Templates.
---%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <html>
 <head>
+    <!--COLOR PICKER-->
+    <link rel="icon" type="image/png" href="http://example.com/myicon.png">
+    <script src="${pageContext.request.contextPath }/JS/jscolor.js"></script>
+
+
+    <!--부트스트랩 차트-->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <!-- 차트 링크 -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -38,10 +43,11 @@
     <link rel="shortcut icon" type="image/x-icon"
           href="https://i.imgur.com/8AyMFrx.png">
 
-    <title>채용공고</title>
+    <title>입사지원관리</title>
 </head>
 
 <body class="bk_gray">
+
 <div id="header" class="row">
 
     <div class="col-md-2"></div>
@@ -84,43 +90,74 @@
 
 
 </div>
-
 <div class="main_box div_950">
-    <div class="main_box_content row">
-        <%--공고 타이틀 자리임--%>
-        <h1 class="main_box_title inline col-md-8">웹기획(PM), 프론트엔드 개발자, 데이터사이언티스트 채용</h1>
-        <button class="gray_Btn inline col-md-1"> ☆</button>
-        <button id="btnWrite" class="org_Btn inline col-md-3">즉시지원</button>
-    </div>
     <div class="main_box_content">
-
-    </div>
-    <div class="main_box_content">
-        <h2 class="main_box_title inline">지원자 통계</h2>
-
-
-    </div>
-
-
-</div>
-
-<div id="dlg_write" class="modal">
-    <div class="modal-content">
-        <span class="close" title="Close Modal">&times;</span>
-        <h1 class="hire_title">공고 제목 뽑아오기</h1><%--TODO--%>
-        <form action="/app/appWriteOk" method="post">
-            <input type="text" value="1" name="u_uid">
-            <input type="text" value="1" name="h_uid">
-            <h1>이력서 선택 </h1>
-            <select name="r_uid">
-                <c:forEach var="RList" items="${Rlist }">
-                    <option value="${RList.r_uid }">${RList.r_title }</option>
-                </c:forEach>
-            </select>
-            <input type="submit" value="지원하기" class="org_Btn fullbutton">
-
+        <h1>지원 통계 디자인</h1><br><br>
+        <form action="">
+            Color1: <input id="color1" value="rgba(255,143,143,1)" data-jscolor=""><br><br>
+            Color2: <input id="color2" value="rgba(255,243,111,1)" data-jscolor=""><br><br>
+            Color3: <input id="color3" value="rgba(73,167,255,1)" data-jscolor=""><br><br>
+            <button type="submit" class="org_Btn">즉시적용</button>
         </form>
+
+
+        <div class="container">
+            <canvas id="myChart"></canvas>
+        </div> <!-- 부트스트랩 -->
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+                integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+                crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+                integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+                crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+                integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+                crossorigin="anonymous"></script> <!-- 차트 -->
+        <script>
+            var color1 = $('input#color1').val();
+            var color2 = $('input#color2').val();
+            var color3 = $('input#color3').val();
+            var ctx = document.getElementById('myChart');
+            var myChart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: ['Red', 'Blue', 'Yellow'],
+                    datasets: [{
+                        label: '# of Votes',
+                        data: [12, 19, 3, 5, 2, 3],
+                        backgroundColor: [color1, color2, color3],
+                        borderColor: [color1, color2, color3],
+                        borderWidth: 0.5
+
+                    }]
+                },
+                options: {scales: {yAxes: [{ticks: {beginAtZero: true}}]}}
+            });
+
+            $("#color1, #color2, #color3").change(function () {
+                var color1 = $('input#color1').val();
+                var color2 = $('input#color2').val();
+                var color3 = $('input#color3').val();
+                var ctx = document.getElementById('myChart');
+                var myChart = new Chart(ctx, {
+                    type: 'bar',
+                    data: {
+                        labels: ['Red', 'Blue', 'Yellow'],
+                        datasets: [{
+                            label: '# of Votes',
+                            data: [12, 19, 3, 5, 2, 3],
+                            backgroundColor: [color1, color2, color3],
+                            borderColor: [color1, color2, color3],
+                            borderWidth: 0.5
+
+                        }]
+                    },
+                    options: {scales: {yAxes: [{ticks: {beginAtZero: true}}]}}
+                });
+            });
+        </script>
     </div>
+
 </div>
 
 
@@ -162,7 +199,5 @@
         </div>
     </div>
 </div>
-
-
 </body>
 </html>
