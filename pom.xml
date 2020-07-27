@@ -210,27 +210,18 @@
       <scope>provided</scope>
     </dependency>
 
-    <!-- Security -->
+
     <dependency>
-      <groupId>org.springframework.security</groupId>
-      <artifactId>spring-security-web</artifactId>
+      <groupId>org.springframework</groupId>
+      <artifactId>spring-context-support</artifactId>
       <version>${org.springframework-version}</version>
     </dependency>
     <dependency>
-      <groupId>org.springframework.security</groupId>
-      <artifactId>spring-security-config</artifactId>
-      <version>${org.springframework-version}</version>
+      <groupId>javax.mail</groupId>
+      <artifactId>mail</artifactId>
+      <version>1.4.7</version>
     </dependency>
-    <dependency>
-      <groupId>org.springframework.security</groupId>
-      <artifactId>spring-security-core</artifactId>
-      <version>${org.springframework-version}</version>
-    </dependency>
-    <dependency>
-      <groupId>org.springframework.security</groupId>
-      <artifactId>spring-security-taglibs</artifactId>
-      <version>${org.springframework-version}</version>
-    </dependency>
+
 
     <!--  File upload  -->
     <dependency>
@@ -253,11 +244,9 @@
       <artifactId>commons-io</artifactId>
       <version>2.6</version>
     </dependency>
-    <dependency>
-      <groupId>org.springframework.security</groupId>
-      <artifactId>spring-security-core</artifactId>
-      <version>3.2.5.RELEASE</version>
-    </dependency>
+
+
+
 
   </dependencies>
 
