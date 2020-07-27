@@ -11,5 +11,4 @@ public interface UserDAO {
     int checkOverId(String u_id);
     int GetKey(String u_id, String u_key);
     int alter_userKey(String u_id, String key);
-
 }
