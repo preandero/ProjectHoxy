@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/hire/*.ajax")
-public class AjaxController {
+public class WAjaxController {
 
 	@RequestMapping("/hire/hirelist.ajax")
 	public AjaxWriteList list(HttpServletRequest request, HttpServletResponse response) {
