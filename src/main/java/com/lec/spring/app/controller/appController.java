@@ -62,10 +62,28 @@ public class appController {
         new AUpdateCommand().execute(model);
         return "/application/appUpdateOk";
     }
+ @RequestMapping("/colorUpdate")
+    public String colorUpdate(String color1, String color2,String color3,Model model) {
 
+        model.addAttribute("color1", color1);
+        model.addAttribute("color2", color2);
+        model.addAttribute("color3", color3);
+        new GUpdatedCommand().execute(model);
+        return "/application/colorUpdateOk";
+    }
+    @RequestMapping("/listUpdate")
+    public String listUpdate(String color1, String color2,String color3,Model model) {
+
+        model.addAttribute("color1", color1);
+        model.addAttribute("color2", color2);
+        model.addAttribute("color3", color3);
+        new GUpdatedCommand().execute(model);
+        return "/application/listUpdateOk";
+    }
     @RequestMapping("/color")
     public String color(Model model) {
-
+        new LCommand().execute(model);
+        new GCommand().execute(model);
         return "index";
     }
 }

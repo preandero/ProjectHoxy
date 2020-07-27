@@ -92,12 +92,37 @@
 </div>
 <div class="main_box div_950">
     <div class="main_box_content">
-        <h1>지원 통계 디자인</h1><br><br>
-        <form action="">
-            Color1: <input id="color1" value="rgba(255,143,143,1)" data-jscolor=""><br><br>
-            Color2: <input id="color2" value="rgba(255,243,111,1)" data-jscolor=""><br><br>
-            Color3: <input id="color3" value="rgba(73,167,255,1)" data-jscolor=""><br><br>
+        <h1>지원 통계 목록</h1><br><br>
+        <c:forEach var="List" items="${List }">
+            ${List.graphView1 }
+            ${List.graphView2 }
+            ${List.graphView3 }
+            ${List.graphView4 }
+            ${List.graphView5 }
+            ${List.graphView6 }
+            ${List.graphView7 }
+        </c:forEach>
+        <form action=listUpdate" method="post">
+            <input type="checkbox" name="graphView1" value="1"> 지원자 수
+            <input type="checkbox" name="graphView2" value="1"> 경력별 현황
+            <input type="checkbox" name="graphView3" value="1"> 연봉별 현황
+            <input type="checkbox" name="graphView4" value="1"> 성별별 현황
+            <input type="checkbox" name="graphView5" value="1"> 연령별 현황
+            <input type="checkbox" name="graphView6" value="1"> 학력별 현황
+            <input type="checkbox" name="graphView7" value="1"> TOEIC
+            <br>
             <button type="submit" class="org_Btn">즉시적용</button>
+        </form>
+    </div>
+    <div class="main_box_content">
+        <h1>지원 통계 디자인</h1><br><br>
+        <form action="colorUpdate" method="post">
+            <c:forEach var="Color" items="${Color }">
+                Color1: <input id="color1" name="color1" value="${Color.color1 }" data-jscolor=""><br><br>
+                Color2: <input id="color2" name="color2" value="${Color.color2 }" data-jscolor=""><br><br>
+                Color3: <input id="color3" name="color3" value="${Color.color3 }" data-jscolor=""><br><br>
+                <button type="submit" class="org_Btn">즉시적용</button>
+            </c:forEach>
         </form>
 
 

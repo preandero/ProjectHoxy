@@ -8,6 +8,6 @@ import java.util.List;
 public interface ColorDAO {
 
     public List<ColorDTO> select();
-    int update();
+    int update(String color1, String color2, String color3);
 
 }
