@@ -2,6 +2,7 @@ package com.lec.spring.hire.beans;
 
 public class HWriteDTO {
 
+
 	private int C_UID;
 	private int uid;
 	private String name;
@@ -18,13 +19,22 @@ public class HWriteDTO {
 	private int cnt;
 	private String upDate;
 	private String regDate;
+	private String remainDate;
 
 	public HWriteDTO() {
 		super();
 	}
 
+	public String getRemainDate() {
+		return remainDate;
+	}
+
+	public void setRemainDate(String remainDate) {
+		this.remainDate = remainDate;
+	}
+
 	public HWriteDTO(int C_UID, int uid, String name, String title, String content, String salary, String position1, String position2,
-					 String part, String career, String degree, String workform, int cnt, String upDate, String regDate) {
+					 String part, String career, String degree, String workform, int cnt, String upDate, String regDate, String remainDate) {
 		super();
 		this.uid = C_UID;
 		this.uid = uid;
@@ -41,6 +51,7 @@ public class HWriteDTO {
 		this.cnt = cnt;
 		this.upDate = upDate;
 		this.regDate = regDate;
+		this.remainDate=remainDate;
 	}
 
 	public int getC_UID() {
@@ -69,7 +80,7 @@ public class HWriteDTO {
 	public String getName() {
 		return name;
 	}
-	
+
 	public void setName(String name) {
 		this.name = name;
 	}

@@ -11,12 +11,10 @@ public class UpdateCommand implements HCommand {
 
 	@Override
 	public void excute(Model model) {
-
-		 Map<String, Object> map = model.asMap(); HWriteDTO dto =
-		  (HWriteDTO)map.get("dto"); IWriteDAO dao =
-		  C.sqlSession.getMapper(IWriteDAO.class);
-
-		  model.addAttribute("result", dao.update(dto.getUid(), dto));
+		Map<String, Object> map = model.asMap();
+		HWriteDTO dto = (HWriteDTO)map.get("dto");
+		IWriteDAO dao = C.sqlSession.getMapper(IWriteDAO.class);
+		model.addAttribute("result", dao.update(dto.getUid(), dto));
 
 	}
 
