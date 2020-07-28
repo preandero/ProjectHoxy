@@ -34,6 +34,10 @@
 		직원번호 : ${view[0].uid }<br>
 		이름 : ${view[0].name }<br>
 		직책 : ${view[0].part }<br>
+		공고 : ${view[0].title }<br>
+		급여 : ${view[0].salary }<br>
+		학위 : ${view[0].degree }<br>
+		근무 형태 : ${view[0].workform }<br>
 		<hr>
 		<br>
 		<button onclick="location.href='update.do?uid=${view[0].uid }'">수정하기</button>

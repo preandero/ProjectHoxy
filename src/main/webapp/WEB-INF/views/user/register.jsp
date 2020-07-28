@@ -1,10 +1,3 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: yjiwo
-  Date: 2020-07-23
-  Time: 오후 8:43
-  To change this template use File | Settings | File Templates.
---%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
@@ -21,44 +14,55 @@
 <div>
     <p>회원가입</p>
     <form method="post">
-        <div>
-            <input type="text" id="u_id" name="u_id" placeholder="id" required>
+        <!-- 아이디 -->
+        <div class = "form-group">
+            <label for="u_id">아이디</label>
+            <input type="text" class="form-control" id="u_id" name="u_id" placeholder="ID" required>
         </div>
         <div class="check_font" id="id_check"></div>
 
-        <div>
-            <input type="password" id="u_pw" name="u_pw" placeholder="pw" required>
+        <div class = "form-group">
+            <label for="u_pw">패스워드</label>
+            <input type="password" class="form-control" id="u_pw" name="u_pw" placeholder="password" required>
         </div>
         <div class="check_font" id="pw_check"></div>
-
-        <div>
-            <input type="password" id="u_pw2"  name="u_pw"  placeholder="Confirm Password" required>
+        <div class = "form-group">
+            <label for="u_pw2">패스워드 확인</label>
+            <input type="text" class="form-control" id="u_pw2" name="u_pw2" placeholder="Confirm Password" required>
         </div>
         <div class="check_font" id="pw2_check"></div>
 
-
-        <div>
-            <input type="text" id="u_name" name="u_name" placeholder="name">
+        <div class = "form-group">
+            <label for="u_name">이름</label>
+            <input type="text" class="form-control" id="u_name" name="u_name" placeholder="name" required>
         </div>
         <div class="check_font" id="name_check"></div>
 
-        <div>
-            <input type="text" name="u_jumin" placeholder="jumin">
+        <div class = "form-group">
+            <label for="u_jumin">주민번호</label>
+            <input type="text" class="form-control" id="u_jumin" name="u_jumin" placeholder="JUMIN" required>
         </div>
-        <div>
-            <input type="text" name="u_email" placeholder="email">
+
+        <div class = "form-group">
+            <label for="u_phoneNum">휴대전화</label>
+            <input type="text" class="form-control" id="u_phoneNum" name="u_phoneNum" placeholder="PhoneNum" required>
         </div>
-        <div>
-            <input type="text" name="u_phoneNum" placeholder="phone">
+        <div class="check_font" id="phone_check"></div>
+
+
+        <div class = "form-group">
+            <label for="u_email">이메일</label>
+            <input type="text" class="form-control" id="u_email" name="u_email" placeholder="EMAIL" required>
         </div>
-        <div>
+        <div class="check_font" id="email_check"></div>
+
+        <div class="reg_button">
             <a class="btn btn-danger px-3" href="${pageContext.request.contextPath}">
                 <i class="fa fa-rotate-right pr-2" aria-hidden="true"></i>취소하기
             </a>&emsp;&emsp;
             <button class="btn btn-primary px-3" id="reg_submit">
                 <i class="fa fa-heart pr-2" aria-hidden="true"></i>가입하기
             </button>
-
         </div>
     </form>
 </div>
@@ -109,6 +113,30 @@
             $('#name_check').css('color', 'red');
         }
     });
+
+    // 휴대전화
+    $('#u_phoneNum').blur(function(){
+        if(phoneJ.test($(this).val())){
+            console.log(nameJ.test($(this).val()));
+            $("#phone_check").text('');
+        } else {
+            $('#phone_check').text('휴대폰번호를 확인해주세요 :)');
+            $('#phone_check').css('color', 'red');
+        }
+    });
+
+    // 이메일
+    $('#u_email').blur(function(){
+        if(mailJ.test($(this).val())){
+            console.log(nameJ.test($(this).val()));
+            $("#email_check").text('');
+        } else {
+            $('#email_check').text('이메일을 확인해주세요 :)');
+            $('#email_check').css('color', 'red');
+        }
+    });
+
+
 
     // 아이디 유효성 검사(1 = 중복 / 0 != 중복)
     $("#u_id").blur(function() {
@@ -167,21 +195,19 @@
         } else {
             inval_Arr[1] = false;
         }
-
-        var validAll = true;
-        for(var i = 0; i < inval_Arr.length; i++){
-
-            if(inval_Arr[i] == false){
-                validAll = false;
-            }
+        // 이메일 정규식
+        if (mailJ.test($('#user_email').val())){
+            console.log(phoneJ.test($('#user_email').val()));
+            inval_Arr[2] = true;
+        } else {
+            inval_Arr[2] = false;
         }
-
-        if(validAll){ // 유효성 모두 통과
-            alert('갓민수님께서 인증 이메일을 보냈으니 확인해주세요!');
-
-        } else{
-            alert('입력한 정보들을 다시 한번 확인해주세요 :)')
-
+        // 휴대폰번호 정규식
+        if (phoneJ.test($('#user_phone').val())) {
+            console.log(phoneJ.test($('#user_phone').val()));
+            inval_Arr[3] = true;
+        } else {
+            inval_Arr[3] = false;
         }
     });
 </script>

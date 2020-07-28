@@ -93,24 +93,66 @@
 <div class="main_box div_950">
     <div class="main_box_content">
         <h1>지원 통계 목록</h1><br><br>
+        <form action="listUpdate" method="post">
+
         <c:forEach var="List" items="${List }">
-            ${List.graphView1 }
-            ${List.graphView2 }
-            ${List.graphView3 }
-            ${List.graphView4 }
-            ${List.graphView5 }
-            ${List.graphView6 }
-            ${List.graphView7 }
+            <c:if test="${List.graphView1 == 1}">
+                <input type="checkbox" name="graphView1" value="1" checked="checked"> 지원자 수
+            </c:if>
+            <c:if test="${List.graphView1 != 1}">
+                <input type="checkbox" name="graphView1" value="1"> 지원자 수
+            </c:if>
+
+
+            <c:if test="${List.graphView2 == 1}">
+                <input type="checkbox" name="graphView2" value="1" checked="checked"> 경력별 현황
+            </c:if>
+            <c:if test="${List.graphView2 != 1}">
+                <input type="checkbox" name="graphView2" value="1"> 경력별 현황
+            </c:if>
+
+
+            <c:if test="${List.graphView3 == 1}">
+                <input type="checkbox" name="graphView3" value="1" checked="checked"> 연봉별 현황
+            </c:if>
+            <c:if test="${List.graphView3 != 1}">
+                <input type="checkbox" name="graphView3" value="1"> 연봉별 현황
+            </c:if>
+
+
+            <c:if test="${List.graphView4 == 1}">
+                <input type="checkbox" name="graphView4" value="1" checked="checked"> 성별별 현황
+            </c:if>
+            <c:if test="${List.graphView4 != 1}">
+                <input type="checkbox" name="graphView4" value="1"> 성별별 현황
+            </c:if>
+
+
+            <c:if test="${List.graphView5 == 1}">
+                <input type="checkbox" name="graphView5" value="1" checked="checked"> 연령별 현황
+            </c:if>
+            <c:if test="${List.graphView5 != 1}">
+                <input type="checkbox" name="graphView5" value="1"> 연령별 현황
+            </c:if>
+
+
+            <c:if test="${List.graphView6 == 1}">
+                <input type="checkbox" name="graphView6" value="1" checked="checked"> 학력별 현황
+            </c:if>
+            <c:if test="${List.graphView6 != 1}">
+                <input type="checkbox" name="graphView6" value="1"> 학력별 현황
+            </c:if>
+
+
+            <c:if test="${List.graphView7 == 1}">
+                <input type="checkbox" name="graphView7" value="1" checked="checked"> TOEIC
+            </c:if>
+            <c:if test="${List.graphView7 != 1}">
+                <input type="checkbox" name="graphView7" value="1"> TOEIC
+            </c:if>
+
         </c:forEach>
-        <form action=listUpdate" method="post">
-            <input type="checkbox" name="graphView1" value="1"> 지원자 수
-            <input type="checkbox" name="graphView2" value="1"> 경력별 현황
-            <input type="checkbox" name="graphView3" value="1"> 연봉별 현황
-            <input type="checkbox" name="graphView4" value="1"> 성별별 현황
-            <input type="checkbox" name="graphView5" value="1"> 연령별 현황
-            <input type="checkbox" name="graphView6" value="1"> 학력별 현황
-            <input type="checkbox" name="graphView7" value="1"> TOEIC
-            <br>
+
             <button type="submit" class="org_Btn">즉시적용</button>
         </form>
     </div>
