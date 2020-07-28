@@ -64,7 +64,7 @@
         var remember_us = $('#remember_us').is(':checked');
         $.ajax({
             type : 'post',
-            url : '${pageContext.request.contextPath}/',
+            url : '/user/login',
             data : {
                 u_id : id,
                 u_pw : pw,
