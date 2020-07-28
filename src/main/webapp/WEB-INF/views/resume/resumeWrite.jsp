@@ -26,39 +26,43 @@ To change this template use File | Settings | File Templates.
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <!-- Latest compiled JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
-    <link rel="stylesheet" type="text/css" href="CSS/Write.css"/>
+    <link rel="stylesheet" type="text/css" href="../../../CSS/resumeWrite.css"/>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+
 </head>
 <body>
 <div>
     <header></header>
 
     <section>
-        <div id="subject" class="container p-3 my-3 border">
-            <h4>이력서 제목을 입력하세요</h4>
+        <div class="d-flex justify-content-center">
+        <input type="text" id="subject" class="p-3 my-3 border w-50" placeholder="이력서 제목을 입력하세요.">
+<%--            <input type="text" placeholder="이력서 제목을 입력하세요."/>--%>
+        </input>
         </div>
 
         <div class="container p-3"><h4>기본정보</h4></div>
 
         <div id="basic" class="container border p-5">
             <div class="form-group row">
-                <label class="m-auto">이름</label>
-                <input type="text" class="form-control w-50" id="basicName">
-                <span class="dropdown m-auto">
-                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2"
-                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                      구직상태 선택
-                    </button>
-                    <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
-                      <button class="dropdown-item" type="button">구직준비중(재학생)</button>
-                      <button class="dropdown-item" type="button">구직중</button>
-                      <button class="dropdown-item" type="button">재직중</button>
-                    </div>
-                        <form action="/resume/upload" method="post" enctype="multipart/form-data">
-                                <input type="file" name="file"/>
-                                <input type="submit" value="Upload"/>
-                        </form>
-                    </span>
+                <label class="ml-3 my-2">이름</label>
+                <input type="text" class="form-control w-25 ml-3" id="basicName">
 
+                    <select class="browser-default custom-select w-25 ml-5">
+                        <option selected>구직상태 선택</option>
+                        <option value="1">구직준비중(재학생)</option>
+                        <option value="2">구직중</option>
+                        <option value="3">재직중</option>
+                    </select>
+
+                        <form  id="uploadForm" enctype="multipart/form-data">
+                            <div class="custom-file">
+                            <label class="custom-file-label" for="file-name">Choose file</label>
+                                <input class="custom-file-input" type="file" name="file" id="file-name"/>
+                                <button type="button" class="input-group-text row" id="btn-upload">Upload</button>
+<%--                                <button type="button" id="btn-upload" >upload</button>--%>
+                            </div>
+                        </form>
 
             </div>
             <div class="form-group row">
@@ -83,4 +87,6 @@ To change this template use File | Settings | File Templates.
     <footer></footer>
 </div>
 </body>
+<script src="../../../JS/resumeWrite.js" type="text/javascript"></script>
+
 </html>
