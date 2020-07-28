@@ -19,7 +19,7 @@
 
 	<select id="selectByUid"
 		resultType="com.lec.spring.hire.beans.HWriteDTO">
-		SELECT h_uid "uid", h_name name, h_part part
+		SELECT h_uid "uid", h_name name, h_part part,h_title title, h_salary salary, h_degree degree, h_workform workform
 		FROM
 		Hire
 		WHERE h_uid=

@@ -73,6 +73,12 @@ public class HireController {
         new UpdateCommand().excute(model);
         return "hire/updateOk";
     }
+//    @RequestMapping("/adminhire.do")
+//    public String list(Model model) {
+//        command = new AHListCommand();
+//        command.excute(model);
+//        return "hire/adminhire";
+//    }
 
     @RequestMapping("/deleteOk.do")
     public String delete(Model model, int uid) {
