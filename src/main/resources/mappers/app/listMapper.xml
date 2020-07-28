@@ -9,7 +9,7 @@
     <select id="select" resultType="com.lec.spring.app.domain.ListDTO">
         select * from graphList
     </select>
-<!--
+
     <update id="update" flushCache="true">
        UPDATE graphList SET
        graphView1 = #{param1},
@@ -20,7 +20,7 @@
        graphView6=#{param6},
        graphView7=#{param7}
        WHERE
-        graph = 1;
+        graphid = 1
 
-    </update>-->
+    </update>
 </mapper>
