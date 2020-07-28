@@ -139,20 +139,22 @@ function chkDelete(uid) {
 };
 
 
-
 //page 번째 페이지 로딩
-function loadPage(page){
+function loadPage(page) {
     $.ajax({
-        url : "hirelist.ajax?page=" + page + "&pageRows=" + pageRows
-        , type : "GET"
-        , cache : false
-        , success : function(data, status){
-            if(status == "success"){
-                alert("AJAX 성공: 받아쮸~");
-                if(updateList(data)){
-                    // 업데이트된 list 에 필요한 이벤트 가동
-                    addViewEvent();
-                    // ★ 만약 위 코드를 $(document).ready() 에 두면 동작 안할것이다.!
+        url: "hirelist.ajax?page=" + page + "&pageRows=" + pageRows
+        , type: "GET"
+        , cache: false
+        , success: function (data, status) {
+            if (status == "success") {
+                if (updateList(data)) {
+
+                    $("#deletebtn").click(function(){
+
+
+
+                    });
+
                 }
             }
         }
@@ -160,30 +162,33 @@ function loadPage(page){
 } // end loadPage()
 
 //
-function updateList(jsonObj){
+function updateList(jsonObj) {
     result = "";
 
-    if(jsonObj.status == "OK"){
+    if (jsonObj.status == "OK") {
         var count = jsonObj.count;
-
+        var remain;
         var i;
         var items = jsonObj.data;
-        for(i = 0; i < count; i++){
-            alert(count);
+        for (i = 0; i < count; i++) {
+            if(items[i].remainDate<0) {
+                remain = "<td>" + "<hr2>" + "모집 마감"+"</hr2>"+"</td>\n";
+            }
+            if(items[i].remainDate == 0){
+                remain = "<td>"+ "<hr2>"+"오늘 종료"+"</hr2>"+"</td>\n";
+            }
+            if(items[i].remainDate >0){
+                remain = "<td>"+ "<hr2>"+items[i].remainDate+"일"+"</hr2>"+"</td>\n";
+            }
+
             result += "<tr>\n";
-            result += "<td>" +"<i class='fas fa-user-tie'></i>" + "</td>\n";
-
-
-            result += "<td>" + "익명 " +  (i+1)+ "]</td>\n";
-
-            result += "<td>" + items[i].name + "</td>\n";
-
+            //result += "<td>" + "<i class='fas fa-user-tie'></i>" + "</td>\n";
             result += "<td>" + items[i].title + "</td>\n";
-            result += "<td>" + "<button class='updatebtn'" + " type='button'>수정</button> "+  "</td>\n";
-            result += "<td>" + "<button class='deletebtn' data-uid='"+ items[i].uid + "' type='button'>삭제</button> "+  "</td>\n";
-
-
-
+            result += "<td>" + items[i].name + "</td>\n";
+            result += "<td>" + items[i].uid + "</td>\n";
+            result += remain;
+            result += "<td>" + "<button class='deletebtn' data-uid='"+ items[i].uid + "' type='button'>상세보기</button>" + "</td>\n";
+            result += "<td>" + "<button onclick='chkDelete("+items[i].uid+")'>삭제</button>" + "</td>\n";
 
             result += "</tr>\n";
         } // end for
@@ -192,12 +197,13 @@ function updateList(jsonObj){
         // 페이지 정보 업데이트
         $("#pageinfo").text(jsonObj.page + "/" + jsonObj.totalpage + "페이지, " + jsonObj.totalcnt + "개의 글");
 
+
         // pageRows
         var txt = "<select id='rows' onchange='changePageRows()'>\n";
-        txt += "<option " + ((window.pageRows == 10)?"selected":"") + " value='10'>10개씩</option>\n";
-        txt += "<option " + ((window.pageRows == 20)?"selected":"") + " value='20'>20개씩</option>\n";
-        txt += "<option " + ((window.pageRows == 50)?"selected":"") + " value='50'>50개씩</option>\n";
-        txt += "<option " + ((window.pageRows == 100)?"selected":"") + " value='100'>100개씩</option>\n";
+        txt += "<option " + ((window.pageRows == 5) ? "selected" : "") + " value='5'>5개씩</option>\n";
+        txt += "<option " + ((window.pageRows == 10) ? "selected" : "") + " value='10'>10개씩</option>\n";
+        txt += "<option " + ((window.pageRows == 15) ? "selected" : "") + " value='15'>15개씩</option>\n";
+        txt += "<option " + ((window.pageRows == 20) ? "selected" : "") + " value='20'>20개씩</option>\n";
         txt += "</select>\n";
         $("#pageRows").html(txt);
 
@@ -215,20 +221,20 @@ function updateList(jsonObj){
 } // end updateList()
 
 
-function buildPagination(writePages, totalPage, curPage, pageRows){
+function buildPagination(writePages, totalPage, curPage, pageRows) {
 
     var str = "";   // 최종적으로 페이징에 나타날 HTML 문자열 <li> 태그로 구성
 
     // 페이징에 보여질 숫자들 (시작숫자 start_page ~ 끝숫자 end_page)
-    var start_page = ( (parseInt( (curPage - 1 ) / writePages ) ) * writePages ) + 1;
+    var start_page = ((parseInt((curPage - 1) / writePages)) * writePages) + 1;
     var end_page = start_page + writePages - 1;
 
-    if (end_page >= totalPage){
+    if (end_page >= totalPage) {
         end_page = totalPage;
     }
 
     //■ << 표시 여부
-    if(curPage > 1){
+    if (curPage > 1) {
         str += "<li><a onclick='loadPage(1)' class='tooltip-top' title='처음'><i class='fas fa-angle-double-left'></i></a></li>\n";
     }
 
@@ -247,7 +253,7 @@ function buildPagination(writePages, totalPage, curPage, pageRows){
     }
 
     //■ > 표시
-    if (totalPage > end_page){
+    if (totalPage > end_page) {
         str += "<li><a onclick='loadPage(" + (end_page + 1) + ")' class='tooltip-top' title='다음'><i class='fas fa-angle-right'></i></a></li>\n";
     }
 
@@ -259,11 +265,10 @@ function buildPagination(writePages, totalPage, curPage, pageRows){
     return str;
 
 
-
 } // end buildPagination()
 
 
-function changePageRows(){
+function changePageRows() {
     window.pageRows = $("#rows").val();
     loadPage(window.page);
 }

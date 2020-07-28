@@ -23,48 +23,14 @@
 
 
 <body>
-<h2>채용 공고</h2>
-<%-- 글목록 --%>
-<div id="list">
-    <div class="d01">
-        <div class="left" id="pageinfo"></div>
-        <div class="right" id="pageRows"></div>
-    </div>
+<h2>공고 관리</h2>
 
-    <form id="frmList" name="frmList">
-        <table>
-            <thead>
-            <th>공고 제목</th>
-            <th>기업명</th>
-            <th>공고 번호</th>
-            <th>마감기한</th>
+<select id="hirelist" name="hirelist">
 
 
-            </thead>
+</select>
 
 
-            <tbody>
-            </tbody>
-        </table>
-    </form>
-
-    <%--버튼 --%>
-    <div class="d01">
-        <div class="left">
-            <button onclick="location.href='write.do'">공고등록</button>
-        </div>
-    </div>
-
-
-</div>
-
-<br>
-<%-- 페이징 --%>
-<div class="center">
-    <ul class="pagination" id="pagination">
-
-    </ul>
-</div>
 
 
 </body>
