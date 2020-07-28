@@ -36,4 +36,12 @@
     <update id="alter_userKey" parameterType="map">
         update HUser set u_key = 'Y' WHERE u_id = #{param1} and u_key = #{param2}
     </update>
+
+    <select id="loginUser" resultType="com.lec.spring.user.domain.UserDTO">
+        select * from HUser where u_id = #{u_id}
+    </select>
+
+    <select id="searchId" resultType="string">
+        select u_id from HUser where u_name = #{u_name} and u_phoneNum = #{u_phoneNum}
+    </select>
 </mapper>
