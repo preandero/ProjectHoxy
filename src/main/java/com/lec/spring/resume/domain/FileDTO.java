@@ -5,16 +5,15 @@ public class FileDTO {
     private int rf_uid;
     private int r_uid;
     private String rf_source;
-    private String rf_file;
+
 
     public FileDTO() {
     }
 
-    public FileDTO(int rf_uid, int r_uid, String rf_source, String rf_file) {
+    public FileDTO(int rf_uid, int r_uid, String rf_source) {
         this.rf_uid = rf_uid;
         this.r_uid = r_uid;
         this.rf_source = rf_source;
-        this.rf_file = rf_file;
     }
 
     public int getRf_uid() {
@@ -41,11 +40,5 @@ public class FileDTO {
         this.rf_source = rf_source;
     }
 
-    public String getRf_file() {
-        return rf_file;
-    }
 
-    public void setRf_file(String rf_file) {
-        this.rf_file = rf_file;
-    }
 }

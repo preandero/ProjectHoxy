@@ -90,8 +90,7 @@ To change this template use File | Settings | File Templates.
         <div id="basic" class="container p-5 border bg-white">
             <div class="form-group row">
                 <label class="ml-3 my-2">이름</label><span class="req my-2">필수</span>
-                <input type="text" class="form-control w-25 ml-5 pl-3" id="basicName">
-
+                <input type="text" class="form-control w-25 ml-5" id="basicName">
                     <select class="browser-default custom-select w-25 ml-5">
                         <option selected>구직상태 선택</option>
                         <option value="1">구직준비중(재학생)</option>
@@ -111,7 +110,7 @@ To change this template use File | Settings | File Templates.
             </div>
             <div class="form-group row">
                 <label class="ml-3 my-3 mr-1">생년월일<span class="req my-3">필수</span></label>
-                <input type="text" class="form-control w-25 ml-3 pl-5 my-2 mr-5" id="basicBirth">
+                <input type="text" class="form-control w-25 ml-3 my-2 mr-5" id="basicBirth">
                 <div class="btn-group btn-group-toggle ml-5 h-50 my-2 px-3 mr-5" data-toggle="buttons">
                     <label class="btn btn-secondary active">
                         <input type="radio" name="options" id="option1" autocomplete="off" checked> 남
@@ -126,11 +125,11 @@ To change this template use File | Settings | File Templates.
             </div>
             <div class="form-group row">
                 <label class="ml-3 my-3 mr-2">이메일<span class="req my-3">필수</span></label>
-                <input type="text" class="form-control w-25 ml-4 pl-5 my-2" id="basicEmail">
+                <input type="text" class="form-control w-25 ml-4 my-2" id="basicEmail">
             </div>
             <div class="form-group row">
                 <label class="ml-3 my-3 mr-2">휴대폰<span class="req my-3">필수</span></label>
-                <input type="text" class="form-control w-25 ml-4 pl-5 my-2" id="basicPhone">
+                <input type="text" class="form-control w-25 ml-4 my-2" id="basicPhone">
             </div>
             <script	src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
             <div class="form-group row">

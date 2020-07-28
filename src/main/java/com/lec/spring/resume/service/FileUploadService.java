@@ -14,12 +14,12 @@ public class FileUploadService {
 
     private resumeDAO dao;
 
-    public void fileUpload(Model model, String File){
+    public void fileUpload(int uid, String File){
 
        dao =  sqlsession.getMapper(resumeDAO.class);
 
-        dao.deletefile((Integer)model.getAttribute("uid"));
-        dao.filesave((Integer) model.getAttribute("uid"),File);
+        dao.deletefile(uid);
+        dao.filesave(uid,File);
 
 
     }

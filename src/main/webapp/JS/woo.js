@@ -135,8 +135,8 @@ function chkDelete(uid) {
     if (r) {
         location.href = 'deleteOk.do?uid=' + uid;
     }
-    ;
-};
+
+}
 
 
 //page 번째 페이지 로딩
