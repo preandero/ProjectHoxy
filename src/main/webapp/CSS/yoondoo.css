@@ -1,4 +1,6 @@
-
+.bold{
+    font-weight: bold;
+}
 .div_1260{
     width: 1260px;
 
@@ -25,6 +27,20 @@
     padding: 60px;
 
 }
+.grey_box {
+    background-color: #aaaaaa;
+    color: white;
+    font-weight: bold;
+    padding: 5px;
+    border-radius: 3px;
+    margin-bottom: 10px;
+}
+.red_box {
+    background-color: rgba(230,0,0,0.5);
+}
+.green_box{
+    background-color: rgba(45,190,80,0.5);
+}
 
 .org_Btn{
     background-color: orange;
@@ -48,14 +64,37 @@
     font-weight: bold;
     font-size: x-large;
 }
-
+.main_box h2{
+    font-size: medium;
+    margin-bottom: 10px;
+}
+.main_box h3{
+    font-weight: 100;
+    font-size: small;
+    color: #333333;
+}
+.red {
+    color: darkred;
+    font-weight: bold;
+}
+.center{
+    text-align: center;
+}
 .main_box_title{
     font-weight: bold;
 }
 .main_box_content{
     margin: 10px;
-    padding-bottom: 100px ;
+    padding: 10px ;
     border-bottom: 1px solid #cccccc;
+}
+h3.blue_a{
+    color: rgb(107,128,241);
+    border: 1px solid rgb(107,128,241);
+    border-radius: 10px;
+    font-size: xx-small;
+    padding: 0px 10px;
+    margin-right: 10px;
 }
 nav#header_nav{
     width: 100%;
@@ -263,3 +302,65 @@ div#header a{
 }
 
 
+/*appmyDetail */
+div.select_option{
+    background-color: rgb(248,248,248);
+    width: 95%;
+    margin: 40px auto;
+    padding: 20px;
+}
+
+.select_option .period{
+    margin: -3px;
+    margin-bottom: 20px;
+    background-color: rgb(240,240,240);
+    border: 1px solid rgb(220,220,220);
+    padding: 9px;
+    font-weight: 700;
+    width: 70px;
+
+}
+.select_option .search{
+    background-color: #333333;
+    color: #dddddd;
+    font-weight: bold;
+    border: none;
+    width: 100%;
+    position: absolute;
+    height: 100%;
+    border-radius: 5px;
+    margin-left: -30px;
+}
+.select_option .search_content{
+    width: max-content;
+}
+
+.app_btn button{
+    padding: 8px 20px ;
+    background-color: white;
+    border: 1px solid #888888;
+    left: 0px;
+    margin: 5px;
+}
+
+.app {
+
+    padding: 20px;
+}
+
+table.rlist_table{
+    border: 2px solid rgb(107,128,241);
+    margin-top: 20px;
+    width: 100%;
+}
+
+table.rlist_table th{
+    background-color: rgb(241,246,255) ;
+    color: rgb(107,128,241);
+    font-weight: bold;
+    padding: 20px;
+}
+table.rlist_table td{
+    padding: 20px;
+
+}

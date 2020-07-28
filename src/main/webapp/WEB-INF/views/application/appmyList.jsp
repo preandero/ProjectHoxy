@@ -6,6 +6,10 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+
+
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <html>
 <head>
 
@@ -37,6 +41,7 @@
 
     <title>입사지원관리</title>
 </head>
+
 <body class="bk_gray">
 
 <div id="header" class="row">
@@ -82,33 +87,132 @@
 
 </div>
 <div class="main_box div_950">
-    <div class="main_box_content ro">
+    <div class="main_box_content">
         <h1>입사 지원 관리</h1>
+        <br>
+        <br>
+        <h3>유의사항</h3>
+        <h3>최근 2년간의 지원내역에 대한 확인이 가능합니다. (단, 지원서류는 최근 2개월동안 확인 가능)</h3>
+        <div class="select_option row">
+            <div class="col-md-2">
+                <h3>검색조건</h3>
+                <h3>(최근 2년)</h3>
+            </div>
+            <div class="col-md-9">
+                <h3 class="inline">조회 기간</h3>
+                <button class="inline period">1주일</button>
+                <button class="inline period">1개월</button>
+                <button class="inline period">2개월</button>
+                <button class="inline period">3개월</button>
+                <button class="inline period">6개월</button>
+                <button class="inline period">1년</button>
+                <br>
+                <h3 class="inline">열람 여부</h3>
+                <select class="inline">
+                    <option>열람</option>
+                    <option>미열람</option>
+                </select>
+                <h3 class="inline">검색</h3>
+                <input type="text" class="inline search_content" placeholder="내용을 입력해 주세요">
+            </div>
+            <div class="col-md-1">
+                <button class="search">검색</button>
+            </div>
+        </div>
+        <h2 class="inline">지원 현황 </h2>
+        <h2 class="inline red"> ${fn:length(Alist) } </h2>
+        <h2 class="inline"> 건</h2>
     </div>
+    <c:choose>
+        <c:when test="${fn:length(Alist) == 0 }">
+            <div class="main_box_content center">
+
+                <h2> 지원한 내역이 없습니다. </h2>
+
+            </div>
+        </c:when>
+
+        <c:otherwise>
+            <div class="main_box_content row">
+
+                <c:forEach var="AList" items="${Alist }">
+                    <div class="app col-md-9">
+                        <c:choose>
+                            <c:when test="${AList.a_view == 0 }">
+                                <h2 class="inline grey_box">미열람</h2>
+                            </c:when>
+                            <c:otherwise>
+                                <h2 class="inline grey_box red_box">열람</h2>
+                            </c:otherwise>
+                        </c:choose>
+                        <c:choose>
+                            <c:when test="${AList.dday < 0 }">
+                                <h2 class="inline grey_box">마감</h2>
+                            </c:when>
+                            <c:otherwise>
+                                <h2 class="inline grey_box green_box">모집중</h2>
+                            </c:otherwise>
+                        </c:choose>
+
+                        <br>
+                        <br>
+                        <h2>${AList.h_title }</h2>
+                        <h2> º 지원일 : ${AList.a_date }</h2>
+                        <h2> º 지원 부분 : ${AList.h_part }</h2>
+                        <br>
+                    </div>
+                    <div class="app_btn col-md-3">
+                        <button id="btnAUpdate_${AList.a_uid}"
+                                onclick="chkUpdateResume(${AList.a_uid },${AList.r_uid })">지원 수정
+                        </button>
+                        <button onclick="chkDelete(${AList.a_uid })">지원 취소</button>
+                    </div>
+
+                    <div id="dlg_write_${AList.a_uid}" class="modal">
+                        <div class="modal-content">
+                            <span class="close" title="Close Modal">&times;</span>
+                            <h1 class="hire_title">지원 내역</h1><%--TODO--%>
+                            <form action="appUpdate" method="post">
+                                <input type="hidden" name="a_uid" value="${AList.a_uid}">
+                                <h2>지원 부분</h2>
+                                <h2 class="bold">${AList.h_title }</h2>
+                                <br>
+                                <h2>직무</h2>
+                                <h2 class="bold">${AList.h_part }</h2>
+                                <br>
+                                <h2>제출 서류</h2>
+                                <c:forEach var="RList" items="${Rlist }">
+
+                                    <table class="rlist_table">
+                                        <tr>
+                                            <th>
+                                                <input type="radio" name="r_uid" value="${RList.r_uid}">&nbsp;&nbsp;&nbsp;${RList.r_title }
+                                            </th>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <h3 class="blue_a inline"> 이력서 </h3>${RList.r_date } 수정
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </c:forEach>
+                                <input type="submit" value="지원 수정" class="org_Btn fullbutton">
+
+                            </form>
+                        </div>
+                    </div>
+                </c:forEach>
+
+            </div>
+
+        </c:otherwise>
+    </c:choose>
     <div class="main_box_content">
 
 
     </div>
-    <div class="main_box_content">
 
 
-    </div>
-
-
-</div>
-
-<div id="dlg_write" class="modal">
-    <div class="modal-content">
-        <span class="close" title="Close Modal">&times;</span>
-        <h1 class="hire_title">공고 제목 뽑아오기</h1><%--TODO--%>
-        <form action="/app/appWriteOk" method="post">
-            <input type="text" value="1" name="u_uid">
-            <input type="text" value="1" name="h_uid">
-            <input type="text" value="2" name="r_uid">
-            <input type="submit" value="지원하기" class="org_Btn fullbutton">
-
-        </form>
-    </div>
 </div>
 
 

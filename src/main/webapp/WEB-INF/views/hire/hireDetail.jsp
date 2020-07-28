@@ -93,12 +93,6 @@
         <button id="btnWrite" class="org_Btn inline col-md-3">즉시지원</button>
     </div>
     <div class="main_box_content">
-        <c:forEach var="RList" items="${Rlist }">
-            <tr>
-                <td>${RList.r_uid }</td>
-                <td>${RList.r_title }</td>
-            </tr>
-        </c:forEach>
 
     </div>
     <div class="main_box_content">
@@ -117,7 +111,12 @@
         <form action="/app/appWriteOk" method="post">
             <input type="text" value="1" name="u_uid">
             <input type="text" value="1" name="h_uid">
-            <input type="text" value="2" name="r_uid">
+            <h1>이력서 선택 </h1>
+            <select name="r_uid">
+                <c:forEach var="RList" items="${Rlist }">
+                    <option value="${RList.r_uid }">${RList.r_title }</option>
+                </c:forEach>
+            </select>
             <input type="submit" value="지원하기" class="org_Btn fullbutton">
 
         </form>
