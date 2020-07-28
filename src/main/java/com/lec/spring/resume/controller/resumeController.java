@@ -1,7 +1,8 @@
 package com.lec.spring.resume.controller;
 
 
-import com.lec.spring.resume.domain.photoForm;
+import com.lec.spring.resume.service.FileUploadService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -11,13 +12,13 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import java.io.File;
-import java.security.Timestamp;
 
 @Controller
 @RequestMapping("/resume")
 public class resumeController {
 
-
+    @Autowired
+    private FileUploadService fileUploadService;
 
     @RequestMapping("/resumeWrite")
     public String Write(Model model){
@@ -25,9 +26,9 @@ public class resumeController {
         return "resume/resumeWrite";
     }
 
-
     @RequestMapping(value = "/upload" , method = RequestMethod.POST)
-    public boolean upload(MultipartHttpServletRequest mtf) throws Exception {
+    @ResponseBody
+    public String upload(MultipartHttpServletRequest mtf,Model model) throws Exception {
         // 파일 태그
         String fileTag = "file";
         // 업로드 파일이 저장될 경로
@@ -36,14 +37,17 @@ public class resumeController {
         MultipartFile file = mtf.getFile(fileTag);
 
             String fileName = ((MultipartFile) file).getOriginalFilename();
+
+
+        fileUploadService.fileUpload(model, fileName);
             // 파일 전송
             try {
                 file.transferTo(new File(filePath + fileName ));
             } catch (Exception e) {
                 e.printStackTrace();
                 System.out.println("업로드 오류");
-                return false;
+
             }
-       return true;
+       return "resume/upload";
     }
     }
