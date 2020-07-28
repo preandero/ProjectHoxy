@@ -36,14 +36,12 @@ public class userRegisterController {
     @RequestMapping(value = "/user/register", method = RequestMethod.POST)
     public String register(UserDTO userDTO, Model model, HttpServletRequest request) throws Exception {
         userService.regist(userDTO);
-        //mailSender.mailSendWithUserKey(userDTO.getU_email(), userDTO.getU_id(), request);
         return "redirect:/";
 
     }
 
     @RequestMapping(value = "/user/key_alter", method = RequestMethod.GET)
     public String key_alterConfirm(@RequestParam("u_id") String u_id, @RequestParam("u_key") String u_key){
-        //mailSender.alter_userKey_service(u_id, u_key);
         return "user/regSuccess";
     }
 
