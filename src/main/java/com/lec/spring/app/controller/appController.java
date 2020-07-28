@@ -2,6 +2,8 @@ package com.lec.spring.app.controller;
 
 import com.lec.spring.app.*;
 import com.lec.spring.app.domain.AppDTO;
+import com.lec.spring.hire.command.HCommand;
+import com.lec.spring.hire.command.HViewCommand;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -14,9 +16,13 @@ import org.springframework.web.bind.annotation.RequestMethod;
 public class appController {
 
     private ACommand command;
+    private HCommand command2;
 
     // MyBabatis
     private SqlSession sqlSession;
+
+    public appController() {
+    }
 
     @Autowired
     public void setSqlSession(SqlSession sqlSession) {
@@ -25,8 +31,12 @@ public class appController {
     }
 
     @RequestMapping("/hireDetail")
-    public String hireDetail(int u_uid,Model model) {
+    public String hireDetail(int u_uid,int h_uid,Model model) {
         model.addAttribute("u_uid", u_uid);
+        model.addAttribute("h_uid", h_uid);
+        model.addAttribute("uid", h_uid);
+        new HViewCommand().excute(model);
+        new GCommand().execute(model);
         new RListCommand().execute(model);
         return "/hire/hireDetail";
     }
@@ -43,7 +53,7 @@ public class appController {
 
         model.addAttribute("u_uid", u_uid);
         new AListCommand().execute(model);
-        new RListCommand().execute(model);
+        new RListCommand2().execute(model);
         return "/application/appmyList";
     }
 
@@ -72,12 +82,17 @@ public class appController {
         return "/application/colorUpdateOk";
     }
     @RequestMapping("/listUpdate")
-    public String listUpdate(String color1, String color2,String color3,Model model) {
+    public String listUpdate(String graphView1, String graphView2,String graphView3,String graphView4, String graphView5,String graphView6,String graphView7,Model model) {
 
-        model.addAttribute("color1", color1);
-        model.addAttribute("color2", color2);
-        model.addAttribute("color3", color3);
-        new GUpdatedCommand().execute(model);
+        model.addAttribute("graphView1", graphView1);
+        model.addAttribute("graphView2", graphView2);
+        model.addAttribute("graphView3", graphView3);
+        model.addAttribute("graphView4", graphView4);
+        model.addAttribute("graphView5", graphView5);
+        model.addAttribute("graphView6", graphView6);
+        model.addAttribute("graphView7", graphView7);
+
+        new LUpdatedCommand().execute(model);
         return "/application/listUpdateOk";
     }
     @RequestMapping("/color")
