@@ -14,6 +14,8 @@ public interface IAjaxDAO {
             @Param("pageRows") int pageRows
     );
 
+	public int deleteByUid(int uid);
+
 	// 전체글의 개수
     int countAll();
 

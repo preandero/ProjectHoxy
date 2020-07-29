@@ -15,15 +15,22 @@ public class HViewCommand implements HCommand {
 	@Override
 	public void excute(Model model) {
 
+
+//		int h_uid = (int) model.getAttribute("h_uid");
+//		IWriteDAO dao = C.sqlSession.getMapper(IWriteDAO.class);
+//
+//		HWriteDTO dto= dao.selectByUid(h_uid);
+//		model.addAttribute("view", Arrays.asList(dto));
+
 		Map<String, Object>map = model.asMap();
-		int uid = (Integer)map.get("uid");
+		int h_uid = (Integer)map.get("h_uid");
 		IWriteDAO dao = C.sqlSession.getMapper(IWriteDAO.class);
-		
-		HWriteDTO dto= dao.selectByUid(uid);
+
+		HWriteDTO dto= dao.selectByUid(h_uid);
 		model.addAttribute("view", Arrays.asList(dto));
-		
+
 	}
 
-	
+
 
 }
