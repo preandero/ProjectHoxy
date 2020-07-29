@@ -29,6 +29,7 @@ $(document).ready(function() {
 
 
 
+
 });
 function chkDelete(aid){
     var r = confirm("삭제하시겠습니까?");

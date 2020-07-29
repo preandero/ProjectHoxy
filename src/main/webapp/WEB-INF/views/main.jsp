@@ -19,6 +19,7 @@
 
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/CSS/reset.css"/>
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/CSS/yoondoo.css"/>
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/CSS/testtest.css"/>
     <script src="${pageContext.request.contextPath }/JS/yj.js"></script>
 
 
@@ -136,6 +137,66 @@
 
 
 </div>
+<div id = "cardbox">
+    <div class="food-card">
+        <div class="food-card__image">
+            <img src="https://hips.hearstapps.com/hmg-prod/images/delish-191908-cauliflower-pizza-0390-landscape-pf-1568654348.jpg" alt="Pizza" />
+        </div>
+
+        <div class="food-card__details">
+            <span class="food-card__name">Pizza</span>
+            <span class="food-card__desc">Fresh & sweet</span>
+
+            <div class="food-card__price">£50</div>
+            <div class="food-card__rating">
+                <div class="food-card__star food-card__star--gold"></div>
+                <div class="food-card__star food-card__star--gold"></div>
+                <div class="food-card__star food-card__star--gold"></div>
+                <div class="food-card__star"></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="food-card">
+        <div class="food-card__image">
+            <img src="https://i.ytimg.com/vi/3n87Tbu5A9M/maxresdefault.jpg" alt="Chicken" />
+        </div>
+
+        <div class="food-card__details">
+            <span class="food-card__name">Chicken</span>
+            <span class="food-card__desc">Fried to crisp</span>
+
+            <div class="food-card__price">£82</div>
+            <div class="food-card__rating">
+                <div class="food-card__star food-card__star--gold"></div>
+                <div class="food-card__star food-card__star--gold"></div>
+                <div class="food-card__star food-card__star--gold"></div>
+                <div class="food-card__star food-card__star--gold"></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="food-card">
+        <div class="food-card__image">
+            <img src="https://cdn-b.william-reed.com/var/wrbm_gb_hospitality/storage/images/publications/hospitality/morningadvertiser.co.uk/article/2018/09/05/4-coffee-trends-that-are-hot-right-now/2907246-1-eng-GB/4-coffee-trends-that-are-hot-right-now_wrbm_large.jpg" alt="Coffee" />
+        </div>
+
+        <div class="food-card__details">
+            <span class="food-card__name">Coffee</span>
+            <span class="food-card__desc">Anyhow</span>
+
+            <div class="food-card__price">£5</div>
+            <div class="food-card__rating">
+                <div class="food-card__star food-card__star--gold"></div>
+                <div class="food-card__star food-card__star--gold"></div>
+                <div class="food-card__star"></div>
+                <div class="food-card__star"></div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
 <div id="main_footer">
 
     <div id="main_footer_nav" >

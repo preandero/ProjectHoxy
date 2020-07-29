@@ -10,7 +10,7 @@ public class HomeController {
     @RequestMapping("")
     public String home(Model model){
 
-        return "main";
+        return "main2";
     }
 
 }

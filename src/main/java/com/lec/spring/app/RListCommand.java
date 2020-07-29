@@ -1,6 +1,7 @@
 package com.lec.spring.app;
 
 import com.lec.spring.app.persistence.AppDAO;
+import com.lec.spring.user.persistence.ComDAO;
 import org.springframework.ui.Model;
 
 import java.util.Map;
