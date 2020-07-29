@@ -5,7 +5,7 @@ var viewItem = undefined;   // 가장 최근에 view 한 글 데이터
 $(document).ready(function () {
 
     loadPage(page);
-    $('#position2').hide();
+    $('#h_position2').hide();
     $('#h_date').hide();
     // 모든 datepicker에 대한 공통 옵션 설정
     $.datepicker.setDefaults({
@@ -37,25 +37,25 @@ $(document).ready(function () {
     });
 
     // input을 datepicker로 선언
-    $("#upDate").datepicker();
-    $("#regDate").datepicker();
+    $("#h_upDate").datepicker();
+    $("#h_regDate").datepicker();
 
     // From의 초기값을 오늘 날짜로 설정
-    $('#upDate').datepicker('setDate', 'today'); // (-1D:하루전, -1M:한달전,
+    $('#h_upDate').datepicker('setDate', 'today'); // (-1D:하루전, -1M:한달전,
     // -1Y:일년전), (+1D:하루후,
     // -1M:한달후, -1Y:일년후)
     // To의 초기값을 내일로 설정
-    $('#regDate').datepicker('setDate', '+1D'); // (-1D:하루전, -1M:한달전,
+    $('#h_regDate').datepicker('setDate', '+1D'); // (-1D:하루전, -1M:한달전,
     // -1Y:일년전), (+1D:하루후,
     // -1M:한달후, -1Y:일년후)
 
-    $('#position1').on('change', function () {
-        $('#position2').show();
+    $('#h_position1').on('change', function () {
+        $('#h_position2').show();
 
     })
 
-    $("#endDate").change(function () {
-        if ($("#endDate").is(":checked")) {
+    $("#h_endDate").change(function () {
+        if ($("#h_endDate").is(":checked")) {
             $('#h_date').show();
         } else {
             $('#h_date').hide();
@@ -67,61 +67,61 @@ $(document).ready(function () {
 function chkSubmit() {
     frm = document.forms["frm"];
     var C_UID = frm["C_UID"].value.trim();
-    var name = frm["name"].value.trim();
-    var title = frm["title"].value.trim();
-    var salary = frm["salary"].value.trim();
-    var part = frm["part"].value.trim();
-    var position1 = frm["position1"].value.trim();
-    var position2 = frm["position2"].value.trim();
+    var h_name = frm["h_name"].value.trim();
+    var h_title = frm["h_title"].value.trim();
+    var h_salary = frm["h_salary"].value.trim();
+    var h_part = frm["h_part"].value.trim();
+    var h_position1 = frm["h_position1"].value.trim();
+    var h_position2 = frm["h_position2"].value.trim();
 
-    var career_count = document.getElementsByName("career").length;
-    var degree_count = document.getElementsByName("degree").length;
-    var workform_count = document.getElementsByName("workform").length;
-    var upDate = frm["upDate"].value.trim();
-    var regDate = frm["regDate"].value.trim();
+    var career_count = document.getElementsByName("h_career").length;
+    var degree_count = document.getElementsByName("h_degree").length;
+    var workform_count = document.getElementsByName("h_workform").length;
+    var upDate = frm["h_upDate"].value.trim();
+    var regDate = frm["h_regDate"].value.trim();
     /*    var upDate_count = document.getElementsByName("datepicker").length;
         var regDate_count = document.getElementsByName("datepicker2").length;*/
 
     for (var i = 0; i < career_count; i++) {
-        if (document.getElementsByName("career")[i].checked == true) {
-            var career = frm["career"].value.trim();
+        if (document.getElementsByName("h_career")[i].checked == true) {
+            var h_career = frm["h_career"].value.trim();
         }
     }
     for (var i = 0; i < degree_count; i++) {
-        if (document.getElementsByName("degree")[i].checked == true) {
-            var degree = frm["degree"].value.trim();
+        if (document.getElementsByName("h_degree")[i].checked == true) {
+            var h_degree = frm["h_degree"].value.trim();
         }
     }
     for (var i = 0; i < workform_count; i++) {
-        if (document.getElementsByName("workform")[i].checked == true) {
-            var workform = frm["workform"].value.trim();
+        if (document.getElementsByName("h_workform")[i].checked == true) {
+            var h_workform = frm["h_workform"].value.trim();
         }
     }
 
 
-    if (name == "") {
+    if (h_name == "") {
         alert("이름 반드시 작성해야 합니다");
-        frm["title"].focus();
+        frm["h_title"].focus();
         return false;
     }
-    if (title == "") {
+    if (h_title == "") {
         alert("이름 반드시 작성해야 합니다");
-        frm["title"].focus();
+        frm["h_title"].focus();
         return false;
     }
-    if (salary == "") {
+    if (h_salary == "") {
         alert("직책 반드시 작성해야 합니다");
-        frm["salary"].focus();
+        frm["h_salary"].focus();
         return false;
     }
-    if (position2 == "") {
+    if (h_position2 == "") {
         alert("직책 반드시 작성해야 합니다");
-        frm["position2"].focus();
+        frm["h_position2"].focus();
         return false;
     }
-    if (part == "") {
+    if (h_part == "") {
         alert("직책 반드시 작성해야 합니다");
-        frm["part"].focus();
+        frm["h_part"].focus();
         return false;
     }
 
@@ -129,14 +129,10 @@ function chkSubmit() {
 }
 
 
-function chkDelete(uid) {
-    // 삭제 여부, 다시 확인 하고 진행하기
-    var r = confirm("삭제하시겠습니까?");
-    if (r) {
-        location.href = 'deleteOk.do?uid=' + uid;
-    }
+function updatebtn(h_uid) {
+        location.href = 'view.do?h_uid=' + h_uid;
 
-}
+};
 
 
 //page 번째 페이지 로딩
@@ -149,8 +145,9 @@ function loadPage(page) {
             if (status == "success") {
                 if (updateList(data)) {
 
-                    $("#deletebtn").click(function(){
+                    $(".deletebtn").click(function () {
 
+                        deleteUid($(this).attr('data-uid'));
 
 
                     });
@@ -171,24 +168,25 @@ function updateList(jsonObj) {
         var i;
         var items = jsonObj.data;
         for (i = 0; i < count; i++) {
-            if(items[i].remainDate<0) {
-                remain = "<td>" + "<hr2>" + "모집 마감"+"</hr2>"+"</td>\n";
+            if (items[i].h_remainDate < 0) {
+                remain = "<td>" + "<hr2>" + "모집 마감" + "</hr2>" + "</td>\n";
             }
-            if(items[i].remainDate == 0){
-                remain = "<td>"+ "<hr2>"+"오늘 종료"+"</hr2>"+"</td>\n";
+            if (items[i].h_remainDate == 0) {
+                remain = "<td>" + "<hr2>" + "오늘 종료" + "</hr2>" + "</td>\n";
             }
-            if(items[i].remainDate >0){
-                remain = "<td>"+ "<hr2>"+items[i].remainDate+"일"+"</hr2>"+"</td>\n";
+            if (items[i].h_remainDate > 0) {
+                remain = "<td>" + "<hr2>" + items[i].h_remainDate + "일" + "</hr2>" + "</td>\n";
             }
 
             result += "<tr>\n";
             //result += "<td>" + "<i class='fas fa-user-tie'></i>" + "</td>\n";
-            result += "<td>" + items[i].title + "</td>\n";
-            result += "<td>" + items[i].name + "</td>\n";
-            result += "<td>" + items[i].uid + "</td>\n";
+            result += "<td>" + items[i].h_title + "</td>\n";
+            result += "<td>" + items[i].h_name + "</td>\n";
+            result += "<td>" + items[i].h_uid + "</td>\n";
             result += remain;
-            result += "<td>" + "<button class='deletebtn' data-uid='"+ items[i].uid + "' type='button'>상세보기</button>" + "</td>\n";
-            result += "<td>" + "<button onclick='chkDelete("+items[i].uid+")'>삭제</button>" + "</td>\n";
+            // result += "<td>" + "<button class='updatebtn' type='button' data-uid='" + items[i].h_uid + "'>상세보기</button>" + "</td>\n";
+            result += "<td>" + "<button type='button' onclick='updatebtn("+items[i].h_uid+")'>상세보기</button>" + "</td>\n";
+            result += "<td>" + "<button class='deletebtn' data-uid='" + items[i].h_uid + "' type='button'>삭제</button> " + "</td>\n";
 
             result += "</tr>\n";
         } // end for
@@ -219,6 +217,38 @@ function updateList(jsonObj) {
     }
     return false;
 } // end updateList()
+
+
+function deleteUid(h_uid) {
+    var c = $.trim($('#a').html());
+    if (!confirm(h_uid + "글을 삭제 하시겠습니까?")) return false;
+
+    // POST 방식
+    $.ajax({
+        url: "deleteOk.ajax",
+        type: "POST",
+        data: "uid=" + h_uid,
+        cache: false,
+        success: function (data, status) {
+            if (status == "success") {
+                if (data.status == "OK") {
+                    alert("DELETE 성공" + data.count + "개");
+                    loadPage(c); // 현재 페이지 리로딩
+                } else {
+                    alert("DELETE 실패" + data.message);
+
+                }
+            }
+        }
+
+    });
+
+    return false;
+
+
+} // end deleteUid(uid)
+
+
 
 
 function buildPagination(writePages, totalPage, curPage, pageRows) {
