@@ -4,11 +4,11 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Param;
 public interface IAjaxDAO {
-	
-	List<ReplyWriteDTO> select(int uid);
-	int insertReply(String content, int buid, int cuid);
-	int deleteByUid(int uid);
-	int update(
-            @Param("uid") int uid,
-            @Param("content") String content);
+
+	public List<ReplyWriteDTO> select(int uid);
+	public int insertReply(String content, int buid, int cuid);
+	public int deleteByUid(int uid);
+	public int update(
+            		@Param("uid") int uid,
+            		@Param("content") String content);
 }
