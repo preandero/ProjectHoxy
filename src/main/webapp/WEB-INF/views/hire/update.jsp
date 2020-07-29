@@ -25,12 +25,12 @@
 			function chkUpdate() {
 				frm = document.forms['frm'];
 
-				var name = frm["name"].value.trim();
-				var part = frm["part"].value.trim();
+				var h_name = frm["h_name"].value.trim();
+				var h_part = frm["h_part"].value.trim();
 
-				if (name == "") {
+				if (h_name == "") {
 					alert("이름은 반드시 작성해야 합니다");
-					frm['name'].focus();
+					frm['h_name'].focus();
 					return false;
 				}
 
@@ -39,15 +39,15 @@
 
 		</script>
 		<body>
-		<h2>수정${select[0].name}</h2>
+		<h2>수정${select[0].h_name}</h2>
 		<form name="frm" action="updateOk.do" method="post"
 			  onsubmit="return chkUpdate()">
-			<input type="hidden" name="uid" value="${select[0].uid }" />
+			<input type="hidden" name="uid" value="${select[0].h_uid }" />
 
 			기업 이름:
-			<input type="text" name="name" value="${select[0].name }"/><br>
+			<input type="text" name="name" value="${select[0].h_name }"/><br>
 			직책:
-			<input type="text" name="part" value="${select[0].part }"/><br>
+			<input type="text" name="part" value="${select[0].h_part }"/><br>
 
 			<br> <input type="submit" value="수정" />
 		</form>

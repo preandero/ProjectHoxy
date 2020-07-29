@@ -10,11 +10,11 @@ public interface IWriteDAO {
 
 
 	public List<HWriteDTO> select();
+	public List<HWriteDTO> adminselect();
 	public int insert(final HWriteDTO dto);
-	//	public int insert(String name, String title, String salary,String position1, String position2, String part,String career, String degree, String workform,String upDate, String regDate);
-	public HWriteDTO selectByUid(final int uid);
-	public int update(int uid,@Param("a") HWriteDTO dto);
-	public int deleteByUid(final int uid);
+	public HWriteDTO selectByUid(final int h_uid);
+	public int update(int h_uid,@Param("a") HWriteDTO dto);
+	public int deleteByUid(final int h_uid);
 
 
 

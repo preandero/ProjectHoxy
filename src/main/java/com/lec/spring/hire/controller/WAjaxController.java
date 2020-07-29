@@ -8,11 +8,11 @@ import javax.servlet.http.HttpServletResponse;
 import com.lec.spring.hire.beans.AjaxWriteList;
 import com.lec.spring.hire.beans.AjaxWriteResult;
 import com.lec.spring.hire.beans.HWriteDTO;
+import com.lec.spring.hire.command.DeleteCommand;
 import com.lec.spring.hire.command.HListCommand;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
-
-
 
 
 @RestController
@@ -20,11 +20,16 @@ import org.springframework.web.bind.annotation.RestController;
 public class WAjaxController {
 
 	@RequestMapping("/hire/hirelist.ajax")
-	public AjaxWriteList list(HttpServletRequest request, HttpServletResponse response) {
+	public AjaxWriteList hirelist(HttpServletRequest request, HttpServletResponse response) {
 		new HListCommand().execute(request, response);
 		return buildList(request);
 	} // end 
-	
+
+	@RequestMapping(value= "/hire/deleteOk.ajax", method= RequestMethod.POST)
+	public AjaxWriteResult deleteOk(HttpServletRequest request, HttpServletResponse response) {
+		new DeleteCommand().execute(request, response);
+		return buildResult(request);
+	}
 	
 	// response 할 메소드
 	public AjaxWriteResult buildResult(HttpServletRequest request) {
