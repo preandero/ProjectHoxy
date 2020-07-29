@@ -54,6 +54,7 @@ public class resumeController {
             // 파일 전송
             try {
                 file.transferTo(new File(filePath + fileName ));
+                System.out.println("파일생성 성공");
             } catch (Exception e) {
                 e.printStackTrace();
                 System.out.println("업로드 오류");

@@ -7,14 +7,13 @@
     <insert id="filesave" flushCache="true"
             parameterType="com.lec.spring.resume.domain.FileDTO">
         insert into resumeFile
-            (rf_uid, r_uid, rf_source)
+            (rf_uid, u_uid, rf_source)
         values
-            (SEQ_Resume_rf_uid.nextval, #{u_uid},#{source})
-
+            (SEQ_Resume_rf_uid.nextval, #{param1},#{param2})
    </insert>
 
     <delete id="deleteFile" flushCache="true">
-        DELETE FROM resumeFile WHERE #{u_uid};
+        DELETE FROM resumeFile WHERE u_uid = #{param1}
     </delete>
 
 </mapper>

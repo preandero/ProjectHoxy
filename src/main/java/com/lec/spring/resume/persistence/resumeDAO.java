@@ -1,6 +1,10 @@
 package com.lec.spring.resume.persistence;
 
+
+import org.mybatis.spring.annotation.MapperScan;
+
+@MapperScan
 public interface resumeDAO {
-    int filesave(final int uid, final String source);
-    int deletefile(final int uid);
+   public int filesave(final int uid, final String source);
+   public int deleteFile(final int uid);
 }

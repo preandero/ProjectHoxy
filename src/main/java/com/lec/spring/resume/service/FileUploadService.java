@@ -12,13 +12,19 @@ public class FileUploadService {
     @Autowired
     private SqlSession sqlsession;
 
-    private resumeDAO dao;
+    public resumeDAO dao;
 
     public void fileUpload(int uid, String File){
 
        dao =  sqlsession.getMapper(resumeDAO.class);
+        System.out.println("uid = " + uid);
 
-        dao.deletefile(uid);
+        try {
+            dao.deleteFile(uid);
+        } catch (Exception e){
+            e.printStackTrace();
+            System.out.println("파일이 이미 존재합니다.");
+        }
         dao.filesave(uid,File);
 
 
