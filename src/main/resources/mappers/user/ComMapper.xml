@@ -33,4 +33,8 @@
         , #{c_category}
     )
 	</insert>
+
+    <select id="select_By_c_id" resultType="com.lec.spring.user.domain.ComDTO">
+        select * from company where c_uid = ${param1}
+    </select>
 </mapper>
