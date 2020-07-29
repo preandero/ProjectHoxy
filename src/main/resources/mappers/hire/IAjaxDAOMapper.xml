@@ -8,11 +8,11 @@
 		resultType="com.lec.spring.hire.beans.HWriteDTO">
 		<![CDATA[
 		SELECT 
-			h_uid "uid",
-			h_name name,
-			h_title title,
-			h_career career,
-			to_date(h_regDate, 'YYYY-MM-DD')-round(sysdate) remainDate
+			h_uid,
+			h_name,
+			h_title,
+			h_career,
+			to_date(h_regDate, 'YYYY-MM-DD')-round(sysdate) h_remainDate
 		FROM 
 			(SELECT ROWNUM AS RNUM, T.* FROM 
 				(SELECT * FROM Hire ORDER BY h_uid DESC) T) 
@@ -30,6 +30,11 @@
 		SELECT count(*) FROM Hire
 	</select>
 
+	<delete id="deleteByUid" flushCache="true">
+		DELETE FROM Hire
+		WHERE h_uid = #{param1}
+
+	</delete>
 
 	<!-- 조회수 증가 -->
 <!-- 	<update id="incViewCnt">

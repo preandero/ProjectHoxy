@@ -39,6 +39,7 @@ public class LoginController {
 
         // 로그인 메서드
         int result = login_service.userLogin_service(userDTO, httpSession, user_check, response);
+        System.out.println(result);
 
         return result;
     }

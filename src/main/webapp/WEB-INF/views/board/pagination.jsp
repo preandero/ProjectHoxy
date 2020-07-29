@@ -27,7 +27,7 @@
 	String str = "";   // 최종적으로 페이징에 나타날 HTML 문자열 <li> 태그로 구성
 
 	// 페이징에 보여질 숫자들 (시작숫자 start_page ~ 끝숫자 end_page)
-    int start_page = ( ( (int)( (curPage - 1 ) / writePages ) ) * writePages ) + 1;
+	int start_page = ( ( (int)( (curPage - 1 ) / writePages ) ) * writePages ) + 1;
     int end_page = start_page + writePages - 1;
 
     if (end_page >= totalPage){

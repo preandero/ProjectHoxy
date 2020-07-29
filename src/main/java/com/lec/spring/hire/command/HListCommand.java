@@ -4,9 +4,7 @@ package com.lec.spring.hire.command;
 
 import com.lec.spring.hire.beans.HWriteDTO;
 import com.lec.spring.hire.beans.IAjaxDAO;
-import com.lec.spring.hire.beans.IWriteDAO;
 import com.lec.spring.hire.domain.C;
-import org.springframework.ui.Model;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;

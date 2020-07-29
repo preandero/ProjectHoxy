@@ -14,7 +14,7 @@ public class HSelectCommand implements HCommand {
 	@Override
 	public void excute(Model model) {
 		Map<String, Object> map = model.asMap();
-		int uid = (Integer) map.get("uid");
+		int uid = (Integer) map.get("h_uid");
 		
 		IWriteDAO dao = C.sqlSession.getMapper(IWriteDAO.class);
 		HWriteDTO dto= dao.selectByUid(uid);

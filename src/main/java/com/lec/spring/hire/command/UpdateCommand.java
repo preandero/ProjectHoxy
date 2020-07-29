@@ -14,7 +14,7 @@ public class UpdateCommand implements HCommand {
 		Map<String, Object> map = model.asMap();
 		HWriteDTO dto = (HWriteDTO)map.get("dto");
 		IWriteDAO dao = C.sqlSession.getMapper(IWriteDAO.class);
-		model.addAttribute("result", dao.update(dto.getUid(), dto));
+		model.addAttribute("result", dao.update(dto.getH_uid(), dto));
 
 	}
 
