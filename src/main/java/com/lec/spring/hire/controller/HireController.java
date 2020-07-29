@@ -38,7 +38,7 @@ public class HireController {
 //    }
 
     @RequestMapping(value = "/hirelist.do")
-    public String herelist() {
+    public String hirelist() {
         return "hire/hirelist";
     }
 
@@ -56,13 +56,13 @@ public class HireController {
     }
 
 
-    @RequestMapping("/view.do") public String view(Model model, int uid) {
-        model.addAttribute("uid", uid); command = new HViewCommand();
+    @RequestMapping("/view.do") public String view(Model model, int h_uid) {
+        model.addAttribute("h_uid", h_uid); command = new HViewCommand();
         command.excute(model); return "hire/view"; }
 
     @RequestMapping("/update.do")
-    public String update(int uid, Model model) {
-        model.addAttribute("uid", uid);
+    public String update(int h_uid, Model model) {
+        model.addAttribute("h_uid", h_uid);
         new HSelectCommand().excute(model);
         return "hire/update";
     }
@@ -73,16 +73,16 @@ public class HireController {
         new UpdateCommand().excute(model);
         return "hire/updateOk";
     }
-//    @RequestMapping("/adminhire.do")
-//    public String list(Model model) {
-//        command = new AHListCommand();
-//        command.excute(model);
-//        return "hire/adminhire";
-//    }
+    @RequestMapping("/hireSearch.do")
+    public String list(Model model) {
+        command = new AHListCommand();
+        command.excute(model);
+        return "hire/hireSearch";
+    }
 
     @RequestMapping("/deleteOk.do")
-    public String delete(Model model, int uid) {
-        model.addAttribute("uid", uid);
+    public String delete(Model model, int h_uid) {
+        model.addAttribute("h_uid", h_uid);
         command = new HDeleteCommand();
         command.excute(model);
         return "hire/deleteOk";
