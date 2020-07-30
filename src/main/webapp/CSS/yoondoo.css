@@ -51,6 +51,7 @@
     border-radius: 5px;
     padding: 15px;
 }
+
 .gray_Btn{
     background-color: #aaaaaa;
     font-weight: bold;
@@ -419,6 +420,23 @@ div.nav_box4{
 }
 .fa-female{
     color: rgb(255,127,127);
+}
+
+#dday{
+    background-color: white;
+    color: orange;
+    border: 1px solid orange;
+    width: 30%;
+    position: absolute;
+    left: 35%;
+    top: -15px;
+    font-size: medium;
+    border-radius: 10px;
+    padding: 3px;
+}
+
+.display_none{
+    display: none;
 }
 
 
