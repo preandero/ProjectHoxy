@@ -27,6 +27,18 @@
 <body>
 <h2>채용 공고</h2>
 
+
+<%
+    if (session.getAttribute("id") == null) {
+        System.out.println(session.getAttribute("id"));
+%>
+<script>
+    alert("로그인이필요한 페이지 입니다.")
+    location.href = "/user/login"
+</script>
+<%
+    }
+%>
 <%-- 글목록 --%>
 <div id="list">
     <div class="d01">
