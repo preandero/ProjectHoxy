@@ -14,63 +14,58 @@
 	<c:otherwise>
 
 
-<!DOCTYPE html>
-<html lang="ko">
-<head>
-<meta charset="UTF-8">
-<meta name="selectport" content="width=device-width, initial-scale=1.0">
-<title>수정  ${select[0].name }</title>
-</head>
-<script>
-	function chkSubmit() {
-		frm = document.forms['frm'];
+		<!DOCTYPE html>
+		<html lang="ko">
+		<head>
+			<meta charset="UTF-8">
+			<meta name="selectport" content="width=device-width, initial-scale=1.0">
+			<title>수정 </title>
+		</head>
+		<script>
+			function chkUpdate() {
+				frm = document.forms['frm'];
 
-		var uid = frm["uid"].value.trim();
-		var name = frm["name"].value.trim();
-		var part = frm["part"].value.trim();
+				var h_name = frm["h_name"].value.trim();
+				var h_part = frm["h_part"].value.trim();
 
+				if (h_name == "") {
+					alert("이름은 반드시 작성해야 합니다");
+					frm['h_name'].focus();
+					return false;
+				}
 
-		if (uid == "") {
-			alert("직원번호 반드시 입력해야 합니다");
-			frm["uid"].focus();
-			return false;
-		}
-		if (name == "") {
-			alert("이름 반드시 작성해야 합니다");
-			frm["name"].focus();
-			return false;
-		}
-		if (part == "") {
-			alert("직책 반드시 작성해야 합니다");
-			frm["position"].focus();
-			return false;
-		}
-	}
+				return true;
+			}
 
-</script>
-<body>
-	<h2>수정</h2>
-	<form name="frm" action="updateOk.do" method="post"
-		onsubmit="return chkSubmit()">
-		
-공고 번호:
-<input type="text" name="uid" value="${select[0].uid }" /><br>
-기업 이름:
-<input type="text" name="name" value="${select[0].name }"/><br>
-직책:
-<input type="text" name="position" value="${select[0].part }"/><br>
+		</script>
+		<body>
+		<h2>수정${select[0].h_name}</h2>
+		<form name="frm" action="updateOk.do" method="post"
+			  onsubmit="return chkUpdate()">
+			<input type="hidden" name="uid" value="${select[0].h_uid }" />
 
-	<br> <input type="submit" value="수정" />
-	</form>
-	<button onclick="history.back()">이전으로</button>
-	<button onclick="location.href='hirelist.do'">목록보기</button>
+			기업 이름:
+			<input type="text" name="name" value="${select[0].h_name }"/><br>
+			직책:
+			<input type="text" name="part" value="${select[0].h_part }"/><br>
 
-</body>
-</html>
+			<br> <input type="submit" value="수정" />
+		</form>
+		<button onclick="history.back()">이전으로</button>
+		<button onclick="location.href='hirelist.do'">목록보기</button>
+
+		</body>
+		</html>
 
 
 	</c:otherwise>
 </c:choose>
+
+
+
+
+
+
 
 
 

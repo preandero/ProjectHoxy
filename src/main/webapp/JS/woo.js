@@ -1,123 +1,127 @@
-$(document).ready(function() {
-    $('#position2').hide();
+var page = 1  // 현재 페이지
+var pageRows = 5   // 한 페이지에 보여지는 게시글 개수
+var viewItem = undefined;   // 가장 최근에 view 한 글 데이터
+
+$(document).ready(function () {
+
+    loadPage(page);
+    $('#h_position2').hide();
     $('#h_date').hide();
     // 모든 datepicker에 대한 공통 옵션 설정
     $.datepicker.setDefaults({
         dateFormat: 'yy-mm-dd' // Input Display Format 변경
-        ,showOtherMonths: true // 빈 공간에 현재월의 앞뒤월의 날짜를 표시
-        ,showMonthAfterYear:true // 년도 먼저 나오고, 뒤에 월 표시
-        ,changeYear: true // 콤보박스에서 년 선택 가능
-        ,changeMonth: true // 콤보박스에서 월 선택 가능
-        ,showOn: "both" // button:버튼을 표시하고,버튼을 눌러야만 달력 표시 ^ both:버튼을 표시하고,버튼을
-                        // 누르거나 input을 클릭하면 달력 표시
-        ,buttonImage: "http://jqueryui.com/resources/demos/datepicker/images/calendar.gif" // 버튼
+        , showOtherMonths: true // 빈 공간에 현재월의 앞뒤월의 날짜를 표시
+        , showMonthAfterYear: true // 년도 먼저 나오고, 뒤에 월 표시
+        , changeYear: true // 콤보박스에서 년 선택 가능
+        , changeMonth: true // 콤보박스에서 월 선택 가능
+        , showOn: "both" // button:버튼을 표시하고,버튼을 눌러야만 달력 표시 ^ both:버튼을 표시하고,버튼을
+                         // 누르거나 input을 클릭하면 달력 표시
+        , buttonImage: "http://jqueryui.com/resources/demos/datepicker/images/calendar.gif" // 버튼
         // 이미지
         // 경로
-        ,buttonImageOnly: true // 기본 버튼의 회색 부분을 없애고, 이미지만 보이게 함
-        ,buttonText: "선택" // 버튼에 마우스 갖다 댔을 때 표시되는 텍스트
-        ,yearSuffix: "년" // 달력의 년도 부분 뒤에 붙는 텍스트
-        ,monthNamesShort: ['1','2','3','4','5','6','7','8','9','10','11','12'] // 달력의
+        , buttonImageOnly: true // 기본 버튼의 회색 부분을 없애고, 이미지만 보이게 함
+        , buttonText: "선택" // 버튼에 마우스 갖다 댔을 때 표시되는 텍스트
+        , yearSuffix: "년" // 달력의 년도 부분 뒤에 붙는 텍스트
+        , monthNamesShort: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12'] // 달력의
         // 월 부분
         // 텍스트
-        ,monthNames: ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'] // 달력의
+        , monthNames: ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월'] // 달력의
         // 월 부분
         // Tooltip
         // 텍스트
-        ,dayNamesMin: ['일','월','화','수','목','금','토'] // 달력의 요일 부분 텍스트
-        ,dayNames: ['일요일','월요일','화요일','수요일','목요일','금요일','토요일'] // 달력의 요일 부분
+        , dayNamesMin: ['일', '월', '화', '수', '목', '금', '토'] // 달력의 요일 부분 텍스트
+        , dayNames: ['일요일', '월요일', '화요일', '수요일', '목요일', '금요일', '토요일'] // 달력의 요일 부분
         // Tooltip 텍스트
-        ,minDate: "-1M" // 최소 선택일자(-1D:하루전, -1M:한달전, -1Y:일년전)
-        ,maxDate: "+1M" // 최대 선택일자(+1D:하루후, -1M:한달후, -1Y:일년후)
+        , minDate: "-1M" // 최소 선택일자(-1D:하루전, -1M:한달전, -1Y:일년전)
+        , maxDate: "+1M" // 최대 선택일자(+1D:하루후, -1M:한달후, -1Y:일년후)
     });
 
     // input을 datepicker로 선언
-    $("#upDate").datepicker();
-    $("#regDate").datepicker();
+    $("#h_upDate").datepicker();
+    $("#h_regDate").datepicker();
 
     // From의 초기값을 오늘 날짜로 설정
-    $('#upDate').datepicker('setDate', 'today'); // (-1D:하루전, -1M:한달전,
+    $('#h_upDate').datepicker('setDate', 'today'); // (-1D:하루전, -1M:한달전,
     // -1Y:일년전), (+1D:하루후,
     // -1M:한달후, -1Y:일년후)
     // To의 초기값을 내일로 설정
-    $('#regDate').datepicker('setDate', '+1D'); // (-1D:하루전, -1M:한달전,
-                                                    // -1Y:일년전), (+1D:하루후,
-                                                    // -1M:한달후, -1Y:일년후)
+    $('#h_regDate').datepicker('setDate', '+1D'); // (-1D:하루전, -1M:한달전,
+    // -1Y:일년전), (+1D:하루후,
+    // -1M:한달후, -1Y:일년후)
 
-    $('#position1').on('change', function(){
-        $('#position2').show();
+    $('#h_position1').on('change', function () {
+        $('#h_position2').show();
 
     })
 
-    $("#endDate").change(function(){
-        if($("#endDate").is(":checked")){
+    $("#h_endDate").change(function () {
+        if ($("#h_endDate").is(":checked")) {
             $('#h_date').show();
-        }else{
+        } else {
             $('#h_date').hide();
         }
     });
 
-});
+}); //end document
 
-function chkSubmit(){
+function chkSubmit() {
     frm = document.forms["frm"];
-    var C_UID= frm["C_UID"].value.trim();
-    var name = frm["name"].value.trim();
-    var title = frm["title"].value.trim();
-    var salary = frm["salary"].value.trim();
-    var part = frm["part"].value.trim();
-    var position1 = frm["position1"].value.trim();
-    var position2 = frm["position2"].value.trim();
+    var C_UID = frm["C_UID"].value.trim();
+    var h_name = frm["h_name"].value.trim();
+    var h_title = frm["h_title"].value.trim();
+    var h_salary = frm["h_salary"].value.trim();
+    var h_part = frm["h_part"].value.trim();
+    var h_position1 = frm["h_position1"].value.trim();
+    var h_position2 = frm["h_position2"].value.trim();
 
-    var career_count = document.getElementsByName("career").length;
-    var degree_count = document.getElementsByName("degree").length;
-    var workform_count = document.getElementsByName("workform").length;
-    var upDate = frm["upDate"].value.trim();
-    var regDate = frm["regDate"].value.trim();
-/*    var upDate_count = document.getElementsByName("datepicker").length;
-    var regDate_count = document.getElementsByName("datepicker2").length;*/
+    var career_count = document.getElementsByName("h_career").length;
+    var degree_count = document.getElementsByName("h_degree").length;
+    var workform_count = document.getElementsByName("h_workform").length;
+    var upDate = frm["h_upDate"].value.trim();
+    var regDate = frm["h_regDate"].value.trim();
+    /*    var upDate_count = document.getElementsByName("datepicker").length;
+        var regDate_count = document.getElementsByName("datepicker2").length;*/
 
-    for (var i=0; i<career_count; i++) {
-        if (document.getElementsByName("career")[i].checked == true) {
-            var career=frm["career"].value.trim();
+    for (var i = 0; i < career_count; i++) {
+        if (document.getElementsByName("h_career")[i].checked == true) {
+            var h_career = frm["h_career"].value.trim();
         }
     }
-    for (var i=0; i<degree_count; i++) {
-        if (document.getElementsByName("degree")[i].checked == true) {
-            var degree=frm["degree"].value.trim();
+    for (var i = 0; i < degree_count; i++) {
+        if (document.getElementsByName("h_degree")[i].checked == true) {
+            var h_degree = frm["h_degree"].value.trim();
         }
     }
-    for (var i=0; i<workform_count; i++) {
-        if (document.getElementsByName("workform")[i].checked == true) {
-            var workform=frm["workform"].value.trim();
+    for (var i = 0; i < workform_count; i++) {
+        if (document.getElementsByName("h_workform")[i].checked == true) {
+            var h_workform = frm["h_workform"].value.trim();
         }
     }
 
 
-
-
-    if(name == ""){
+    if (h_name == "") {
         alert("이름 반드시 작성해야 합니다");
-        frm["title"].focus();
+        frm["h_title"].focus();
         return false;
     }
-    if(title == ""){
+    if (h_title == "") {
         alert("이름 반드시 작성해야 합니다");
-        frm["title"].focus();
+        frm["h_title"].focus();
         return false;
     }
-    if(salary == ""){
+    if (h_salary == "") {
         alert("직책 반드시 작성해야 합니다");
-        frm["salary"].focus();
+        frm["h_salary"].focus();
         return false;
     }
-    if(position2 == ""){
+    if (h_position2 == "") {
         alert("직책 반드시 작성해야 합니다");
-        frm["position2"].focus();
+        frm["h_position2"].focus();
         return false;
     }
-    if(part == ""){
+    if (h_part == "") {
         alert("직책 반드시 작성해야 합니다");
-        frm["part"].focus();
+        frm["h_part"].focus();
         return false;
     }
 
@@ -125,11 +129,185 @@ function chkSubmit(){
 }
 
 
-function chkDelete(uid) {
-    // 삭제 여부, 다시 확인 하고 진행하기
-    var r = confirm("삭제하시겠습니까?");
-    if (r) {
-        location.href = 'deleteOk.do?uid=' + uid;
-    }
-    ;
+function updatebtn(h_uid) {
+        location.href = 'view.do?h_uid=' + h_uid;
+
 };
+
+
+//page 번째 페이지 로딩
+function loadPage(page) {
+    $.ajax({
+        url: "hirelist.ajax?page=" + page + "&pageRows=" + pageRows
+        , type: "GET"
+        , cache: false
+        , success: function (data, status) {
+            if (status == "success") {
+                if (updateList(data)) {
+
+                    $(".deletebtn").click(function () {
+
+                        deleteUid($(this).attr('data-uid'));
+
+
+                    });
+
+                }
+            }
+        }
+    });
+} // end loadPage()
+
+//
+function updateList(jsonObj) {
+    result = "";
+
+    if (jsonObj.status == "OK") {
+        var count = jsonObj.count;
+        var remain;
+        var i;
+        var items = jsonObj.data;
+        for (i = 0; i < count; i++) {
+            if (items[i].h_remainDate < 0) {
+                remain = "<td>" + "<hr2>" + "모집 마감" + "</hr2>" + "</td>\n";
+            }
+            if (items[i].h_remainDate == 0) {
+                remain = "<td>" + "<hr2>" + "오늘 종료" + "</hr2>" + "</td>\n";
+            }
+            if (items[i].h_remainDate > 0) {
+                remain = "<td>" + "<hr2>" + items[i].h_remainDate + "일" + "</hr2>" + "</td>\n";
+            }
+
+            result += "<tr>\n";
+            //result += "<td>" + "<i class='fas fa-user-tie'></i>" + "</td>\n";
+            result += "<td>" + items[i].h_title + "</td>\n";
+            result += "<td>" + items[i].h_name + "</td>\n";
+            result += "<td>" + items[i].h_uid + "</td>\n";
+            result += remain;
+            // result += "<td>" + "<button class='updatebtn' type='button' data-uid='" + items[i].h_uid + "'>상세보기</button>" + "</td>\n";
+            result += "<td>" + "<button type='button' onclick='updatebtn("+items[i].h_uid+")'>상세보기</button>" + "</td>\n";
+            result += "<td>" + "<button class='deletebtn' data-uid='" + items[i].h_uid + "' type='button'>삭제</button> " + "</td>\n";
+
+            result += "</tr>\n";
+        } // end for
+        $("#list tbody").html(result);  // 테이블 업데이트!
+
+        // 페이지 정보 업데이트
+        $("#pageinfo").text(jsonObj.page + "/" + jsonObj.totalpage + "페이지, " + jsonObj.totalcnt + "개의 글");
+
+
+        // pageRows
+        var txt = "<select id='rows' onchange='changePageRows()'>\n";
+        txt += "<option " + ((window.pageRows == 5) ? "selected" : "") + " value='5'>5개씩</option>\n";
+        txt += "<option " + ((window.pageRows == 10) ? "selected" : "") + " value='10'>10개씩</option>\n";
+        txt += "<option " + ((window.pageRows == 15) ? "selected" : "") + " value='15'>15개씩</option>\n";
+        txt += "<option " + ((window.pageRows == 20) ? "selected" : "") + " value='20'>20개씩</option>\n";
+        txt += "</select>\n";
+        $("#pageRows").html(txt);
+
+
+        // 페이징 업데이트
+        var pagination = buildPagination(jsonObj.writepages, jsonObj.totalpage, jsonObj.page, jsonObj.pagerows);
+        $("#pagination").html(pagination);
+
+        return true;
+    } else {
+        alert(jsonObj.message);
+        return false;
+    }
+    return false;
+} // end updateList()
+
+
+function deleteUid(h_uid) {
+    var c = $.trim($('#a').html());
+    if (!confirm(h_uid + "글을 삭제 하시겠습니까?")) return false;
+
+    // POST 방식
+    $.ajax({
+        url: "deleteOk.ajax",
+        type: "POST",
+        data: "uid=" + h_uid,
+        cache: false,
+        success: function (data, status) {
+            if (status == "success") {
+                if (data.status == "OK") {
+                    alert("DELETE 성공" + data.count + "개");
+                    loadPage(c); // 현재 페이지 리로딩
+                } else {
+                    alert("DELETE 실패" + data.message);
+
+                }
+            }
+        }
+
+    });
+
+    return false;
+
+
+} // end deleteUid(uid)
+
+
+
+
+function buildPagination(writePages, totalPage, curPage, pageRows) {
+
+    var str = "";   // 최종적으로 페이징에 나타날 HTML 문자열 <li> 태그로 구성
+
+    // 페이징에 보여질 숫자들 (시작숫자 start_page ~ 끝숫자 end_page)
+    var start_page = ((parseInt((curPage - 1) / writePages)) * writePages) + 1;
+    var end_page = start_page + writePages - 1;
+
+    if (end_page >= totalPage) {
+        end_page = totalPage;
+    }
+
+    //■ << 표시 여부
+    if (curPage > 1) {
+        str += "<li><a onclick='loadPage(1)' class='tooltip-top' title='처음'><i class='fas fa-angle-double-left'></i></a></li>\n";
+    }
+
+    //■  < 표시 여부
+    if (start_page > 1)
+        str += "<li><a onclick='loadPage(" + (start_page - 1) + ")' class='tooltip-top' title='이전'><i class='fas fa-angle-left'></i></a></li>\n";
+
+    //■  페이징 안의 '숫자' 표시
+    if (totalPage > 1) {
+        for (var k = start_page; k <= end_page; k++) {
+            if (curPage != k)
+                str += "<li><a onclick='loadPage(" + k + ")'>" + k + "</a></li>\n";
+            else
+                str += "<li><a class='active tooltip-top' title='현재페이지'>" + k + "</a></li>\n";
+        }
+    }
+
+    //■ > 표시
+    if (totalPage > end_page) {
+        str += "<li><a onclick='loadPage(" + (end_page + 1) + ")' class='tooltip-top' title='다음'><i class='fas fa-angle-right'></i></a></li>\n";
+    }
+
+    //■ >> 표시
+    if (curPage < totalPage) {
+        str += "<li><a onclick='loadPage(" + totalPage + ")' class='tooltip-top' title='맨끝'><i class='fas fa-angle-double-right'></i></a></li>\n";
+    }
+
+    return str;
+
+
+} // end buildPagination()
+
+
+function changePageRows() {
+    window.pageRows = $("#rows").val();
+    loadPage(window.page);
+}
+
+
+
+
+
+
+
+
+

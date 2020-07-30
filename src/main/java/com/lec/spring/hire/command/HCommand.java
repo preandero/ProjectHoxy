@@ -6,3 +6,4 @@ public interface HCommand {
 	void excute(Model model);
 	
 }
+

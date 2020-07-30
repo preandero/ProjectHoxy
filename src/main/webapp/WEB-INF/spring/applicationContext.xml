@@ -43,4 +43,5 @@
 
     <!-- 자동으로 AspectJ 라이브러리 이용해서 Proxy 생성 -->
     <aop:aspectj-autoproxy></aop:aspectj-autoproxy>
+
 </beans>

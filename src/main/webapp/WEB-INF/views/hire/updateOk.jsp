@@ -6,18 +6,17 @@
 <c:choose>
 	<c:when test="${update == 0 }">
 		<script>
-		alert('수정 실패');
-		history.back();
-</script>
+			alert('수정 실패');
+			history.back();
+		</script>
 	</c:when>
 	<c:otherwise>
 		<script>
-		alert('수정 성공');
-		location.href = "hirelist.do"
+			alert('수정 성공');
+			location.href = "view.do?uid=${ param.uid }"
 		</script>
 	</c:otherwise>
 </c:choose>
-
 
 
 

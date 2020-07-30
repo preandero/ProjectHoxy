@@ -22,4 +22,22 @@ $(document).ready(function() {
         $(this).parents(".modal").hide();
     });
 
+    $('button[id^="btnAUpdate_"]').click(function(){
+        var id = $(this).attr('id').split("_")[1];
+        $('#dlg_write_' + id).show()
+    });
+
+
+
 });
+function chkDelete(aid){
+    var r = confirm("삭제하시겠습니까?");
+    if(r){
+        location.href = 'appDelete?a_uid=' + aid;
+    }
+}
+
+function chkUpdateResume(aid, rid){
+    $('#dlg_write_'+aid+' input:radio[name="r_uid"][value='+rid+']').prop('checked', true);
+
+}
