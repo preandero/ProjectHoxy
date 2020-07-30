@@ -1,3 +1,15 @@
+$('document').ready(function(){
+
+    $('#eduEle').show();
+    $('#eduMed').hide();
+    $('#eduHigh').hide();
+    // $('#eduUni').hide();
+
+})
+
+
+
+
 $('#btn-upload').on('click', function () {
     console.log('btn-upload');
     var form = new FormData(document.getElementById('uploadForm'));
@@ -97,5 +109,36 @@ function juso() {
         }
     }).open();
 }
+
+
+$('#eduElebtn').on('click',function(){
+
+    $('#eduEle').show();
+    $('#eduMed').hide();
+    $('#eduHigh').hide();
+    // $('#eduEle').hide();
+
+
+})
+
+$('#eduMedbtn').click(function(){
+
+    $('#eduEle').hide();
+    $('#eduMed').show();
+    $('#eduHigh').hide();
+    // $('#eduEle').show();
+})
+
+$('#eduHighbtn').click(function(){
+    $('#eduEle').hide();
+    $('#eduMed').hide();
+    $('#eduHigh').show();
+    // $('#eduUni').hide();
+
+})
+//
+// $('#eduElebtn').click(function(){
+//
+// })
 
 
