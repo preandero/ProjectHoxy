@@ -25,49 +25,19 @@
 
 
 <body>
-<h2>채용 공고</h2>
+<h2>세션 삭제</h2>
+<%
+    String sessionName = "id";
 
-<%-- 글목록 --%>
-<div id="list">
-    <div class="d01">
-        <div class="left" id="pageinfo"></div>
-        <div class="right" id="pageRows"></div>
-    </div>
-
-    <form id="frmList" name="frmList">
-        <table>
-            <thead>
-            <th>공고 제목</th>
-            <th>기업명</th>
-            <th>공고 번호</th>
-            <th>마감기한</th>
+    // 세션 삭제 (name)
+    session.removeAttribute(sessionName);
+%>
+<script>
+    alert("<%= sessionName %> 세션 삭제");
+    location.href = "session.do";
+</script>
 
 
-            </thead>
-
-
-            <tbody>
-            </tbody>
-        </table>
-    </form>
-
-    <%--버튼 --%>
-    <div class="d01">
-        <div class="left">
-            <button onclick="location.href='write.do'">공고등록</button>
-        </div>
-    </div>
-
-
-</div>
-
-<br>
-<%-- 페이징 --%>
-<div class="center">
-    <ul class="pagination" id="pagination">
-
-    </ul>
-</div>
 
 
 

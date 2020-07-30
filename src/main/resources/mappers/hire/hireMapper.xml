@@ -19,7 +19,7 @@
 
     <select id="selectByUid"
             resultType="com.lec.spring.hire.beans.HWriteDTO">
-		SELECT * FROM Hire WHERE h_uid=#{param1}
+		SELECT * , to_date(h_regDate, 'YYYY-MM-DD')-round(sysdate) dday FROM Hire WHERE h_uid=#{param1}
 	</select>
 
     <select id="adminselect"

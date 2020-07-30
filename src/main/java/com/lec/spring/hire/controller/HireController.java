@@ -50,11 +50,31 @@ public class HireController {
 
     }
 
+    @RequestMapping(value = "/session.do")
+    public String session() {
+        return "hire/session";
+
+    }
+    @RequestMapping(value = "/sessionCreate.do")
+    public String sessionCreate() {
+        return "hire/sessionCreate";
+
+    }
+    @RequestMapping(value = "/sessionDelete.do")
+    public String sessionDelete() {
+        return "hire/sessionDelete";
+
+    }
+
+
 
     @RequestMapping("/write.do")
     public String write(Model model) {
         return "hire/write";
     }
+
+
+
 
     @RequestMapping(value = "/writeOk.do", method = RequestMethod.POST)
     public String writeOk(HWriteDTO dto, Model model) {
