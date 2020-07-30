@@ -29,18 +29,19 @@
 
 <%--임의의 세션값 삭제해주기 ---------------------------------------------%>
 <%
-    String sessionName, sessionValue;
+    String sessionName;
+    int sessionValue;
     Enumeration enumeration = session.getAttributeNames();  // Enumeratoin<String> 리턴
 
     int i = 0;
     while(enumeration.hasMoreElements()){
         sessionName = enumeration.nextElement().toString();
-        sessionValue = session.getAttribute(sessionName).toString();
+        sessionValue = (Integer)session.getAttribute(sessionName);
         out.println((i + 1) + "] " + sessionName + " : " + sessionValue + "<br>");
         i++;
     }
     if(i == 0){
-        out.println("세션이 없습니다 <br>");
+
     }
 %>
 
@@ -54,6 +55,12 @@
 <form action="sessionDelete.do" method="get">
     <input type="submit" value="세션삭제">
 </form>
+
+<form action="hirelist.do" method="get">
+    <input type="submit" value="목록보기">
+</form>
+
+
 
 
 

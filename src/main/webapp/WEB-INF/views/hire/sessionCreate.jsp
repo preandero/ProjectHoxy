@@ -32,7 +32,7 @@
 
 <%
     String sessionName = "id";
-    String sessionValue = "" + Math.floor(Math.random() * 10);
+    int sessionValue = 1;
 
     // 세션생성
     // setAttribute(String arg0, Object arg1) 두번째 매개변수는 Object 타입이다

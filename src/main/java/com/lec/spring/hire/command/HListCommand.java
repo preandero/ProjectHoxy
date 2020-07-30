@@ -63,7 +63,7 @@ public class HListCommand implements Command {
 			//int fromRow = (page - 1) * pageRows;  // MySQL 은 0부터 시작
 
 			//dao = new WriteDAO();
-			arr = dao.selectFromRow(fromRow,pageRows,"%%q","%%");
+			arr = dao.selectHireList(fromRow,pageRows);
 
 			if(arr == null) {
 				message.append("[리스트할 데이터가 없습니다]");
