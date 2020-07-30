@@ -106,6 +106,7 @@
         <h2 class="main_box_title inline col-md-12">(${view[0].h_name })</h2>
         <h1 class="main_box_title inline col-md-8">${view[0].h_title }</h1>
         <button class="gray_Btn inline col-md-1"> ☆</button>
+            ${view[0].h_remainDate }
         <button id="btnWrite" class="org_Btn inline col-md-3">즉시지원</button>
 
         <div class="col-md-6 row updown padding20 margin_auto">
