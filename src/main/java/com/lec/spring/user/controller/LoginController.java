@@ -1,6 +1,8 @@
 package com.lec.spring.user.controller;
 
+import com.lec.spring.user.domain.ComDTO;
 import com.lec.spring.user.domain.UserDTO;
+import com.lec.spring.user.service.ComLoginService;
 import com.lec.spring.user.service.UserLoginService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -8,6 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -20,6 +23,9 @@ public class LoginController {
     @Autowired
     private UserLoginService login_service;
 
+    @Autowired
+    private ComLoginService comLoginService;
+
     @RequestMapping(value = "/user/login", method = RequestMethod.GET)
     public String userLogin(HttpSession session, Model model) {
 
@@ -27,6 +33,12 @@ public class LoginController {
         session.invalidate();
 
         return "user/login";
+    }
+
+    @RequestMapping(value = "/com/login", method = RequestMethod.GET)
+    public String comLogin(HttpSession session, Model model){
+        session.invalidate();
+        return "com/login";
     }
 
     @RequestMapping(value = "/user/login", method = RequestMethod.POST)
@@ -42,6 +54,24 @@ public class LoginController {
         System.out.println(result);
 
         return result;
+    }
+
+    @RequestMapping(value = "/com/login", method = RequestMethod.POST)
+    @ResponseBody
+    public int comLoginPass(ComDTO comDTO, HttpSession httpSession, HttpServletRequest request, HttpServletResponse response, Model model){
+        String com_check = request.getParameter("remember_comId");
+
+        int result = comLoginService.comLogin_service(comDTO, httpSession, com_check, response);
+        System.out.println(result);
+
+        return result;
+    }
+
+    @RequestMapping(value = "/logout")
+    public ModelAndView logout(HttpSession session){
+        session.invalidate();
+        ModelAndView mav = new ModelAndView("redirect:/");
+        return mav;
     }
 
     @RequestMapping(value = "user/regSuccess", method = RequestMethod.GET)

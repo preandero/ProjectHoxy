@@ -9,7 +9,7 @@
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
-<%@ taglib prefix="fmt2" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib prefix="fmt2" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <jsp:useBean id="today" class="java.util.Date"/>
 <fmt2:formatDate value="${today}" pattern="YYYY-MM-dd" var="today"/>
 <html>
@@ -106,14 +106,27 @@
         <h2 class="main_box_title inline col-md-12">(${view[0].h_name })</h2>
         <h1 class="main_box_title inline col-md-8">${view[0].h_title }</h1>
         <button class="gray_Btn inline col-md-1"> ☆</button>
-            ${view[0].h_remainDate }
-        <button id="btnWrite" class="org_Btn inline col-md-3">즉시지원</button>
+        <c:choose>
+
+            <c:when test="${view[0].h_remainDate<0}">
+                <button class="gray_Btn inline col-md-3">지원마감</button>
+            </c:when>
+
+
+            <c:otherwise>
+                <button id="btnWrite" class="org_Btn inline col-md-3"><h1 id="dday">D-${view[0].h_remainDate}</h1>즉시지원
+                </button>
+
+            </c:otherwise>
+
+        </c:choose>
+
 
         <div class="col-md-6 row updown padding20 margin_auto">
-            <div class="nav_box nav_box1" id = "nav_box1"><i class="fas fa-tv"></i>채용공고</div>
-            <div class="nav_box nav_box2" id = "nav_box2"><i class="fas fa-mouse"></i>접수방법</div>
-            <div class="nav_box nav_box3" id = "nav_box3"><i class="fas fa-chart-bar"></i>지원자통계</div>
-            <div class="nav_box nav_box4" id = "nav_box4"><i class="far fa-building"></i>기업정보</div>
+            <div class="nav_box nav_box1" id="nav_box1"><i class="fas fa-tv"></i>채용공고</div>
+            <div class="nav_box nav_box2" id="nav_box2"><i class="fas fa-mouse"></i>접수방법</div>
+            <div class="nav_box nav_box3" id="nav_box3"><i class="fas fa-chart-bar"></i>지원자통계</div>
+            <div class="nav_box nav_box4" id="nav_box4"><i class="far fa-building"></i>기업정보</div>
             <h2 class="col-md-4 bold">경력</h2>
             <h2 class="col-md-8 "></h2>
             <h2 class="col-md-4 bold">학력</h2>
@@ -136,225 +149,241 @@
     <div class="main_box_content row">
         <h1 class="main_box_title inline col-md-12">지원자 통계</h1>
         <div class="padding20 col-md-12"></div>
+        <c:if test="${graphList[0].graphView1 == 1}">
         <div class="col-md-6 chartbox centerbox">
-            <h2 class="bold">지원자 수</h2>
-            <h1 class="bluebold inline">${totalApp }</h1>명
-        </div>
-        <div class="col-md-6 chartbox">
-            <h2 class="bold">성별별 현황</h2>
-            <h2><i class="fas fa-male"></i> 남자 : ${gender1}</h2>
-            <h2><i class="fas fa-female"></i> 여자 : ${gender2}</h2>
-            <canvas id="myChart2"></canvas>
+            </c:if>
+            <c:if test="${graphList[0].graphView1 != 1}">
+            <div class="col-md-6 chartbox centerbox display_none">
+                </c:if>
+                <h2 class="bold">지원자 수</h2>
+                <h1 class="bluebold inline">${totalApp }</h1>명
+            </div>
+            <c:if test="${graphList[0].graphView4 == 1}">
+            <div class="col-md-6 chartbox">
+                </c:if>
+                <c:if test="${graphList[0].graphView4 != 1}">
+                <div class="col-md-6 chartbox display_none">
+                    </c:if>
+                    <h2 class="bold">성별별 현황</h2>
+                    <h2><i class="fas fa-male"></i> 남자 : ${gender1}</h2>
+                    <h2><i class="fas fa-female"></i> 여자 : ${gender2}</h2>
+                    <canvas id="myChart2"></canvas>
 
-        </div>
+                </div>
 
-        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-                integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-                crossorigin="anonymous"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
-                integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
-                crossorigin="anonymous"></script>
-        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
-                integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
-                crossorigin="anonymous"></script> <!-- 차트 -->
-        <script> data = {
-            datasets: [{
-                backgroundColor: ['rgb(172,217,248)', 'rgb(250,106,113)'],
-                data: [${gender1}, ${gender2}]
-            }], // 라벨의 이름이 툴팁처럼 마우스가 근처에 오면 나타남
-            labels: ['남자', '여자']
-        };
-        // 도넛형 차트
-        var ctx2 = document.getElementById("myChart2");
-        var myDoughnutChart = new Chart(ctx2, {type: 'doughnut', data: data, options: {}});
-
-        </script>
-
-
-        <div class="col-md-6 chartbox">
-            <h2 class="bold">연령별 현황</h2>
-            <canvas id="myChart"></canvas>
-        </div> <!-- 부트스트랩 -->
-        <script>
-            <c:forEach var="Color" items="${Color }">
-            var color1 = '${Color.color1}';
-            var color2 = '${Color.color2}';
-            var color3 = '${Color.color3}';
-
-            </c:forEach>
-            var ctx = document.getElementById('myChart');
-            var myChart = new Chart(ctx, {
-                type: 'bar',
-                data: {
-                    labels: ['20대', '30대', '40대', '50대', '60대 이상'],
+                <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+                        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+                        crossorigin="anonymous"></script>
+                <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+                        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+                        crossorigin="anonymous"></script>
+                <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+                        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+                        crossorigin="anonymous"></script> <!-- 차트 -->
+                <script> data = {
                     datasets: [{
-                        label: "",
-                        data: [${age20}, ${age30}, ${age40}, ${age50}, ${age60}, ${age70}],
-                        backgroundColor: [color1, color2, color3, color1, color2],
-                        borderColor: [color1, color2, color3, color1, color2],
-                        borderWidth: 0.5
-
-                    }]
-                },
-                options: {scales: {yAxes: [{ticks: {beginAtZero: true}}]}}
-            });
-
-
-        </script>
+                        backgroundColor: ['rgb(172,217,248)', 'rgb(250,106,113)'],
+                        data: [${gender1}, ${gender2}]
+                    }], // 라벨의 이름이 툴팁처럼 마우스가 근처에 오면 나타남
+                    labels: ['남자', '여자']
+                };
+                // 도넛형 차트
+                var ctx2 = document.getElementById("myChart2");
+                var myDoughnutChart = new Chart(ctx2, {type: 'doughnut', data: data, options: {}});
+                </script>
 
 
-        <div class="col-md-6 chartbox">
-            <h2 class="bold">TOEIC</h2>
-            <canvas id="myChart3"></canvas>
-        </div> <!-- 부트스트랩 -->
-
-        <script>
-            <c:forEach var="Color" items="${Color }">
-            var color1 = '${Color.color1}';
-            var color2 = '${Color.color2}';
-            var color3 = '${Color.color3}';
-
-            </c:forEach>
-            var ctx = document.getElementById('myChart3');
-            var myChart = new Chart(ctx, {
-                type: 'bar',
-                data: {
-                    labels: ['600미만', '700미만', '800미만', '900미만', '900이상'],
-                    datasets: [{
-                        label: "toeic",
-                        data: [${toeic500}, ${toeic600}, ${toeic700}, ${toeic800}, ${toeic900}],
-                        backgroundColor: [color1, color2, color3, color1, color2],
-                        borderColor: [color1, color2, color3, color1, color2],
-                        borderWidth: 0.5
-
-                    }]
-                },
-                options: {scales: {yAxes: [{ticks: {beginAtZero: true}}]}}
-            });
-
-
-        </script>
-
-        <div class="col-md-6 chartbox">
-            <h2 class="bold">경력별 현황</h2>
-            <canvas id="myChart4"></canvas>
-        </div> <!-- 부트스트랩 -->
-
-        <script>
-            <c:forEach var="Color" items="${Color }">
-            var color1 = '${Color.color1}';
-            var color2 = '${Color.color2}';
-            var color3 = '${Color.color3}';
-
-            </c:forEach>
-            var ctx = document.getElementById('myChart4');
-            var myChart = new Chart(ctx, {
-                type: 'bar',
-                data: {
-                    labels: ['신입', '1년미만', '1~3년', '3~5년', '5년 이상'],
-                    datasets: [{
-                        label: "toeic",
-                        data: [${career0}, ${career1}, ${career3}, ${career5}, ${career10}],
-                        backgroundColor: [color1, color2, color3, color1, color2],
-                        borderColor: [color1, color2, color3, color1, color2],
-                        borderWidth: 0.5
-
-                    }]
-                },
-                options: {scales: {yAxes: [{ticks: {beginAtZero: true}}]}}
-            });
+                <c:if test="${graphList[0].graphView5 == 1}">
+                <div class="col-md-6 chartbox ">
+                    </c:if>
+                    <c:if test="${graphList[0].graphView5 != 1}">
+                    <div class="col-md-6 chartbox  display_none">
+                        </c:if>
+                        <h2 class="bold">연령별 현황</h2>
+                        <canvas id="myChart"></canvas>
+                    </div> <!-- 부트스트랩 -->
+                    <script>
+                        <c:forEach var="Color" items="${Color }">
+                        var color1 = '${Color.color1}';
+                        var color2 = '${Color.color2}';
+                        var color3 = '${Color.color3}';
+                        </c:forEach>
+                        var ctx = document.getElementById('myChart');
+                        var myChart = new Chart(ctx, {
+                            type: 'bar',
+                            data: {
+                                labels: ['20대', '30대', '40대', '50대', '60대 이상'],
+                                datasets: [{
+                                    label: "",
+                                    data: [${age20}, ${age30}, ${age40}, ${age50}, ${age60}, ${age70}],
+                                    backgroundColor: [color1, color2, color3, color1, color2],
+                                    borderColor: [color1, color2, color3, color1, color2],
+                                    borderWidth: 0.5
+                                }]
+                            },
+                            options: {scales: {yAxes: [{ticks: {beginAtZero: true}}]}}
+                        });
+                    </script>
 
 
-        </script>
+                    <c:if test="${graphList[0].graphView7 == 1}">
+                    <div class="col-md-6 chartbox">
+                        </c:if>
+                        <c:if test="${graphList[0].graphView7 != 1}">
+                        <div class="col-md-6 chartbox display_none">
+                            </c:if>
+                            <h2 class="bold">TOEIC</h2>
+                            <canvas id="myChart3"></canvas>
+                        </div> <!-- 부트스트랩 -->
 
-    </div>
+                        <script>
+                            <c:forEach var="Color" items="${Color }">
+                            var color1 = '${Color.color1}';
+                            var color2 = '${Color.color2}';
+                            var color3 = '${Color.color3}';
+                            </c:forEach>
+                            var ctx = document.getElementById('myChart3');
+                            var myChart = new Chart(ctx, {
+                                type: 'bar',
+                                data: {
+                                    labels: ['600미만', '700미만', '800미만', '900미만', '900이상'],
+                                    datasets: [{
+                                        label: "toeic",
+                                        data: [${toeic500}, ${toeic600}, ${toeic700}, ${toeic800}, ${toeic900}],
+                                        backgroundColor: [color1, color2, color3, color1, color2],
+                                        borderColor: [color1, color2, color3, color1, color2],
+                                        borderWidth: 0.5
+                                    }]
+                                },
+                                options: {scales: {yAxes: [{ticks: {beginAtZero: true}}]}}
+                            });
+                        </script>
+
+                        <c:if test="${graphList[0].graphView2 == 1}">
+                        <div class="col-md-6 chartbox">
+                            </c:if>
+                            <c:if test="${graphList[0].graphView2 != 1}">
+                            <div class="col-md-6 chartbox display_none">
+                                </c:if>
+                                <h2 class="bold">경력별 현황</h2>
+                                <canvas id="myChart4"></canvas>
+                            </div> <!-- 부트스트랩 -->
+
+                            <script>
+                                <c:forEach var="Color" items="${Color }">
+                                var color1 = '${Color.color1}';
+                                var color2 = '${Color.color2}';
+                                var color3 = '${Color.color3}';
+                                </c:forEach>
+                                var ctx = document.getElementById('myChart4');
+                                var myChart = new Chart(ctx, {
+                                    type: 'bar',
+                                    data: {
+                                        labels: ['신입', '1년미만', '1~3년', '3~5년', '5년 이상'],
+                                        datasets: [{
+                                            label: "toeic",
+                                            data: [${career0}, ${career1}, ${career3}, ${career5}, ${career10}],
+                                            backgroundColor: [color1, color2, color3, color1, color2],
+                                            borderColor: [color1, color2, color3, color1, color2],
+                                            borderWidth: 0.5
+                                        }]
+                                    },
+                                    options: {scales: {yAxes: [{ticks: {beginAtZero: true}}]}}
+                                });
+                            </script>
+
+                        </div>
 
 
-</div>
+                    </div>
 
-<div id="dlg_write" class="modal">
-    <div class="modal-content">
-        <c:choose>
-            <c:when test="${loginChk!='flase' }">
-                <span class="close" title="Close Modal">&times;</span>
-                <h1 class="hire_title">${view[0].title }</h1>
-                <form action="/app/appWriteOk" method="post">
-                    <input type="hidden" value="1" name="u_uid">
-                    <input type="hidden" value="${view[0].uid }" name="h_uid">
+                    <div id="dlg_write" class="modal">
+                        <div class="modal-content">
+                            <c:choose>
+                                <c:when test="${loginChk!='flase' }">
+                                    <span class="close" title="Close Modal">&times;</span>
+                                    <h1 class="hire_title">${view[0].title }</h1>
+                                    <form action="/app/appWriteOk" method="post">
+                                        <input type="hidden" value="1" name="u_uid">
+                                        <input type="hidden" value="${view[0].uid }" name="h_uid">
 
-                    <h2>직무</h2><br>
-                    <h2 class="bold">${view[0].part }</h2>
-                    <div class="padding20"></div>
-                    <h2>제출 서류</h2><br>
-                    <c:forEach var="RList" items="${Rlist }">
+                                        <h2>직무</h2><br>
+                                        <h2 class="bold">${view[0].part }</h2>
+                                        <div class="padding20"></div>
+                                        <h2>제출 서류</h2><br>
+                                        <c:forEach var="RList" items="${Rlist }">
 
-                        <table class="rlist_table">
-                            <tr>
-                                <th>
-                                    <input type="radio" name="r_uid" value="${RList.r_uid}">&nbsp;&nbsp;&nbsp;${RList.r_title }
-                                </th>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <h3 class="blue_a inline"> 이력서 </h3>${RList.r_date } 수정
-                                </td>
-                            </tr>
-                        </table>
-                    </c:forEach>
-                    <div class="padding20"></div>
-                    <input type="submit" value="지원하기" class="org_Btn fullbutton">
+                                            <table class="rlist_table">
+                                                <tr>
+                                                    <th>
+                                                        <input type="radio" name="r_uid"
+                                                               value="${RList.r_uid}">&nbsp;&nbsp;&nbsp;${RList.r_title }
+                                                    </th>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <h3 class="blue_a inline"> 이력서 </h3>${RList.r_date } 수정
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                        </c:forEach>
+                                        <div class="padding20"></div>
+                                        <input type="submit" value="지원하기" class="org_Btn fullbutton">
 
-                </form>
-            </c:when>
-            <c:otherwise>
-                <span class="close" title="Close Modal">&times;</span>
-                <h1>로그인이 필요한 서비스 입니다.</h1>
-                <a href="/user/login">로그인 바로가기</a>
-            </c:otherwise>
-        </c:choose>
+                                    </form>
+                                </c:when>
+                                <c:otherwise>
+                                    <span class="close" title="Close Modal">&times;</span>
+                                    <h1>로그인이 필요한 서비스 입니다.</h1>
+                                    <a href="/user/login">로그인 바로가기</a>
+                                </c:otherwise>
+                            </c:choose>
 
-    </div>
-</div>
+                        </div>
+                    </div>
 
 
-<div id="main_footer">
+                    <div id="main_footer">
 
-    <div id="main_footer_nav">
-        <nav>
-            <ul>
+                        <div id="main_footer_nav">
+                            <nav>
+                                <ul>
 
-                <li>회사소개</li>
-                <li>보도기사</li>
-                <li>찾아오시는길</li>
-                <li>회원약간</li>
-                <li>개인정보처리방침</li>
-                <li>이메일무단수집거부</li>
-                <li>채용정보API</li>
-                <li>제휴문의</li>
-                <li>고객센터</li>
+                                    <li>회사소개</li>
+                                    <li>보도기사</li>
+                                    <li>찾아오시는길</li>
+                                    <li>회원약간</li>
+                                    <li>개인정보처리방침</li>
+                                    <li>이메일무단수집거부</li>
+                                    <li>채용정보API</li>
+                                    <li>제휴문의</li>
+                                    <li>고객센터</li>
 
-            </ul>
+                                </ul>
 
-        </nav>
-    </div>
-    <div class="row">
-        <div class="col-md-3 ">
-        </div>
-        <div id="main_footer_img" class="col-md-1 ">
-        </div>
-        <div id="main_footer_content" class="div_1260 col-md-8">
-            <a>사람인 고객센터 02-2025-4733 (평일 09:00~19:00, 주말·공휴일 휴무)</a><br>
-            <br>
-            <a>이메일 : help@saramin.co.kr, Fax : 02-6937-0039(대표), 02-6937-0035(세금계산서) 이메일문의 사람인 네이버 블로그 사람인 페이스북
-                페이지</a><br>
-            <br>
-            <a>(주)사람인HR, 우 : 08378, 서울특별시 구로구 디지털로34길 43, 201호(구로동), 대표 : 김용환</a><br>
-            <br>
-            <a>사업자등록 : 113-86-00917, 직업정보제공사업 : 서울 관악 제 2005-6호, 통신판매업 : 제 2339호, Copyright (c) (주)사람인HR. All rights
-                reserved.</a><br>
-        </div>
-    </div>
-</div>
+                            </nav>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-3 ">
+                            </div>
+                            <div id="main_footer_img" class="col-md-1 ">
+                            </div>
+                            <div id="main_footer_content" class="div_1260 col-md-8">
+                                <a>사람인 고객센터 02-2025-4733 (평일 09:00~19:00, 주말·공휴일 휴무)</a><br>
+                                <br>
+                                <a>이메일 : help@saramin.co.kr, Fax : 02-6937-0039(대표), 02-6937-0035(세금계산서) 이메일문의 사람인 네이버
+                                    블로그 사람인 페이스북
+                                    페이지</a><br>
+                                <br>
+                                <a>(주)사람인HR, 우 : 08378, 서울특별시 구로구 디지털로34길 43, 201호(구로동), 대표 : 김용환</a><br>
+                                <br>
+                                <a>사업자등록 : 113-86-00917, 직업정보제공사업 : 서울 관악 제 2005-6호, 통신판매업 : 제 2339호, Copyright (c)
+                                    (주)사람인HR. All
+                                    rights
+                                    reserved.</a><br>
+                            </div>
+                        </div>
+                    </div>
 
 
 </body>

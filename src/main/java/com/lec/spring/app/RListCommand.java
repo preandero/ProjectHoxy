@@ -1,10 +1,12 @@
 package com.lec.spring.app;
 
 import com.lec.spring.app.persistence.AppDAO;
+import com.lec.spring.app.persistence.ListDAO;
 import com.lec.spring.user.domain.UserDTO;
 import com.lec.spring.user.persistence.ComDAO;
 import org.springframework.ui.Model;
 
+import javax.swing.event.ListDataEvent;
 import java.util.Map;
 
 public class RListCommand implements ACommand{
@@ -13,7 +15,7 @@ public class RListCommand implements ACommand{
     public void execute(Model model) {
         Map<String, Object> map = model.asMap();
         AppDAO dao = C.sqlSession.getMapper(AppDAO.class);
-
+        ListDAO listDAO = C.sqlSession.getMapper(ListDAO.class);
         if(map.get("user")!=null) {
             int u_uid = (Integer) map.get("u_uid");
             model.addAttribute("Rlist", dao.selectRByUid(u_uid));
@@ -22,7 +24,7 @@ public class RListCommand implements ACommand{
         }
         int h_uid = (Integer) map.get("h_uid");
 
-
+        model.addAttribute("graphList", listDAO.select());
         model.addAttribute("totalApp", dao.selectByhid(h_uid).size());//지원자수
         model.addAttribute("gender1", dao.genderCount1(h_uid).size());//성별 (남)
         model.addAttribute("gender2", dao.genderCount2(h_uid).size());//성별 (여)

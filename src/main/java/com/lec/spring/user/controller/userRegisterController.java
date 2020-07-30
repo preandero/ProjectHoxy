@@ -40,9 +40,9 @@ public class userRegisterController {
 
     }
 
-    @RequestMapping(value = "/user/key_alter", method = RequestMethod.GET)
-    public String key_alterConfirm(@RequestParam("u_id") String u_id, @RequestParam("u_key") String u_key){
-        return "user/regSuccess";
-    }
+    //@RequestMapping(value = "/user/key_alter", method = RequestMethod.GET)
+    //public String key_alterConfirm(@RequestParam("u_id") String u_id, @RequestParam("u_key") String u_key){
+    //    return "user/regSuccess";
+    //}
 
 }

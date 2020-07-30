@@ -164,6 +164,9 @@ function updateList(jsonObj) {
 
     if (jsonObj.status == "OK") {
         var count = jsonObj.count;
+        // var value = session.getAttribute("id");
+        // alert(value);
+
         var remain;
         var i;
         var items = jsonObj.data;
@@ -177,9 +180,11 @@ function updateList(jsonObj) {
             if (items[i].h_remainDate > 0) {
                 remain = "<td>" + "<hr2>" + items[i].h_remainDate + "일" + "</hr2>" + "</td>\n";
             }
-
+            
+            // if(itmes[i].h_uid == value )
             result += "<tr>\n";
             //result += "<td>" + "<i class='fas fa-user-tie'></i>" + "</td>\n";
+            result += "<td>" + items[i].c_UID + "</td>\n";
             result += "<td>" + items[i].h_title + "</td>\n";
             result += "<td>" + items[i].h_name + "</td>\n";
             result += "<td>" + items[i].h_uid + "</td>\n";
