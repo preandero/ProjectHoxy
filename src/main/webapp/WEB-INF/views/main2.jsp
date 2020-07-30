@@ -6,6 +6,8 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <html>
 <head>
     <link href="https://fonts.googleapis.com/css2?family=Jua&display=swap" rel="stylesheet">
@@ -24,10 +26,11 @@
             integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
             crossorigin="anonymous"></script>
 </head>
+<link rel="shortcut icon" type="image/x-icon"
+      href="https://i.imgur.com/8AyMFrx.png">
 <body>
 <script type="text/javascript" src="https://code.jquery.com/jquery-1.11.0.min.js"></script>
 <script type="text/javascript" src="https://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
-
 
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/2.0.2/TweenMax.min.js"></script>
@@ -39,8 +42,6 @@
 <script src="https://kit.fontawesome.com/a076d05399.js"></script>
 
 
-
-
 <nav role="navigation">
 
     <div id="menuToggle">
@@ -48,7 +49,7 @@
         A fake / hidden checkbox is used as click reciever,
         so you can use the :checked selector on it.
         -->
-        <input type="checkbox" />
+        <input type="checkbox"/>
 
         <!--
         Some spans to act as a hamburger.
@@ -66,23 +67,40 @@
         -->
 
         <ul id="menu">
-            <a href="#"><li>지역별 채용공고</li></a>
-            <a href="#"><li>BLIND-BOARD</li></a>
-            <a href="#"><li>이력서 관리</li></a>
-            <a href="#"><li>지원 관리</li></a>
-            <a href="#"><li>기업서비스</li></a>
+            <a href="#">
+                <li><a href="/hire/hirelist.do">지역별 채용공고</a></li>
+            </a>
+            <a href="#">
+                <li>BLIND-BOARD</li>
+            </a>
+            <a href="#">
+                <li>이력서 관리</li>
+            </a>
+            <a href="#">
+                <li>지원 관리</li>
+            </a>
+            <a href="#">
+                <li>기업서비스</li>
+            </a>
 
         </ul>
     </div>
 </nav>
+<c:choose>
+    <c:when test="${u_name!=null}">
+        <h1 id="main_username">${u_name} 님 안녕하세요</h1>
+        <h1 id="main_login" onclick='location.href="/logout"'>Logout</h1>
+    </c:when>
+    <c:otherwise>
+        <h1 id="main_login"><a href="/user/login">Login</a></h1>
+    </c:otherwise>
+</c:choose>
 
-
-<h1 id = "main_login"  onclick='location.href="user/login"'>Login</h1>
 <section class="container">
-    <div id = "main_header_log"></div>
+    <div id="main_header_log"></div>
     <h1>
-      <%--  <span class="title">This is</span>
-        <span class="title">a long</span>--%>
+        <%--  <span class="title">This is</span>
+          <span class="title">a long</span>--%>
         <span class="title">일할래 Hoxy?</span>
     </h1>
 

@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface AppDAO {
     int insert(final AppDTO dto);
-    public List<AppDTO> selectAByUid(final int uid);
+    public List<AppDTO> selectAByUid(final int uid,final int param2, final int param3, final int param4, final String param5);
     public List<AppDTO> selectByhid(final int hid);
     public List<AppDTO> selectRByUid(final int uid);
     public List<AppDTO> genderCount1(final int hid);

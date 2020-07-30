@@ -93,32 +93,36 @@
         <br>
         <h3>유의사항</h3>
         <h3>최근 2년간의 지원내역에 대한 확인이 가능합니다. (단, 지원서류는 최근 2개월동안 확인 가능)</h3>
-        <div class="select_option row">
-            <div class="col-md-2">
-                <h3>검색조건</h3>
-                <h3>(최근 2년)</h3>
+        <form action="/app/appmyList" method="post">
+            <div class="select_option row">
+                <div class="col-md-2">
+                    <h3>검색조건</h3>
+                    <h3>(최근 2년)</h3>
+                </div>
+                <div class="col-md-9">
+                    <h3 class="inline">조회 기간</h3>
+                    <button id="period7" class="inline period" type="button">1주일</button>
+                    <button id="period31" class="inline period" type="button">1개월</button>
+                    <button id="period60" class="inline period" type="button">2개월</button>
+                    <button id="period91" class="inline period" type="button">3개월</button>
+                    <button id="period182" class="inline period" type="button">6개월</button>
+                    <button id="period365" class="inline period" type="button">1년</button>
+                    <input type="hidden" id="period_input" value="365" name="period">
+                    <br>
+                    <h3 class="inline">열람 여부</h3>
+                    <select class="inline" name="view">
+                        <option value="2">모두</option>
+                        <option value="1">열람</option>
+                        <option value="0">미열람</option>
+                    </select>
+                    <h3 class="inline">검색</h3>
+                    <input type="text" name="search" class="inline search_content" placeholder="내용을 입력해 주세요">
+                </div>
+                <div class="col-md-1">
+                    <button class="search" type="submit">검색</button>
+                </div>
             </div>
-            <div class="col-md-9">
-                <h3 class="inline">조회 기간</h3>
-                <button class="inline period">1주일</button>
-                <button class="inline period">1개월</button>
-                <button class="inline period">2개월</button>
-                <button class="inline period">3개월</button>
-                <button class="inline period">6개월</button>
-                <button class="inline period">1년</button>
-                <br>
-                <h3 class="inline">열람 여부</h3>
-                <select class="inline">
-                    <option>열람</option>
-                    <option>미열람</option>
-                </select>
-                <h3 class="inline">검색</h3>
-                <input type="text" class="inline search_content" placeholder="내용을 입력해 주세요">
-            </div>
-            <div class="col-md-1">
-                <button class="search">검색</button>
-            </div>
-        </div>
+        </form>
         <h2 class="inline">지원 현황 </h2>
         <h2 class="inline red"> ${fn:length(Alist) } </h2>
         <h2 class="inline"> 건</h2>

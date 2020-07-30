@@ -10,9 +10,26 @@ public class AListCommand implements ACommand {
     public void execute(Model model) {
         Map<String, Object> map = model.asMap();
         int u_uid = (Integer) map.get("u_uid");
+        //period, view, search
+
+        int period = 365;
+        if(map.get("period")!=null){
+            period=(int)Integer.parseInt((String)map.get("period"));
+        }
 
 
+        int view1 = 0;
+        int view2 = 1;
+        if(map.get("view")!=null&&(int)Integer.parseInt((String)map.get("view"))!=2){
+            view1=(int)Integer.parseInt((String)map.get("view"));
+            view2=(int)Integer.parseInt((String)map.get("view"));
+
+        }
+        String search = "%%";
+        if(map.get("view")!=null){
+            search = "%"+(String)map.get("search")+"%";
+        }
         AppDAO dao = C.sqlSession.getMapper(AppDAO.class);
-        model.addAttribute("Alist", dao.selectAByUid(u_uid));
+        model.addAttribute("Alist", dao.selectAByUid(u_uid,period,view1,view2,search));
     }
 }

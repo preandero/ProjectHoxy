@@ -6,13 +6,17 @@ body {
     font-family: 'Nanum Pen Script', cursive;
     background: linear-gradient(to bottom,#ffd203 0%, #f2de80 100%);
 }
-#main_login{
+#main_login ,#main_username{
     color: #111111;
     font-family: 'Jua', sans-serif;
     font-size: larger;
     left: 150px;
     position: absolute;
 }
+#main_username {
+    left: 300px;
+}
+
 
 .container {
     transform: translate(-50%, -50%);

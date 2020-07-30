@@ -9,6 +9,9 @@
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ taglib prefix="fmt2" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<jsp:useBean id="today" class="java.util.Date"/>
+<fmt2:formatDate value="${today}" pattern="YYYY-MM-dd" var="today"/>
 <html>
 <head>
     <!--부트스트랩 차트 그리기-->
@@ -100,9 +103,8 @@
 
         <%--공고 타이틀 자리임--%>
 
-        <h2 class="main_box_title inline col-md-12">(${view[0].name })</h2>
-        <h1 class="main_box_title inline col-md-8">${view[0].title }</h1>
-
+        <h2 class="main_box_title inline col-md-12">(${view[0].h_name })</h2>
+        <h1 class="main_box_title inline col-md-8">${view[0].h_title }</h1>
         <button class="gray_Btn inline col-md-1"> ☆</button>
         <button id="btnWrite" class="org_Btn inline col-md-3">즉시지원</button>
 
@@ -114,17 +116,17 @@
             <h2 class="col-md-4 bold">경력</h2>
             <h2 class="col-md-8 "></h2>
             <h2 class="col-md-4 bold">학력</h2>
-            <h2 class="col-md-8">${view[0].degree }</h2>
+            <h2 class="col-md-8">${view[0].h_degree }</h2>
             <h2 class="col-md-4 bold">근무형태</h2>
-            <h2 class="col-md-8">${view[0].workform }</h2>
+            <h2 class="col-md-8">${view[0].h_workform }</h2>
         </div>
         <div class="col-md-6 row updown padding20 margin_auto">
             <h2 class="col-md-4 bold">급여</h2>
             <h2 class="col-md-8"></h2>
             <h2 class="col-md-4 bold">직급/직책</h2>
-            <h2 class="col-md-8">${view[0].degree }</h2>
+            <h2 class="col-md-8">${view[0].h_degree }</h2>
             <h2 class="col-md-4 bold">근무지역</h2>
-            <h2 class="col-md-8">${view[0].workform }</h2>
+            <h2 class="col-md-8">${view[0].h_workform }</h2>
         </div>
     </div>
     <div class="main_box_content">
@@ -271,35 +273,45 @@
 
 <div id="dlg_write" class="modal">
     <div class="modal-content">
-        <span class="close" title="Close Modal">&times;</span>
-        <h1 class="hire_title">${view[0].title }</h1>
-        <form action="/app/appWriteOk" method="post">
-            <input type="hidden" value="1" name="u_uid">
-            <input type="hidden" value="${view[0].uid }" name="h_uid">
+        <c:choose>
+            <c:when test="${loginChk!='flase' }">
+                <span class="close" title="Close Modal">&times;</span>
+                <h1 class="hire_title">${view[0].title }</h1>
+                <form action="/app/appWriteOk" method="post">
+                    <input type="hidden" value="1" name="u_uid">
+                    <input type="hidden" value="${view[0].uid }" name="h_uid">
 
-            <h2>직무</h2><br>
-            <h2 class="bold">${view[0].part }</h2>
-            <div class="padding20"></div>
-            <h2>제출 서류</h2><br>
-            <c:forEach var="RList" items="${Rlist }">
+                    <h2>직무</h2><br>
+                    <h2 class="bold">${view[0].part }</h2>
+                    <div class="padding20"></div>
+                    <h2>제출 서류</h2><br>
+                    <c:forEach var="RList" items="${Rlist }">
 
-                <table class="rlist_table">
-                    <tr>
-                        <th>
-                            <input type="radio" name="r_uid" value="${RList.r_uid}">&nbsp;&nbsp;&nbsp;${RList.r_title }
-                        </th>
-                    </tr>
-                    <tr>
-                        <td>
-                            <h3 class="blue_a inline"> 이력서 </h3>${RList.r_date } 수정
-                        </td>
-                    </tr>
-                </table>
-            </c:forEach>
-            <div class="padding20"></div>
-            <input type="submit" value="지원하기" class="org_Btn fullbutton">
+                        <table class="rlist_table">
+                            <tr>
+                                <th>
+                                    <input type="radio" name="r_uid" value="${RList.r_uid}">&nbsp;&nbsp;&nbsp;${RList.r_title }
+                                </th>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <h3 class="blue_a inline"> 이력서 </h3>${RList.r_date } 수정
+                                </td>
+                            </tr>
+                        </table>
+                    </c:forEach>
+                    <div class="padding20"></div>
+                    <input type="submit" value="지원하기" class="org_Btn fullbutton">
 
-        </form>
+                </form>
+            </c:when>
+            <c:otherwise>
+                <span class="close" title="Close Modal">&times;</span>
+                <h1>로그인이 필요한 서비스 입니다.</h1>
+                <a href="/user/login">로그인 바로가기</a>
+            </c:otherwise>
+        </c:choose>
+
     </div>
 </div>
 

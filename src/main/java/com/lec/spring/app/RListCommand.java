@@ -1,6 +1,7 @@
 package com.lec.spring.app;
 
 import com.lec.spring.app.persistence.AppDAO;
+import com.lec.spring.user.domain.UserDTO;
 import com.lec.spring.user.persistence.ComDAO;
 import org.springframework.ui.Model;
 
@@ -11,12 +12,17 @@ public class RListCommand implements ACommand{
     @Override
     public void execute(Model model) {
         Map<String, Object> map = model.asMap();
-        int u_uid = (Integer) map.get("u_uid");
+        AppDAO dao = C.sqlSession.getMapper(AppDAO.class);
+
+        if(map.get("user")!=null) {
+            int u_uid = (Integer) map.get("u_uid");
+            model.addAttribute("Rlist", dao.selectRByUid(u_uid));
+        }else{
+            model.addAttribute("loginChk","flase");
+        }
         int h_uid = (Integer) map.get("h_uid");
 
 
-        AppDAO dao = C.sqlSession.getMapper(AppDAO.class);
-        model.addAttribute("Rlist", dao.selectRByUid(u_uid));
         model.addAttribute("totalApp", dao.selectByhid(h_uid).size());//지원자수
         model.addAttribute("gender1", dao.genderCount1(h_uid).size());//성별 (남)
         model.addAttribute("gender2", dao.genderCount2(h_uid).size());//성별 (여)
