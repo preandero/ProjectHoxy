@@ -11,7 +11,9 @@ public interface IAjaxDAO {
 	// pageRows : 몇개의 데이터(게시글)
 	public List<HWriteDTO> selectFromRow(
 			@Param("from") int from,
-			@Param("pageRows") int pageRows
+			@Param("pageRows") int pageRows,
+			@Param("search") String search,
+			@Param("searchWord") String searchWord
 	);
 
 	public int deleteByUid(int uid);

@@ -10,6 +10,7 @@ import com.lec.spring.hire.beans.AjaxWriteResult;
 import com.lec.spring.hire.beans.HWriteDTO;
 import com.lec.spring.hire.command.DeleteCommand;
 import com.lec.spring.hire.command.HListCommand;
+import com.lec.spring.hire.command.HSearchCommand;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -23,7 +24,12 @@ public class WAjaxController {
 	public AjaxWriteList hirelist(HttpServletRequest request, HttpServletResponse response) {
 		new HListCommand().execute(request, response);
 		return buildList(request);
-	} // end 
+	} // end
+	@RequestMapping("/hire/hireSearch.ajax")
+	public AjaxWriteList hireSearch(HttpServletRequest request, HttpServletResponse response) {
+		new HSearchCommand().execute(request, response);
+		return buildList(request);
+	} // end
 
 	@RequestMapping(value= "/hire/deleteOk.ajax", method= RequestMethod.POST)
 	public AjaxWriteResult deleteOk(HttpServletRequest request, HttpServletResponse response) {
