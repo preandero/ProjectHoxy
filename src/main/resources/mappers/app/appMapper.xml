@@ -42,12 +42,24 @@ where a.h_uid=#{param1} and r.r_gender=1
     </select>
 
 
+<!--
     <select id="selectAByUid" resultType="com.lec.spring.app.domain.AppDTO">
         select a.*, h.*, to_date(H_REGDATE,'YYYY-MM-DD')-round(SYSDATE) "dday",r.*
         from Application a
           left outer join Hire h on a.h_uid = h.H_UID
          left outer join RESUME R on a.r_uid = R.R_UID
 WHERE a.u_uid = #{u_uid}
+    </select>
+-->
+    <select id="selectAByUid" resultType="com.lec.spring.app.domain.AppDTO">
+
+         <![CDATA[
+        select a.*, h.*, to_date (H_REGDATE,'YYYY-MM-DD')-round(SYSDATE) dday,r.*
+        from Application a
+        left outer join Hire h on a.h_uid = h.H_UID
+        left outer join RESUME R on a.r_uid = R.R_UID
+        WHERE a.u_uid =#{param1} AND (SYSDATE-a.a_date)<#{param2} AND (a_VIEW=#{param3} or a_view=#{param4}) AND (H_TITLE LIKE #{param5} or H_NAME LIKE #{param5})
+]]>
     </select>
 
     <delete id="deleteByAid" flushCache="true">
