@@ -18,10 +18,6 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.5.13/css/mdb.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Righteous&amp;subset=latin-ext" rel="stylesheet">
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.4/umd/popper.min.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/js/bootstrap.min.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.5.13/js/mdb.min.js"></script>
     <style>
         *{
             font-size: 20px;
@@ -80,7 +76,19 @@
     </style>
 </head>
 <body>
-<%@ include file="/WEB-INF/views/modal/userIdSearchModal.jsp" %>
+
+<div id="background_modal" class="background_modal">
+    <div class="modal_contents">
+        <h4>
+            <b>손님 아이디는?</b><span class="close">&times;</span>
+        </h4><br>
+        <h2 id="id_value"></h2>
+        <br>
+        <button type="button" id="pwSearch_btn" class="btn peach-gradient btn-rounded waves-effect">
+            <i class="fa fa-envelope"></i>비밀번호 찾기</button>
+    </div>
+</div>
+
 <div class="full">
     <div class="container">
         <div class="area_inputs wow fadeIn">
@@ -158,6 +166,10 @@
     </div>
 </div>
 </body>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.4/umd/popper.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.5.13/js/mdb.min.js"></script>
 <script>
 
     //체크 버튼에 따라 아이디/비밀번호 기능이 달라진다
@@ -175,6 +187,9 @@
         }
     }
     $(document).ready(function() {
+
+        $('#background_modal').hide();
+
         /////////모///달///기///능///////////
         // 1. 모달창 히든 불러오기
         $('#searchBtn').click(function() {
@@ -259,13 +274,9 @@
 
         // 2.아이디 & 매장 자동 저장
         $('#inputId').attr("value", idV);
-        /* $('#store_id2').val(storeV).prop("selected", true); */
 
         // 마지막으로 모달창 종료
         $('#background_modal').hide();
     });
-
-
-
 </script>
 </html>

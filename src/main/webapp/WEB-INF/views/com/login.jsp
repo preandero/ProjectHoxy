@@ -18,21 +18,18 @@
 </head>
 <body>
 <!-- Cookie가 비어있지 않을 때 checked 속성을 줌 -->
-<c:if test="${not empty cookie.user_check}">
-    <c:set value="checked" var="checked"/>
-</c:if>
 <div class="container">
     <div class="area_inputs wow fadeIn">
         <div class="form-group">
-            <label class="font-weight-bold text-white" for="u_id">아이디</label>
+            <label class="font-weight-bold text-white" for="c_id">아이디</label>
             <div>
-                <input type="text" class="form-control" id="u_id" name="u_id" value="${cookie.user_check.value}" placeholder="아이디">
+                <input type="text" class="form-control" id="c_id" name="c_id" value="${cookie.com_check.value}" placeholder="아이디">
             </div>
         </div>
         <div class="form-group">
-            <label class="font-weight-bold text-white" for="u_pw">비밀번호</label>
+            <label class="font-weight-bold text-white" for="c_pw">비밀번호</label>
             <div>
-                <input type="password" class="form-control" id="u_pw" name="u_pw" placeholder="비밀번호">
+                <input type="password" class="form-control" id="c_pw" name="c_pw" placeholder="비밀번호">
             </div>
         </div>
         <div class="form-group">
@@ -40,18 +37,12 @@
                           id="spanLoginCheck"></span>
         </div>
         <div class="form-group">
-            <label class="font-weight-bold text-white">
-                <input type="checkbox" id="remember_us" name="remember_userId" ${checked}> 아이디 기억하기
-            </label>
-            <div class="interval_height a_none">
-                <a href="${pageContext.request.contextPath}/user/userSearch">&nbsp; 아이디 / 비밀번호 찾기</a>
-            </div>
             <div>
                 <button id="loginBtn" type="button"	class="btn btn-primary btn-block">로그인</button>
             </div>
         </div>
         <div class="form-group">
-            <a class="btn btn-deep-orange btn-block" href="${pageContext.request.contextPath}/user/register">회원가입</a>
+            <a class="btn btn-deep-orange btn-block" href="${pageContext.request.contextPath}/user/c_register">회원가입</a>
         </div>
     </div>
 </div>
@@ -59,24 +50,19 @@
 <script>
     // 로그인 id / pw 확인
     $('#loginBtn').click(function() {
-        var id = $('#u_id').val();
-        var pw = $('#u_pw').val();
-        var remember_us = $('#remember_us').is(':checked');
+        var id = $('#c_id').val();
+        var pw = $('#c_pw').val();
         $.ajax({
             type : 'post',
-            url : '/user/login',
+            url : '/com/login',
             data : {
-                u_id : id,
-                u_pw : pw,
-                remember_userId : remember_us
+                c_id : id,
+                c_pw : pw,
             },
             success : function(data) {
                 if (data == 0) { //로그인 실패시
                     console.log(data);
                     $('#spanLoginCheck').text('로그인 정보를 정확히 입력해주세요.');
-                } else if (data == -3) { // 아이디가 사용중이라면?
-                    console.log(data);
-                    location.href = '${pageContext.request.contextPath}/user/redundant?u_id=' + id + '&u_pw=' + pw + '&remember_userId=' + remember_us;
                 } else { //로그인 성공시
                     console.log(data);
                     location.href = '${pageContext.request.contextPath}/';

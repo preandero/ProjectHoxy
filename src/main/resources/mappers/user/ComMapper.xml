@@ -37,4 +37,8 @@
     <select id="select_By_c_id" resultType="com.lec.spring.user.domain.ComDTO">
         select * from company where c_uid = ${param1}
     </select>
+
+    <select id="loginCom" resultType="com.lec.spring.user.domain.ComDTO">
+        select * from company where c_id = #{c_id}
+    </select>
 </mapper>
