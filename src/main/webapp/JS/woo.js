@@ -303,11 +303,3 @@ function changePageRows() {
     loadPage(window.page);
 }
 
-
-
-
-
-
-
-
-
