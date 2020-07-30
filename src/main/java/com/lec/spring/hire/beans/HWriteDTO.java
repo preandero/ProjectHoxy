@@ -20,12 +20,13 @@ public class HWriteDTO {
     private String h_upDate;
     private String h_regDate;
     private String h_remainDate;
+    private int dday;
 
     public HWriteDTO() {
         super();
     }
 
-    public HWriteDTO(int c_UID, int h_uid, String h_name, String h_title, String h_content, String h_salary, String h_position1, String h_position2, String h_part, String h_career, String h_degree, String h_workform, int h_cnt, String h_upDate, String h_regDate, String h_remainDate) {
+    public HWriteDTO(int c_UID, int h_uid, String h_name, String h_title, String h_content, String h_salary, String h_position1, String h_position2, String h_part, String h_career, String h_degree, String h_workform, int h_cnt, String h_upDate, String h_regDate, String h_remainDate, int dday) {
         C_UID = c_UID;
         this.h_uid = h_uid;
         this.h_name = h_name;
@@ -42,6 +43,15 @@ public class HWriteDTO {
         this.h_upDate = h_upDate;
         this.h_regDate = h_regDate;
         this.h_remainDate = h_remainDate;
+        this.dday=dday;
+    }
+
+    public int getDday() {
+        return dday;
+    }
+
+    public void setDday(int dday) {
+        this.dday = dday;
     }
 
     public int getC_UID() {

@@ -44,7 +44,7 @@ public class resumeController {
         // 파일 이름
         MultipartFile file = mtf.getFile(fileTag);
 
-            String fileName = file.getOriginalFilename();
+        String fileName = file.getOriginalFilename();
 
         UserDTO dto = (UserDTO) session.getAttribute("userSession");
 
