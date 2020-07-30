@@ -86,8 +86,23 @@
 .main_box_content{
     margin: 10px;
     padding: 10px ;
+}
+.updown{
+    border-top: 1px solid #cccccc;
     border-bottom: 1px solid #cccccc;
 }
+.padding20{
+    padding: 20px;
+}
+.margin_auto{
+    margin: 20px auto;
+}
+.chartbox{
+    border: 1px solid #cccccc;
+    padding: 20px;
+
+}
+
 h3.blue_a{
     color: rgb(107,128,241);
     border: 1px solid rgb(107,128,241);
@@ -139,7 +154,6 @@ div#main_header_search input{
 
 div#main_footer{
     width: 100%;
-    position: relative;
     bottom: 0px;
     background-color: rgb(248,248,248);
     border-top: 2px solid rgb(230,230,230);
@@ -364,3 +378,49 @@ table.rlist_table td{
     padding: 20px;
 
 }
+h1.bluebold{
+    color: rgb(55,155,255);
+    font-size: xx-large;
+}
+
+div.nav_box{
+    position: absolute;
+    left: -180px;
+    background-color: #ffffff;
+    width: 100px;
+    height: 100px;
+    border: 1px solid #cccccc;
+    padding: 10px;
+    text-align: center;
+    font-size: smaller;
+    color: #888888;
+}
+div.nav_box2{
+    top: 119px;
+}
+div.nav_box3{
+    top: 218px;
+}
+div.nav_box4{
+    top: 317px;
+}
+.nav_box i{
+    font-size: xx-large;
+    display: block;
+    padding-top: 18px;
+    padding-bottom: 5px;
+}
+.centerbox{
+    text-align: center;
+    padding: 100px;
+}
+.fa-male{
+    color: rgb(55,155,255);
+}
+.fa-female{
+    color: rgb(255,127,127);
+}
+
+
+
+

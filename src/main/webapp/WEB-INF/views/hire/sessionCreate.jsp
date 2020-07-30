@@ -25,49 +25,26 @@
 
 
 <body>
-<h2>채용 공고</h2>
-
-<%-- 글목록 --%>
-<div id="list">
-    <div class="d01">
-        <div class="left" id="pageinfo"></div>
-        <div class="right" id="pageRows"></div>
-    </div>
-
-    <form id="frmList" name="frmList">
-        <table>
-            <thead>
-            <th>공고 제목</th>
-            <th>기업명</th>
-            <th>공고 번호</th>
-            <th>마감기한</th>
+<h2>세션 생성</h2>
 
 
-            </thead>
 
 
-            <tbody>
-            </tbody>
-        </table>
-    </form>
+<%
+    String sessionName = "id";
+    String sessionValue = "" + Math.floor(Math.random() * 10);
 
-    <%--버튼 --%>
-    <div class="d01">
-        <div class="left">
-            <button onclick="location.href='write.do'">공고등록</button>
-        </div>
-    </div>
+    // 세션생성
+    // setAttribute(String arg0, Object arg1) 두번째 매개변수는 Object 타입이다
+    session.setAttribute(sessionName, sessionValue);
 
+%>
 
-</div>
+<script>
+    alert("<%= sessionName %> 세션 생성");
+    location.href = "session.do";
+</script>
 
-<br>
-<%-- 페이징 --%>
-<div class="center">
-    <ul class="pagination" id="pagination">
-
-    </ul>
-</div>
 
 
 

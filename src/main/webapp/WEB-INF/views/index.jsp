@@ -191,7 +191,7 @@
                     labels: ['Red', 'Blue', 'Yellow'],
                     datasets: [{
                         label: '# of Votes',
-                        data: [12, 19, 3, 5, 2, 3],
+                        data: [200, 552, 302],
                         backgroundColor: [color1, color2, color3],
                         borderColor: [color1, color2, color3],
                         borderWidth: 0.5

@@ -9,6 +9,9 @@
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ taglib prefix="fmt2" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<jsp:useBean id="today" class="java.util.Date"/>
+<fmt2:formatDate value="${today}" pattern="YYYY-MM-dd" var="today"/>
 <html>
 <head>
     <!--부트스트랩 차트 그리기-->
@@ -97,24 +100,48 @@
 
 <div class="main_box div_950">
     <div class="main_box_content row">
+
         <%--공고 타이틀 자리임--%>
 
-            <h2 class="main_box_title inline col-md-12">(${view[0].name })</h2>
-            <h1 class="main_box_title inline col-md-8">${view[0].title }</h1>
-
+        <h2 class="main_box_title inline col-md-12">(${view[0].h_name })</h2>
+        <h1 class="main_box_title inline col-md-8">${view[0].h_title }</h1>
         <button class="gray_Btn inline col-md-1"> ☆</button>
+            ${view[0].h_remainDate }
         <button id="btnWrite" class="org_Btn inline col-md-3">즉시지원</button>
+
+        <div class="col-md-6 row updown padding20 margin_auto">
+            <div class="nav_box nav_box1" id = "nav_box1"><i class="fas fa-tv"></i>채용공고</div>
+            <div class="nav_box nav_box2" id = "nav_box2"><i class="fas fa-mouse"></i>접수방법</div>
+            <div class="nav_box nav_box3" id = "nav_box3"><i class="fas fa-chart-bar"></i>지원자통계</div>
+            <div class="nav_box nav_box4" id = "nav_box4"><i class="far fa-building"></i>기업정보</div>
+            <h2 class="col-md-4 bold">경력</h2>
+            <h2 class="col-md-8 "></h2>
+            <h2 class="col-md-4 bold">학력</h2>
+            <h2 class="col-md-8">${view[0].h_degree }</h2>
+            <h2 class="col-md-4 bold">근무형태</h2>
+            <h2 class="col-md-8">${view[0].h_workform }</h2>
+        </div>
+        <div class="col-md-6 row updown padding20 margin_auto">
+            <h2 class="col-md-4 bold">급여</h2>
+            <h2 class="col-md-8"></h2>
+            <h2 class="col-md-4 bold">직급/직책</h2>
+            <h2 class="col-md-8">${view[0].h_degree }</h2>
+            <h2 class="col-md-4 bold">근무지역</h2>
+            <h2 class="col-md-8">${view[0].h_workform }</h2>
+        </div>
     </div>
     <div class="main_box_content">
 
     </div>
     <div class="main_box_content row">
-        <h2 class="main_box_title inline col-md-12">지원자 통계</h2>
-        <div class="col-md-6">
-            <h2>지원자 수</h2>${totalApp }
+        <h1 class="main_box_title inline col-md-12">지원자 통계</h1>
+        <div class="padding20 col-md-12"></div>
+        <div class="col-md-6 chartbox centerbox">
+            <h2 class="bold">지원자 수</h2>
+            <h1 class="bluebold inline">${totalApp }</h1>명
         </div>
-        <div class="col-md-6">
-            <h2>성별별 현황</h2>
+        <div class="col-md-6 chartbox">
+            <h2 class="bold">성별별 현황</h2>
             <h2><i class="fas fa-male"></i> 남자 : ${gender1}</h2>
             <h2><i class="fas fa-female"></i> 여자 : ${gender2}</h2>
             <canvas id="myChart2"></canvas>
@@ -144,8 +171,8 @@
         </script>
 
 
-        <div class="col-md-6">
-            <h2>연령별 현황</h2>
+        <div class="col-md-6 chartbox">
+            <h2 class="bold">연령별 현황</h2>
             <canvas id="myChart"></canvas>
         </div> <!-- 부트스트랩 -->
         <script>
@@ -176,8 +203,8 @@
         </script>
 
 
-        <div class="col-md-6">
-            <h2>TOEIC</h2>
+        <div class="col-md-6 chartbox">
+            <h2 class="bold">TOEIC</h2>
             <canvas id="myChart3"></canvas>
         </div> <!-- 부트스트랩 -->
 
@@ -208,8 +235,8 @@
 
         </script>
 
-        <div class="col-md-6">
-            <h2>경력별 현황</h2>
+        <div class="col-md-6 chartbox">
+            <h2 class="bold">경력별 현황</h2>
             <canvas id="myChart4"></canvas>
         </div> <!-- 부트스트랩 -->
 
@@ -247,32 +274,45 @@
 
 <div id="dlg_write" class="modal">
     <div class="modal-content">
-        <span class="close" title="Close Modal">&times;</span>
-        <h1 class="hire_title">공고 제목 뽑아오기</h1><%--TODO--%>
-        <form action="/app/appWriteOk" method="post">
-            <input type="hidden" value="1" name="u_uid">
-            <input type="hidden" value="1" name="h_uid">
+        <c:choose>
+            <c:when test="${loginChk!='flase' }">
+                <span class="close" title="Close Modal">&times;</span>
+                <h1 class="hire_title">${view[0].title }</h1>
+                <form action="/app/appWriteOk" method="post">
+                    <input type="hidden" value="1" name="u_uid">
+                    <input type="hidden" value="${view[0].uid }" name="h_uid">
 
-            <h2>제출 서류</h2>
-            <c:forEach var="RList" items="${Rlist }">
+                    <h2>직무</h2><br>
+                    <h2 class="bold">${view[0].part }</h2>
+                    <div class="padding20"></div>
+                    <h2>제출 서류</h2><br>
+                    <c:forEach var="RList" items="${Rlist }">
 
-                <table class="rlist_table">
-                    <tr>
-                        <th>
-                            <input type="radio" name="r_uid" value="${RList.r_uid}">&nbsp;&nbsp;&nbsp;${RList.r_title }
-                        </th>
-                    </tr>
-                    <tr>
-                        <td>
-                            <h3 class="blue_a inline"> 이력서 </h3>${RList.r_date } 수정
-                        </td>
-                    </tr>
-                </table>
-            </c:forEach>
+                        <table class="rlist_table">
+                            <tr>
+                                <th>
+                                    <input type="radio" name="r_uid" value="${RList.r_uid}">&nbsp;&nbsp;&nbsp;${RList.r_title }
+                                </th>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <h3 class="blue_a inline"> 이력서 </h3>${RList.r_date } 수정
+                                </td>
+                            </tr>
+                        </table>
+                    </c:forEach>
+                    <div class="padding20"></div>
+                    <input type="submit" value="지원하기" class="org_Btn fullbutton">
 
-            <input type="submit" value="지원하기" class="org_Btn fullbutton">
+                </form>
+            </c:when>
+            <c:otherwise>
+                <span class="close" title="Close Modal">&times;</span>
+                <h1>로그인이 필요한 서비스 입니다.</h1>
+                <a href="/user/login">로그인 바로가기</a>
+            </c:otherwise>
+        </c:choose>
 
-        </form>
     </div>
 </div>
 

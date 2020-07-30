@@ -38,6 +38,7 @@
 		급여 : ${view[0].h_salary }<br>
 		학위 : ${view[0].h_degree }<br>
 		근무 형태 : ${view[0].h_workform }<br>
+		기간: ${view[0].h_remainDate}
 		<hr>
 		<br>
 		<button onclick="location.href='update.do?h_uid=${view[0].h_uid }'">수정하기</button>

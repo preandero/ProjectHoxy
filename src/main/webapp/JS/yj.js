@@ -29,6 +29,19 @@ $(document).ready(function() {
 
 
 
+    $('button[id^="period"]').click(function() {
+        $('button[id^="period"]').css("background-color","rgb(240,240,240)")
+        $('button[id^="period"]').css("color","rgb(0,0,0)")
+        $(this).css("background-color","orange")
+        $(this).css("color","white")
+        var period = $(this).attr('id').split("riod")[1];
+
+        $('#period_input').val(period)
+    });
+
+
+
+
 });
 function chkDelete(aid){
     var r = confirm("삭제하시겠습니까?");
