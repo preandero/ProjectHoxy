@@ -65,6 +65,19 @@
 
 <title>기업 공고 등록</title>
 <body>
+<%
+    if (session.getAttribute("comSession") == null) {
+%>
+<script>
+    alert('로그인이 필요한 페이지 입니다');
+    location.href = "/com/login"
+</script>
+<%
+    }
+%>
+
+
+
 <div id="main_header">
     <div class="div_1260 row">
         <div id="main_header_log" class="col-md-2"></div>
