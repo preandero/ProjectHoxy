@@ -80,12 +80,12 @@ public class UserMailSendService {
 
     }
 
-    public int alter_userKey_service(String u_id, String u_key){
-        int res = 0;
+    //public int alter_userKey_service(String u_id, String u_key){
+    //    int res = 0;
 
-        userDAO = sessionTemplate.getMapper(UserDAO.class);
-        res = userDAO.alter_userKey(u_id, u_key);
+    //    userDAO = sessionTemplate.getMapper(UserDAO.class);
+    //    res = userDAO.alter_userKey(u_id, u_key);
 
-        return res;
-    }
+    //    return res;
+    //}
 }

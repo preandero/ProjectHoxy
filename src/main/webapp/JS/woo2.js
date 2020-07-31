@@ -1,8 +1,9 @@
 var page = 1  // 현재 페이지
 var pageRows = 10   // 한 페이지에 보여지는 게시글 개수
 var viewItem = undefined;   // 가장 최근에 view 한 글 데이터
-var search = "%%"
-var searchWord = "%%"
+var search = "%%";
+var searchWord = "%%";
+
 $(document).ready(function () {
     loadPage(page);
     $("#searchbtn").click(function(){
@@ -85,23 +86,22 @@ function updateList1(jsonObj) {
                 remain =  "D-" + items[i].h_remainDate
             }
 
-            result += "<div>\n";
-            result += "<p>"+"<a href='view.do?h_uid="+items[i].h_uid+"'>"+items[i].h_title+"</a>"+"</p>";
-            result += "<p>"+items[i].h_name+"</p>";
-            result += "<p>"+"경력:"+"&nbsp"+
+            // result += "<div id='h_search_"+items[i].h_uid+"'>\n";
+            result += "<tr>"+"<td id='h_search_list'>\n"
+           +"<a id='h_search_title' href='/app/hireDetail?h_uid="+items[i].h_uid+"'>"+items[i].h_title+"</a>"+"<br>"+"<br>"
+            +"기업:"+"&nbsp"+items[i].h_name+"<br>"+
+            "<h id='h_search_content'>"+"&nbsp"+
                 items[i].h_career+
-                "&nbsp"+"*"+"&nbsp"+
+                "&nbsp"+"*"+"&nbsp"+"&nbsp"+"&nbsp"+
                 items[i].h_position1+
                 "&nbsp"+items[i].h_position2+
-                "&nbsp"+"*"+"&nbsp"+
+                "&nbsp"+"*"+"&nbsp"+"&nbsp"+"&nbsp"+
                 items[i].h_part+
-                "&nbsp"+"*"+"&nbsp"+
+                "&nbsp"+"*"+"&nbsp"+"&nbsp"+"&nbsp"+
                 items[i].h_workform+
-                "&nbsp"+"*"+"&nbsp"+
-                items[i].h_degree+"</p>";
-            result += "<p>"+remain;+"</p>";
-            result += "<hr>"
-            result += "</div>\n";
+                "&nbsp"+"*"+"&nbsp"+"&nbsp"+"&nbsp"+
+                items[i].h_degree+"</h>"+"<br>"+"<br>"+"<br>"+"<h id='h_search_date'>"+remain+"</h>"+
+            "</td>"+"</tr>";
         } // end for
         $("#list tbody").html(result);  // 테이블 업데이트!
 
