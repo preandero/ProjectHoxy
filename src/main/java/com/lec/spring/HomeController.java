@@ -21,5 +21,10 @@ public class HomeController {
         }
         return "main2";
     }
+    @RequestMapping("managerMain")
+    public String managerMain(Model model) {
+
+        return "managerMain";
+    }
 
 }

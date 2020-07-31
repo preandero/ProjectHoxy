@@ -13,8 +13,14 @@ public class AWriteCommand  implements ACommand {
         Map<String, Object> map = model.asMap();
         AppDTO dto = (AppDTO)map.get("dto");
 
+
+
         AppDAO dao = C.sqlSession.getMapper(AppDAO.class);
-        model.addAttribute("result",dao.insert(dto));
+        if(dao.selectAppList(dto)>0) {
+            model.addAttribute("result", -1);
+
+        }else{
+        model.addAttribute("result",dao.insert(dto));}
 
     }
 
