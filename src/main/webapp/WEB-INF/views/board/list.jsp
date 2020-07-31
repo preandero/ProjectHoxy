@@ -2,9 +2,10 @@
     pageEncoding="UTF-8"%>
   
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>    
-<%-- JSTL 버전으로 바뀌니, import 번잡함도 사라진다. JAVA 변수 선언도 사라진다. --%>   
- 
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+<%@ page import="com.lec.spring.user.domain.UserDTO"%>
+<%-- JSTL 버전으로 바뀌니, import 번잡함도 사라진다. JAVA 변수 선언도 사라진다. --%>
+
 
 <!DOCTYPE html>
 <html lang="ko">
@@ -24,25 +25,25 @@
 
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/CSS/reset.css"/>
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/CSS/yoondoo.css"/>
+	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/CSS/jinyoung.css"/>
+
 	<script src="${pageContext.request.contextPath }/JS/yj.js"></script>
 
 
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 
+	<link rel="stylesheet"
+		  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css" />
 
 	<link rel="shortcut icon" type="image/x-icon"
 		  href="https://i.imgur.com/8AyMFrx.png">
-<title>글 목록</title>
+	<title>글 목록</title>
 <style>
-table {width: 100%;}
-table, th, td {
-	border: 1px solid black;
-	border-collapse: collapse;
-}
 
 .gong {
 	color:red;
+	font-weight: bold;
 }
 </style>
 </head>
@@ -57,50 +58,113 @@ $(document).ready(function(){
 });
 </script>
 <body>
-<div id="header" class="row">
 
-	<div class="col-md-2"></div>
-	<div id="small_logo" class="col-md-2"></div>
+<%
 
-	<ul class="col-md-4" class="inline">
-		<li>
-			<a href="#"><i class="fas fa-bars"></i></a>
-			<a href="#">
-				지역별
-			</a>
-			<a href="#">
-				BLIND_BOARD
-			</a>
-		</li>
+	int userID = 0;
+	UserDTO dto;
+	if(session.getAttribute("userSession") != null) {
+		 dto = (UserDTO) session.getAttribute("userSession");
+		 userID = dto.getU_uid();
+	}
 
 
-	</ul>
-	<ul class="col-md-4" class="inline">
-		<li>
-			<a href="#"><i class="fas"></i></a>
-			<a href="#">
-				로그인
-			</a>
-			<a href="#" id="header_sub_a1">
-				이력서 관리
-
-			</a>
-
-			<a href="#">
-				지원 관리
-			</a>
-			<a href="#">
-				기업 서비스
-			</a>
-		</li>
+%>
 
 
-	</ul>
+<div id="main_header">
+	<div class = "div_1260 row" style="background-color: white">
+		<div id = "main_header_log" class="col-md-2"></div>
+		<div class="col-md-7"><h2 id = "main_header_sub">일할래 Hoxy?</h2></div>
+		<div id="demo" class="carousel slide col-md-3" data-ride="carousel">
+			<div class="carousel-inner demo">
+				<!-- 슬라이드 쇼 -->
+				<div class="carousel-item active">
+					<!--가로-->
+					<img class="d-block w-100" src="https://www.saraminbanner.co.kr/new/main/2019/09/pxarcp_3lrf-2rxicx_GNB02.png"
+						 alt="First slide">
+					<div class="carousel-caption d-none d-md-block"></div>
+				</div>
+				<div class="carousel-item">
+					<img class="d-block w-100" src="https://www.saraminbanner.co.kr/new/main/2019/02/pn95lv_90sh-2rxibq_GNBbanner01recommend.png"
+						 alt="Second slide">
+				</div>
+				<div class="carousel-item">
+					<img class="d-block w-100" src="https://www.saraminbanner.co.kr/new/main/2020/06/qcpw4j_k0rw-2rxibp_bannertopside.png"
+						 alt="Third slide">
+				</div>
+			</div>
+		</div>
+
+	</div>
+	<div>
+		<nav id = "header_nav">
+
+			<div class = "div_1260 row">
+				<ul class = "col-md-7" class = "inline">
+					<li >
+						<a href="#"><i class="fas fa-bars"></i></a>
+						<a href="#">
+							지역별
+						</a>
+						<a href="#">
+							BLIND_BOARD
+						</a>
+					</li>
 
 
+				</ul>
+				<ul class = "col-md-5" class = "inline">
+					<li>
+						<a href="#"><i class="fas"></i></a>
+						<a href="#">
+							로그인
+						</a>
+						<a href="#" id="header_sub_a1">
+							이력서 관리
+							<div id = "header_sub_nav1" class="inline">
+								<ul class = "inline">
+									<li >이력서 등록</li>
+									<li >이력서 현황</li>
+									<li >이력서 수정</li>
+								</ul>
+							</div>
+						</a>
+
+						<a href="#">
+							지원 관리
+						</a>
+						<a href="#">
+							기업 서비스
+						</a>
+					</li>
+
+
+				</ul>
+
+			</div>
+		</nav>
+	</div>
 </div>
 
-		<h1>리스트</h1>
+
+
+
+
+<c:set var="userID" value="<%=userID%>"></c:set>
+
+
+      <div class="container" style="font-size: small">
+
+		  <br><br><br>
+
+		  <h1>BLIND BOARD
+
+		  </h1>
+
+		  <br>
+		  <div class="wrtie_bar"></div>
+		  <br><br>
 		<ul class="nav nav-pills nav-fill">
 					<li class="nav-item btnCategory" value="1"><a
 						class="nav-link list-group-item list-group-item-action list-group-item-light"
@@ -118,15 +182,15 @@ $(document).ready(function(){
 				</ul>
 		
 		
-		<table>
+		<table class="table border p-3">
 			<tr>
-				<th>UID</th>
-				<th>기업명</th>
-				<th>제목</th>
-				<th>작성자</th>
-				<th>조회수</th>
-				<th>등록일</th>
-				<th>분류</th>
+				<th class="th1">UID</th>
+				<th class="th2">기업명</th>
+				<th class="th3">제목</th>
+				<th class="th4">작성자</th>
+				<th class="th5">조회수</th>
+				<th class="th6">등록일</th>
+				<th class="th7">분류</th>
 			</tr>
 			
 			<c:choose>
@@ -192,42 +256,89 @@ $(document).ready(function(){
 		</table>
 		
 		
-				<div style="background-color: #eee; padding: 10px;">
+				<div style="padding: 10px;">
 				<c:if test="${cnt > 1 }">
 					<jsp:include page="pagination.jsp">
 						<jsp:param value="${5 }" name="writePages" />
 						<jsp:param value="${cnt }" name="totalPage" />
 						<jsp:param value="${page }" name="curPage" />
 					</jsp:include>
-
-					<hr>
 				</c:if>
+					<div>
+						<c:if test="<%=userID != 0%>">
+							<button onclick="location.href='write.do'" class="org_Btn regist_Btn">등록</button>
+						</c:if>
+
+					</div>
+					<hr>
+
 					<div style="width: 50%; margin: 0 auto; text-align: center">
 						
 						<form name='frm' method='get' action='list.do'
 							style="display: block; margin-top: 5px;">
 							<div class="input-group">
-							<select name='col' class="custom-select custom-select-sm"
+							<select name='col'
 								style="width: auto; float: left; margin-bottom:5px">
 								<!-- 검색 컬럼 -->
-								<option value='none' selected>작성자&기업명</option>
+								<option value='none' selected>제목&기업명</option>
 								<option value='company'>기업명</option>
 								<option value='subject'>제목</option>
 							</select>
 							
 								<input type="text" class="form-control" name='word' value=''
-									placeholder="특수문자 입력불가" aria-label="특수문자 입력 불가"
+									placeholder="검색어를 입력하세요" aria-label="검색어를 입력하세요"
 									aria-describedby="button-addon2">
 								<div class="input-group-append">
 									<button class="btn btn-outline-secondary" type="submit"
 										id="button-addon2">검색</button>
 								</div>
+
 							</div>
 						</form>
 					</div>
 				</div>
+	  </div>
 		<br>
-		<button onclick="location.href='write.do'">신규등록</button>
+<div class="pad20"></div>
+
+<div id="main_footer">
+
+	<div id="main_footer_nav" >
+		<nav>
+			<ul>
+
+				<li>회사소개</li>
+				<li>보도기사</li>
+				<li>찾아오시는길</li>
+				<li>회원약간</li>
+				<li>개인정보처리방침</li>
+				<li>이메일무단수집거부</li>
+				<li>채용정보API</li>
+				<li>제휴문의</li>
+				<li>고객센터</li>
+
+			</ul>
+
+		</nav>
+	</div>
+	<div class="row">
+		<div class="col-md-3 ">
+		</div>
+		<div id = "main_footer_img" class="col-md-1 ">
+		</div>
+		<div id="main_footer_content" class="div_1260 col-md-8">
+			<a>사람인 고객센터 02-2025-4733 (평일 09:00~19:00, 주말·공휴일 휴무)</a><br>
+			<br>
+			<a>이메일 : help@saramin.co.kr, Fax : 02-6937-0039(대표), 02-6937-0035(세금계산서) 이메일문의 사람인 네이버 블로그 사람인 페이스북 페이지</a><br>
+			<br>
+			<a>(주)사람인HR, 우 : 08378, 서울특별시 구로구 디지털로34길 43, 201호(구로동), 대표 : 김용환</a><br>
+			<br>
+			<a>사업자등록 : 113-86-00917, 직업정보제공사업 : 서울 관악 제 2005-6호, 통신판매업 : 제 2339호, Copyright (c) (주)사람인HR. All rights reserved.</a><br>
+		</div>
+	</div>
+</div>
+
+
 
 
 

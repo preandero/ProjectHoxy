@@ -1,7 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>    
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+<%@ page import="com.lec.spring.user.domain.UserDTO"%>
+
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -50,7 +52,7 @@
 </head>
 <script src="https://kit.fontawesome.com/a076d05399.js"></script>
 <title>글작성</title>
-</head>
+
 <script>
 function chkSubmit(){  // 폼 검증
 	
@@ -59,8 +61,30 @@ function chkSubmit(){  // 폼 검증
 
 </script>
 <body>
+
+<%
+
+	int userID = 0;
+	UserDTO dto;
+	if(session.getAttribute("userSession") != null) {
+		dto = (UserDTO) session.getAttribute("userSession");
+		userID = dto.getU_uid();
+	}
+
+
+%>
+<c:set var="userID" value="<%=userID%>"></c:set>
+<c:if test="<%=userID == 0%>">
+	<script>
+		alert('로그인 후 이용할 수 있습니다.')
+		history.back();
+
+	</script>
+</c:if>
+
+
 <div id="main_header">
-	<div class = "div_1260 row">
+	<div class = "div_1260 row" style="background-color: white">
 		<div id = "main_header_log" class="col-md-2"></div>
 		<div class="col-md-7"><h2 id = "main_header_sub">일할래 Hoxy?</h2></div>
 		<div id="demo" class="carousel slide col-md-3" data-ride="carousel">
@@ -134,112 +158,83 @@ function chkSubmit(){  // 폼 검증
 	</div>
 </div>
 
-<section style="background-color:  rgb(241,243,249); padding: 50px" >
 
 <div class="container">
-	<div style="margin: 40px; padding: 30px; background-color: white;">
+	<br><br><br>
 
-		<h1 style="font-size: 30px; text-align: center; margin-bottom: 30px">BLIND BOARD 작성</h1>
-		<div style="margin-left: 20%">
-		<form name="frm" action="writeOk.do" method="post" onsubmit="return chkSubmit()">
-			카테고리:
+	<h1>BLIND BOARD</h1>
+	<br>
+	<div class="wrtie_bar"></div>
+	<form name="frm" action="writeOk.do" method="post" onsubmit="return chkSubmit()">
 
-			<select name="category">
+		<div class="form-group">
+			<br>
+			<br>
+			<br>
+			<label>Subject *</label>
+			<br>
+			<br>
+			<br>
+			<input type="text" name="subject" class="form-control" placeholder="Please Write Subject" required="required"/><br>
+		</div>
+
+<div class="row">
+		<div class="form-group col-md-6">
+			<label>Category *</label>
+			<br>
+			<br>
+			<br>
+			<select name="category" class="form-control">
 				<option>기업후기</option>
 				<option>면접후기</option>
 				<option>정보공유</option>
+				<option>공지사항</option>
 			</select>
-			제목:
-			<input type="text" name="subject"/><br>
-			내용:<br>
-			<textarea name="content"></textarea><br>
-			유저:
-			<input type="text" name="u_uid"/><br>
-			회사:
+		</div>
 
-			<br><br>
-			<select name="c_uid">
+		<div class="form-group col-md-6">
+			<label>Company *</label>
+			<br>
+			<br>
+			<br>
+			<select name="c_uid" class="form-control">
 				<c:forEach var="a" items="${comlist}" varStatus="status">
 					<option value = "${a.c_uid }">${a.companyName }</option>
 				</c:forEach>
 
 
 			</select>
-			<br><br>
-			<input type="submit" class="org_Btn" value="등록"/>
-		</form>
-
-			<div class="form_wrapper">
-				<div class="form_container">
-					<div class="title_container">
-						<h2>Responsive Registration Form</h2>
-					</div>
-					<div class="row clearfix">
-						<div class="">
-							<form>
-								<div class="input_field"> <span><i aria-hidden="true" class="fa fa-envelope"></i></span>
-									<input type="email" name="email" placeholder="Email" required />
-								</div>
-								<div class="input_field"> <span><i aria-hidden="true" class="fa fa-lock"></i></span>
-									<input type="password" name="password" placeholder="Password" required />
-								</div>
-								<div class="input_field"> <span><i aria-hidden="true" class="fa fa-lock"></i></span>
-									<input type="password" name="password" placeholder="Re-type Password" required />
-								</div>
-								<div class="row clearfix">
-									<div class="col_half">
-										<div class="input_field"> <span><i aria-hidden="true" class="fa fa-user"></i></span>
-											<input type="text" name="name" placeholder="First Name" />
-										</div>
-									</div>
-									<div class="col_half">
-										<div class="input_field"> <span><i aria-hidden="true" class="fa fa-user"></i></span>
-											<input type="text" name="name" placeholder="Last Name" required />
-										</div>
-									</div>
-								</div>
-								<div class="input_field radio_option">
-									<input type="radio" name="radiogroup1" id="rd1">
-									<label for="rd1">Male</label>
-									<input type="radio" name="radiogroup1" id="rd2">
-									<label for="rd2">Female</label>
-								</div>
-								<div class="input_field select_option">
-									<select>
-										<option>Select a country</option>
-										<option>Option 1</option>
-										<option>Option 2</option>
-									</select>
-									<div class="select_arrow"></div>
-								</div>
-								<div class="input_field checkbox_option">
-									<input type="checkbox" id="cb1">
-									<label for="cb1">I agree with terms and conditions</label>
-								</div>
-								<div class="input_field checkbox_option">
-									<input type="checkbox" id="cb2">
-									<label for="cb2">I want to receive the newsletter</label>
-								</div>
-								<input class="button" type="submit" value="Register" />
-							</form>
-						</div>
-					</div>
-				</div>
-			</div>
-			<p class="credit">Developed by <a href="http://www.designtheway.com" target="_blank">Design the way</a></p>
-
-
-
-
 		</div>
+</div>
+
 		<br>
-		<button type="button" onclick="location.href='list.do'">목록으로</button>
+		<br>
+		<br>
+		<div class="form-group">
+			<label>Content *</label>
+			<br>
+			<br>
+			<br>
+			<textarea name="content" class="form-control" rows="5" placeholder="Please Write Content" required="required"></textarea>
+		</div>
+		<input type="hidden" name="u_uid" value="${userID}"/><br>
+		<button type="submit" class="org_Btn regist_Btn" value="등록">등록</button>
+		<button type="button" class="gray_Btn" onclick="location.href='list.do'">목록</button>
+	</form>
+
+	<div class="pad20">
 
 
 	</div>
-	<br>
+
+
+
+
+
+
+
 </div>
-</section>
+
 
 <div id="main_footer">
 
