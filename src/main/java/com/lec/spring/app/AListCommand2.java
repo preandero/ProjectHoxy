@@ -5,16 +5,16 @@ import org.springframework.ui.Model;
 
 import java.util.Map;
 
-public class AListCommand implements ACommand {
+public class AListCommand2 implements ACommand {
     @Override
     public void execute(Model model) {
         Map<String, Object> map = model.asMap();
-        int u_uid = (Integer) map.get("u_uid");
+        int c_uid = (Integer) map.get("u_uid");
         //period, view, search
 
-        int period = 365;
-        if(map.get("period")!=null){
-            period=(int)Integer.parseInt((String)map.get("period"));
+        int hid = 0;
+        if(map.get("hid")!=null){
+            hid=(int)Integer.parseInt((String)map.get("hid"));
         }
 
 
@@ -30,6 +30,17 @@ public class AListCommand implements ACommand {
             search = "%"+(String)map.get("search")+"%";
         }
         AppDAO dao = C.sqlSession.getMapper(AppDAO.class);
-        model.addAttribute("Alist", dao.selectAByUid(u_uid,period,view1,view2,search));
+
+        if(hid==0) {
+            model.addAttribute("Alist", dao.selectAByCid1(c_uid, view1, view2, search));
+        }else {
+            model.addAttribute("Alist", dao.selectAByCid2(c_uid, hid, view1, view2, search));
+        }
+        model.addAttribute("Hlist", dao.selectHByCid(c_uid)); //공고 목록 list
+
+        /*
+        AppDAO dao = C.sqlSession.getMapper(AppDAO.class);
+        model.addAttribute("Alist", dao.selectAByCid1(u_uid,period,view1,view2,search));
+         */
     }
 }

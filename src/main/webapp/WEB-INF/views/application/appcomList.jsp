@@ -29,6 +29,7 @@
 
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/CSS/reset.css"/>
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/CSS/yoondoo.css"/>
+    <script src="http://code.jquery.com/jquery-1.11.1.min.js" type="text/javascript"></script>
     <script src="${pageContext.request.contextPath }/JS/yj.js"></script>
 
 
@@ -93,21 +94,21 @@
         <br>
         <h3>유의사항</h3>
         <h3>최근 2년간의 지원내역에 대한 확인이 가능합니다. (단, 지원서류는 최근 2개월동안 확인 가능)</h3>
-        <form action="/app/appmyList" method="post">
+        <form action="/app/appcomList" method="post">
             <div class="select_option row">
                 <div class="col-md-2">
                     <h3>검색조건</h3>
                     <h3>(최근 2년)</h3>
                 </div>
                 <div class="col-md-9">
-                    <h3 class="inline">조회 기간</h3>
-                    <button id="period7" class="inline period" type="button">1주일</button>
-                    <button id="period31" class="inline period" type="button">1개월</button>
-                    <button id="period60" class="inline period" type="button">2개월</button>
-                    <button id="period91" class="inline period" type="button">3개월</button>
-                    <button id="period182" class="inline period" type="button">6개월</button>
-                    <button id="period365" class="inline period" type="button">1년</button>
-                    <input type="hidden" id="period_input" value="365" name="period">
+                    <h3 class="inline" >공고 선택</h3>
+                    <select name = "hid">
+                        <option value="0">공고를 선택하세요</option>
+                    <c:forEach var="HList" items="${Hlist }">
+                        <option value="${HList.h_uid}">[ ${HList.h_uid} ] ${HList.h_name} : ${HList.h_title}</option>
+
+                    </c:forEach>
+                    </select>
                     <br>
                     <h3 class="inline">열람 여부</h3>
                     <select class="inline" name="view">
@@ -140,43 +141,37 @@
             <div class="main_box_content row">
 
                 <c:forEach var="AList" items="${Alist }">
+
                     <div class="app col-md-9">
+
                         <c:choose>
                             <c:when test="${AList.a_view == 0 }">
-                                <h2 class="inline grey_box">미열람</h2>
+                                <h2 id ="viewBtn_${AList.a_uid }" class="inline grey_box">미열람</h2>
                             </c:when>
                             <c:otherwise>
                                 <h2 class="inline grey_box red_box">열람</h2>
-                            </c:otherwise>
-                        </c:choose>
-                        <c:choose>
-                            <c:when test="${AList.dday < 0 }">
-                                <h2 class="inline grey_box">마감</h2>
-                            </c:when>
-                            <c:otherwise>
-                                <h2 class="inline grey_box green_box">모집중</h2>
                             </c:otherwise>
                         </c:choose>
 
                         <br>
                         <br>
                         <h2>${AList.h_title }</h2>
-                        <h2> º 지원일 : ${AList.a_date }</h2>
+                        <h2>지원번호 ${AList.a_uid }</h2>
+                        <h2>이름 ${AList.u_name }</h2>
+                        <h2 class="blue_a"> º 지원일 : ${AList.a_date }</h2>
                         <h2> º 지원 부분 : ${AList.h_part }</h2>
                         <br>
                     </div>
                     <div class="app_btn col-md-3">
                         <button id="btnAUpdate_${AList.a_uid}"
-                                onclick="chkUpdateResume(${AList.a_uid },${AList.r_uid })">지원 수정
+                               >지원 열람
                         </button>
-                        <button onclick="chkDelete(${AList.a_uid })">지원 취소</button>
                     </div>
 
                     <div id="dlg_write_${AList.a_uid}" class="modal">
                         <div class="modal-content">
                             <span class="close" title="Close Modal">&times;</span>
                             <h1 class="hire_title">지원 내역</h1><%--TODO--%>
-                            <form action="appUpdate" method="post">
                                 <input type="hidden" name="a_uid" value="${AList.a_uid}">
                                 <h2>지원 부분</h2>
                                 <h2 class="bold">${AList.h_title }</h2>
@@ -185,24 +180,23 @@
                                 <h2 class="bold">${AList.h_part }</h2>
                                 <br>
                                 <h2>제출 서류</h2>
-                                <c:forEach var="RList" items="${Rlist }">
+
 
                                     <table class="rlist_table">
                                         <tr>
                                             <th>
-                                                <input type="radio" name="r_uid" value="${RList.r_uid}">&nbsp;&nbsp;&nbsp;${RList.r_title }
+                                               &nbsp;&nbsp;${AList.r_title }
                                             </th>
                                         </tr>
                                         <tr>
                                             <td>
-                                                <h3 class="blue_a inline"> 이력서 </h3>${RList.r_date } 수정
+                                                <h3 class="blue_a inline"> 이력서 </h3>${AList.r_date } 수정
                                             </td>
                                         </tr>
                                     </table>
-                                </c:forEach>
-                                <input type="submit" value="지원 수정" class="org_Btn fullbutton">
 
-                            </form>
+                                <div class="padding20"></div>
+                                <input type="button" value="이력서 열람하기" class="org_Btn fullbutton"  onclick="upView(${AList.a_uid })">
                         </div>
                     </div>
                 </c:forEach>

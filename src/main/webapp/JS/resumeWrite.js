@@ -1,3 +1,17 @@
+$('document').ready(function(){
+
+    $('#eduEle').show();
+    $('#eduMed').hide();
+    $('#eduHigh').hide();
+    $('#eduUni').hide();
+
+    $('#careerform').hide();
+
+})
+
+
+
+
 $('#btn-upload').on('click', function () {
     console.log('btn-upload');
     var form = new FormData(document.getElementById('uploadForm'));
@@ -98,4 +112,64 @@ function juso() {
     }).open();
 }
 
+
+$('#eduElebtn').on('click',function(){
+
+    $('#eduEle').show();
+    $('#eduMed').hide();
+    $('#eduHigh').hide();
+    $('#eduUni').hide();
+
+
+})
+
+$('#eduMedbtn').click(function(){
+
+    $('#eduEle').hide();
+    $('#eduMed').show();
+    $('#eduHigh').hide();
+    $('#eduUni').hide();
+})
+
+$('#eduHighbtn').click(function(){
+    $('#eduEle').hide();
+    $('#eduMed').hide();
+    $('#eduHigh').show();
+    $('#eduUni').hide();
+
+})
+
+$('#eduUnibtn').click(function(){
+
+    $('#eduEle').hide();
+    $('#eduMed').hide();
+    $('#eduHigh').hide();
+    $('#eduUni').show();
+})
+
+$('#careerbtn').click(function () {
+    $('#careerform').show();
+
+})
+
+$('#recruitsbtn').click(function () {
+    $('#careerform').hide();
+
+})
+
+
+$('.DOC_TEXT').keyup(function (e){
+    var content = $(this).val();
+    $('#counter').html("("+content.length+" / 최대 1000자)");    //글자수 실시간 카운팅
+
+    if (content.length > 1000){
+        Swal.fire({
+            icon: 'error',
+            title: '글자수 제한을 초과하였습니다.',
+            text: '1000자까지만 입력이 가능합니다.',
+        })
+        $(this).val(content.substring(0, 1000));
+        $('#counter').html("(1000 / 최대 1000자)");
+    }
+});
 

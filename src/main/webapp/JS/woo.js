@@ -164,29 +164,33 @@ function updateList(jsonObj) {
 
     if (jsonObj.status == "OK") {
         var count = jsonObj.count;
+        // var value = session.getAttribute("id");
+        // alert(value);
+
         var remain;
         var i;
         var items = jsonObj.data;
         for (i = 0; i < count; i++) {
             if (items[i].h_remainDate < 0) {
-                remain = "<td>" + "<hr2>" + "모집 마감" + "</hr2>" + "</td>\n";
+                remain ="모집 마감";
             }
             if (items[i].h_remainDate == 0) {
-                remain = "<td>" + "<hr2>" + "오늘 종료" + "</hr2>" + "</td>\n";
+                remain = "오늘 종료" ;
             }
             if (items[i].h_remainDate > 0) {
-                remain = "<td>" + "<hr2>" + items[i].h_remainDate + "일" + "</hr2>" + "</td>\n";
+                remain =items[i].h_remainDate + "일";
             }
-
-            result += "<tr>\n";
+            
+            // if(itmes[i].h_uid == value )
+            result += "<tr id='h_hirelist'>\n";
             //result += "<td>" + "<i class='fas fa-user-tie'></i>" + "</td>\n";
-            result += "<td>" + items[i].h_title + "</td>\n";
-            result += "<td>" + items[i].h_name + "</td>\n";
-            result += "<td>" + items[i].h_uid + "</td>\n";
-            result += remain;
+            result += "<td id='h_list_content'>"+"기업명:"+"&nbsp" + items[i].c_UID +"<br>"
+            +"공고제목:"+"&nbsp"+ items[i].h_title +"<br>"
+            +"기업명:"+"&nbsp"+ items[i].h_name +"<br>"
+            +"마감기한:"+"&nbsp"+ remain+"<br>" + "</td>"
             // result += "<td>" + "<button class='updatebtn' type='button' data-uid='" + items[i].h_uid + "'>상세보기</button>" + "</td>\n";
-            result += "<td>" + "<button type='button' onclick='updatebtn("+items[i].h_uid+")'>상세보기</button>" + "</td>\n";
-            result += "<td>" + "<button class='deletebtn' data-uid='" + items[i].h_uid + "' type='button'>삭제</button> " + "</td>\n";
+            result += "<td>" + "<button id='upbtn' class='org_Btn' type='button' onclick='updatebtn("+items[i].h_uid+")'>상세보기</button>" + "</td>\n";
+            result += "<td>" + "<button id='deletebtn' class='deletebtn org_Btn' data-uid='" + items[i].h_uid + "' type='button'>삭제</button> " + "</td>\n";
 
             result += "</tr>\n";
         } // end for
@@ -302,12 +306,4 @@ function changePageRows() {
     window.pageRows = $("#rows").val();
     loadPage(window.page);
 }
-
-
-
-
-
-
-
-
 

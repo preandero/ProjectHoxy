@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.util.List;
 
 
-public class HListCommand implements Command {
+public class HSearchCommand implements Command {
 
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) {
@@ -23,11 +23,13 @@ public class HListCommand implements Command {
 
 		// 페이징 관련 세팅값들
 		int page = 1;  // 현재 페이지 (디폴트는 1 page)
-		int pageRows = 5;   // 한 '페이지' 에 몇개의 글을 리스트? (디폴트 8개)
-		int writePages = 7;  // 한 [페이징] 에 몇개의 '페이지' 를 표시? (디폴트 10)
+		int pageRows = 10;   // 한 '페이지' 에 몇개의 글을 리스트? (디폴트 8개)
+		int writePages = 10;  // 한 [페이징] 에 몇개의 '페이지' 를 표시? (디폴트 10)
 		int totalCnt = 0;    // 글은 총 몇개인지?
 		int totalPage = 0;   // 총 몇 '페이지' 분량인지?
 
+		String search = "%%";
+		String searchWord = "%%";
 		String param;
 
 		// page 값 : 현재 몇 페이지?
@@ -63,7 +65,16 @@ public class HListCommand implements Command {
 			//int fromRow = (page - 1) * pageRows;  // MySQL 은 0부터 시작
 
 			//dao = new WriteDAO();
-			arr = dao.selectHireList(fromRow,pageRows);
+
+			if(request.getParameter("search")!=null||request.getParameter("page")==""){
+				search="%"+request.getParameter("search")+"%";
+			}
+			if(request.getParameter("searchWord")!=null||request.getParameter("searchWord")==""){
+				searchWord="%"+request.getParameter("searchWord")+"%";
+			}
+
+
+			arr = dao.selectFromRow(fromRow, pageRows,search,searchWord);
 
 			if(arr == null) {
 				message.append("[리스트할 데이터가 없습니다]");

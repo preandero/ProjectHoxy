@@ -39,14 +39,42 @@ public class HireController {
 
     @RequestMapping(value = "/hirelist.do")
     public String hirelist() {
+
         return "hire/hirelist";
     }
+
+    @RequestMapping(value = "/hireSearch.do")
+    public String hireSearch() {
+
+        return "hire/hireSearch";
+
+    }
+
+    @RequestMapping(value = "/session.do")
+    public String session() {
+        return "hire/session";
+
+    }
+    @RequestMapping(value = "/sessionCreate.do")
+    public String sessionCreate() {
+        return "hire/sessionCreate";
+
+    }
+    @RequestMapping(value = "/sessionDelete.do")
+    public String sessionDelete() {
+        return "hire/sessionDelete";
+
+    }
+
 
 
     @RequestMapping("/write.do")
     public String write(Model model) {
         return "hire/write";
     }
+
+
+
 
     @RequestMapping(value = "/writeOk.do", method = RequestMethod.POST)
     public String writeOk(HWriteDTO dto, Model model) {
@@ -56,9 +84,13 @@ public class HireController {
     }
 
 
-    @RequestMapping("/view.do") public String view(Model model, int h_uid) {
-        model.addAttribute("h_uid", h_uid); command = new HViewCommand();
-        command.excute(model); return "hire/view"; }
+    @RequestMapping("/view.do")
+    public String view(Model model, int h_uid) {
+        model.addAttribute("h_uid", h_uid);
+        command = new HViewCommand();
+        command.excute(model);
+        return "hire/view";
+    }
 
     @RequestMapping("/update.do")
     public String update(int h_uid, Model model) {
@@ -73,12 +105,12 @@ public class HireController {
         new UpdateCommand().excute(model);
         return "hire/updateOk";
     }
-    @RequestMapping("/hireSearch.do")
-    public String list(Model model) {
-        command = new AHListCommand();
-        command.excute(model);
-        return "hire/hireSearch";
-    }
+//    @RequestMapping("/hireSearch.do")
+//    public String list(Model model) {
+//        command = new AHListCommand();
+//        command.excute(model);
+//        return "hire/hireSearch";
+//    }
 
     @RequestMapping("/deleteOk.do")
     public String delete(Model model, int h_uid) {

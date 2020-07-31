@@ -43,11 +43,11 @@ public class UserLoginService {
         }
 
         // 인증 안 했을 경우 인증하란 메세지 발생
-        String y = "Y";
-        if (!(dto.getU_key().equals(y))) {
-            result = -2;
-            return result;
-        }
+        //String y = "Y";
+        //if (!(dto.getU_key().equals(y))) {
+        //    result = -2;
+        //    return result;
+        //}
 
         // 입력한 아이디와 스토어id값을 통해 정보가 존재 할 경우
         if (dto != null) {
@@ -68,11 +68,11 @@ public class UserLoginService {
                     response.addCookie(cookie);
                 }
 
-                System.out.println("3단계-로그인단계");
+                //System.out.println("3단계-로그인단계");
                 // 세션 저장하기 전에 비밀번호 가리기
-                dto.setU_pw("");
+                //dto.setU_pw("");
 
-                // 세션에 vo 객체 저장
+                // 세션에 dto 객체 저장
                 httpSession.setAttribute("userSession", dto);
                 System.out.println("회원아이디 세션 userSession : " + httpSession.getAttribute("userSession"));
 
