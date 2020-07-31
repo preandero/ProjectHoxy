@@ -1,6 +1,7 @@
 $(document).ready(function(){
 	// 게시판 목록 1페이지 로딩
-	
+
+
 	var a = $.trim($('#a').html());
 	
 	
@@ -54,7 +55,13 @@ function loadPage(page){
 						
 						$(".updatebtn").hide();
 						var lastcontent = $("#btnclick"+($(this).attr('updata-uid'))).html();
-						var result =  "<textarea class='input'>"+lastcontent + "</textarea><button type='button' class='submitbtn' com-uid='"+ ($(this).attr('updata-uid'))+ "'>수정완료</button><div class='output' style='display: none'>출력</div>";
+						var result = "";
+							result += "<div class='input-group'>"
+							result +=  "<textarea class='input newtextarea form-control' style='width: 50%'>"+lastcontent + "</textarea>"
+							result += "<div class='input-group-append' id='button-addon4'>"
+							result += "<button type='button' class='submitbtn btn btn-outline-secondary' com-uid='"+ ($(this).attr('updata-uid'))+ "'>수정완료</button><div class='output' style='display: none'>출력</div>";
+							result += "<button type='button' class='canclebtn btn btn-outline-secondary' com-uid='"+ ($(this).attr('updata-uid'))+ "'>취소</button>"
+							result += "</div></div>"
 						
 						
 					
@@ -73,6 +80,14 @@ function loadPage(page){
 							  updateUid(uid,content);
 							  
 						  })
+
+						$(".canclebtn").click(function () {
+
+							var content = $.trim($('.output').html());
+
+							$(".updatebtn").show();
+							$("#btnclick"+($(this).attr('com-uid'))).html(content);
+						})
 						
 
 						
@@ -95,8 +110,8 @@ function loadPage(page){
 }
 
 function updateList(jsonObj){
-	result = ""; 
-	
+	result = "";
+	result2 = "";
 	if(jsonObj.status == "OK"){
 		
 		var count = jsonObj.count;
@@ -104,23 +119,34 @@ function updateList(jsonObj){
 		var i;
 		var items = jsonObj.data;  
 		for(i = 0; i < count; i++){
+			result2 += "<div class='row' style='height: 70px; margin-top: 10px'>\n";
+			result2 += "<div class='col-md-1'><i class='fas fa-user-tie'></i></div>\n";
+			result2 += "<div class='col-md-1'>" + "익명" + (i+1)+ "</div>\n";
+			result2 += "<div class='col-md-6' id='btnclick"+ items[i].uid + "'>" + items[i].content + "</div>\n";
+			result2 += "<div class='col-md-2'>" + items[i].regdate + "</div>\n";
+			result2 += "<div class='col-md-1'>" + "<button class='updatebtn border_btn' updata-uid='"+ items[i].uid + "' type='button'>수정</button> "+  "</div>\n";
+			result2 += "<div class='col-md-1'>" + "<button class='deletebtn border_btn' data-uid='"+ items[i].uid + "' type='button'>삭제</button> "+  "</div>\n";
+			result2 += "</div>\n"
+
+
 			result += "<tr>\n";
-			result += "<td>" +"<i class='fas fa-user-tie'></i>" + "</td>\n";			
-			
+			result += "<td class='retd'>" +"<i class='fas fa-user-tie'></i>" + "</td>\n";
 
-			result += "<td>" + "익명 " +  (i+1)+ "]</td>\n";			
 
-			result += "<td id='btnclick"+ items[i].uid + "'>" + items[i].content + "</td>\n";			
+			result += "<td class='retd2'>" + "익명 " +  (i+1)+ "]</td>\n";
+
+			result += "<td id='btnclick"+ items[i].uid + "'>" + items[i].content + "</td>\n";
 
 			result += "<td>" + items[i].regdate + "</td>\n";
-			result += "<td>" + "<button class='updatebtn btn btn-primary' updata-uid='"+ items[i].uid + "' type='button'>수정</button> "+  "</td>\n";
+			result += "<td>" + "<button class='updatebtn' updata-uid='"+ items[i].uid + "' type='button'>수정</button> "+  "</td>\n";
 			result += "<td>" + "<button class='deletebtn' data-uid='"+ items[i].uid + "' type='button'>삭제</button> "+  "</td>\n";
 
-			
-			
+
+
 			result += "</tr>\n";
 		} // end for
 		$("#list tbody").html(result);
+		$("#ajaxin").html(result2);
 		$("#replycnt").html("댓글수:" + count);
 		return true;
 	}
@@ -196,7 +222,7 @@ function updateUid(uid,content){
 	var c = $.trim($('#a').html());
 	if(!confirm(uid + "글을 수정 하시겠습니까?")) return false;
 
-		
+
 	$.ajax({
 		url : "updateOk.ajax",
 		type : "POST",

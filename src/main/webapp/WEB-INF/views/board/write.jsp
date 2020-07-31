@@ -1,37 +1,58 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>    
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+<%@ page import="com.lec.spring.user.domain.UserDTO"%>
+
 <!DOCTYPE html>
 <html lang="ko">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
-		  integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
-			integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
-			crossorigin="anonymous"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
-			integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
-			crossorigin="anonymous"></script>
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
-			integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
-			crossorigin="anonymous"></script>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/CSS/reset.css"/>
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/CSS/yoondoo.css"/>
+	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/CSS/jinyoung.css"/>
+
 	<script src="${pageContext.request.contextPath }/JS/yj.js"></script>
 
 
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+	<%--폰트--%>
+	<link href="https://fonts.googleapis.com/css2?family=Nanum+Pen+Script&display=swap" rel="stylesheet">
 
 
+	<!-- banner관련 -->
+	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+			integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+			crossorigin="anonymous"></script>
+	<script
+			src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+			integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+			crossorigin="anonymous"></script>
+	<script
+			src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+			integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+			crossorigin="anonymous"></script>
+	<script>
+		$('.carousel').carousel({
+			interval : 100
+		})
+	</script>
+
+
+	<%--icon--%>
 	<link rel="shortcut icon" type="image/x-icon"
 		  href="https://i.imgur.com/8AyMFrx.png">
-<title>글작성</title>
 </head>
+<script src="https://kit.fontawesome.com/a076d05399.js"></script>
+<title>글작성</title>
+
 <script>
 function chkSubmit(){  // 폼 검증
 	
@@ -39,81 +60,177 @@ function chkSubmit(){  // 폼 검증
 }
 
 </script>
-<body class="bk_gray">
-<div id="header" class="row">
+<body>
 
-	<div class="col-md-2"></div>
-	<div id="small_logo" class="col-md-2"></div>
+<%
 
-	<ul class="col-md-4" class="inline">
-		<li>
-			<a href="#"><i class="fas fa-bars"></i></a>
-			<a href="#">
-				지역별
-			</a>
-			<a href="#">
-				BLIND_BOARD
-			</a>
-		</li>
+	int userID = 0;
+	UserDTO dto;
+	if(session.getAttribute("userSession") != null) {
+		dto = (UserDTO) session.getAttribute("userSession");
+		userID = dto.getU_uid();
+	}
 
 
-	</ul>
-	<ul class="col-md-4" class="inline">
-		<li>
-			<a href="#"><i class="fas"></i></a>
-			<a href="#">
-				로그인
-			</a>
-			<a href="#" id="header_sub_a1">
-				이력서 관리
+%>
+<c:set var="userID" value="<%=userID%>"></c:set>
+<c:if test="<%=userID == 0%>">
+	<script>
+		alert('로그인 후 이용할 수 있습니다.')
+		history.back();
 
-			</a>
-
-			<a href="#">
-				지원 관리
-			</a>
-			<a href="#">
-				기업 서비스
-			</a>
-		</li>
+	</script>
+</c:if>
 
 
-	</ul>
+<div id="main_header">
+	<div class = "div_1260 row" style="background-color: white">
+		<div id = "main_header_log" class="col-md-2"></div>
+		<div class="col-md-7"><h2 id = "main_header_sub">일할래 Hoxy?</h2></div>
+		<div id="demo" class="carousel slide col-md-3" data-ride="carousel">
+			<div class="carousel-inner demo">
+				<!-- 슬라이드 쇼 -->
+				<div class="carousel-item active">
+					<!--가로-->
+					<img class="d-block w-100" src="https://www.saraminbanner.co.kr/new/main/2019/09/pxarcp_3lrf-2rxicx_GNB02.png"
+						 alt="First slide">
+					<div class="carousel-caption d-none d-md-block"></div>
+				</div>
+				<div class="carousel-item">
+					<img class="d-block w-100" src="https://www.saraminbanner.co.kr/new/main/2019/02/pn95lv_90sh-2rxibq_GNBbanner01recommend.png"
+						 alt="Second slide">
+				</div>
+				<div class="carousel-item">
+					<img class="d-block w-100" src="https://www.saraminbanner.co.kr/new/main/2020/06/qcpw4j_k0rw-2rxibp_bannertopside.png"
+						 alt="Third slide">
+				</div>
+			</div>
+		</div>
+
+	</div>
+	<div>
+		<nav id = "header_nav">
+
+			<div class = "div_1260 row">
+				<ul class = "col-md-7" class = "inline">
+					<li >
+						<a href="#"><i class="fas fa-bars"></i></a>
+						<a href="#">
+							지역별
+						</a>
+						<a href="#">
+							BLIND_BOARD
+						</a>
+					</li>
 
 
+				</ul>
+				<ul class = "col-md-5" class = "inline">
+					<li>
+						<a href="#"><i class="fas"></i></a>
+						<a href="#">
+							로그인
+						</a>
+						<a href="#" id="header_sub_a1">
+							이력서 관리
+							<div id = "header_sub_nav1" class="inline">
+								<ul class = "inline">
+									<li >이력서 등록</li>
+									<li >이력서 현황</li>
+									<li >이력서 수정</li>
+								</ul>
+							</div>
+						</a>
+
+						<a href="#">
+							지원 관리
+						</a>
+						<a href="#">
+							기업 서비스
+						</a>
+					</li>
+
+
+				</ul>
+
+			</div>
+		</nav>
+	</div>
 </div>
 
-<div class="main_box div_950">
 
-		<h1>글작성</h1>
-		<form name="frm" action="writeOk.do" method="post" onsubmit="return chkSubmit()">
-			카테고리:
-			<select name="category">
+<div class="container">
+	<br><br><br>
+
+	<h1>BLIND BOARD</h1>
+	<br>
+	<div class="wrtie_bar"></div>
+	<form name="frm" action="writeOk.do" method="post" onsubmit="return chkSubmit()">
+
+		<div class="form-group">
+			<br>
+			<br>
+			<br>
+			<label>Subject *</label>
+			<br>
+			<br>
+			<br>
+			<input type="text" name="subject" class="form-control" placeholder="Please Write Subject" required="required"/><br>
+		</div>
+
+<div class="row">
+		<div class="form-group col-md-6">
+			<label>Category *</label>
+			<br>
+			<br>
+			<br>
+			<select name="category" class="form-control">
 				<option>기업후기</option>
 				<option>면접후기</option>
 				<option>정보공유</option>
+				<option>공지사항</option>
 			</select>
-			제목:
-			<input type="text" name="subject"/><br>
-			내용:<br>
-			<textarea name="content"></textarea><br>
-			유저:
-			<input type="text" name="u_uid"/><br>
-			회사:
+		</div>
 
-			<br><br>
-			<select name="c_uid">
+		<div class="form-group col-md-6">
+			<label>Company *</label>
+			<br>
+			<br>
+			<br>
+			<select name="c_uid" class="form-control">
 				<c:forEach var="a" items="${comlist}" varStatus="status">
 					<option value = "${a.c_uid }">${a.companyName }</option>
 				</c:forEach>
 
 
 			</select>
-			<br><br>
-			<input type="submit" value="등록"/>
-		</form>
+		</div>
+</div>
+
 		<br>
-		<button type="button" onclick="location.href='list.do'">목록으로</button>
+		<br>
+		<br>
+		<div class="form-group">
+			<label>Content *</label>
+			<br>
+			<br>
+			<br>
+			<textarea name="content" class="form-control" rows="5" placeholder="Please Write Content" required="required"></textarea>
+		</div>
+		<input type="hidden" name="u_uid" value="${userID}"/><br>
+		<button type="submit" class="org_Btn regist_Btn" value="등록">등록</button>
+		<button type="button" class="gray_Btn" onclick="location.href='list.do'">목록</button>
+	</form>
+
+	<div class="pad20">
+
+
+	</div>
+
+
+
+
+
 
 
 </div>
