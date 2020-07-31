@@ -13,6 +13,11 @@
             (SEQ_Application_A_uid.nextval, 0,#{u_uid},#{h_uid},#{r_uid})
 
    </insert>
+    <select id="selectAppList" resultType="int">
+        <![CDATA[
+        select count(*) from APPLICATION where H_UID=#{h_uid} and U_UID =#{u_uid}
+]]>
+    </select>
 
     <select id="selectByUid" resultType="com.lec.spring.app.domain.AppDTO">
 			select *from Application a left outer join HUSER u on a.u_uid= u.U_UID
@@ -62,6 +67,34 @@ WHERE a.u_uid = #{u_uid}
 ]]>
     </select>
 
+    <select id="selectAByCid1" resultType="com.lec.spring.app.domain.AppDTO">
+
+         <![CDATA[
+        select a.*, h.*, to_date (H_REGDATE,'YYYY-MM-DD')-round(SYSDATE) dday,r.*, u.*
+        from Application a
+        left outer join Hire h on a.h_uid = h.H_UID
+        left outer join RESUME R on a.r_uid = R.R_UID
+        left outer join Huser u on u.u_uid = a.u_UID
+        WHERE h.c_uid =#{param1} AND (a_VIEW=#{param2} or a_view=#{param3}) AND (H_TITLE LIKE #{param4} or H_NAME LIKE #{param4})
+]]>
+    </select>
+    <select id="selectAByCid2" resultType="com.lec.spring.app.domain.AppDTO">
+
+         <![CDATA[
+        select a.*, h.*, to_date (H_REGDATE,'YYYY-MM-DD')-round(SYSDATE) dday,r.*, u.*
+        from Application a
+        left outer join Hire h on a.h_uid = h.H_UID
+        left outer join RESUME R on a.r_uid = R.R_UID
+        left outer join Huser u on u.u_uid = a.u_UID
+        WHERE h.c_uid =#{param1} AND a.H_UID=#{param2} AND (a_VIEW=#{param3} or a_view=#{param4}) AND (H_TITLE LIKE #{param5} or H_NAME LIKE #{param5})
+]]>
+    </select>
+
+    <select id="selectHByCid" resultType="com.lec.spring.hire.beans.HWriteDTO">
+
+        select * from HIRE where C_UID = #{param1}
+    </select>
+
     <delete id="deleteByAid" flushCache="true">
         DELETE FROM application WHERE a_uid = #{a_uid}
     </delete>
@@ -69,8 +102,15 @@ WHERE a.u_uid = #{u_uid}
     <update id="updateByAid" flushCache="true">
         UPDATE Application SET r_uid=#{param2}WHERE a_uid=#{param1}
     </update>
+    <update id="updateByAid2" flushCache="true">
+        UPDATE Application SET A_VIEW=1 WHERE a_uid=#{param1}
+    </update>
 
-
+    <select id="age" resultType="com.lec.spring.app.domain.AppDTO">
+        select (round(SYSDATE)-to_date(R_DATEOFBIRTH,'YYYY-MM-DD'))/365 age from Application a right join HUSER u on a.u_uid= u.U_UID
+        right join RESUME r on a.r_uid=r.R_UID
+        where a.h_uid=#{param1}
+	</select>
     <select id="age20" resultType="int">
         select count(*) from Application a left outer join HUSER u on a.u_uid= u.U_UID
         left outer join RESUME r on a.r_uid=r.R_UID
@@ -97,6 +137,13 @@ WHERE a.u_uid = #{u_uid}
         where a.h_uid=#{param1} and (round(SYSDATE)-to_date(R_DATEOFBIRTH,'YYYY-MM-DD'))/365 >= 60
 	</select>
 
+    <select id="toeic" resultType="com.lec.spring.app.domain.AppDTO">
+        <![CDATA[
+        select R_TOEIC toeic from Application a right join HUSER u on a.u_uid= u.U_UID
+        right join RESUME r on a.r_uid=r.R_UID
+        where a.h_uid=#{param1}
+        ]]>
+    </select>
 
     <select id="toeic500" resultType="int">
         <![CDATA[
@@ -136,7 +183,13 @@ WHERE a.u_uid = #{u_uid}
 
 
 
-
+    <select id="career" resultType="com.lec.spring.app.domain.AppDTO">
+        <![CDATA[
+        select R_TOTALCAREER career from Application a right join HUSER u on a.u_uid= u.U_UID
+        right join RESUME r on a.r_uid=r.R_UID
+        where a.h_uid=#{param1}
+        ]]>
+    </select>
 
     <select id="career0" resultType="int">
         <![CDATA[
@@ -173,6 +226,7 @@ WHERE a.u_uid = #{u_uid}
         where a.h_uid=#{param1} and R_TOTALCAREER >= 5
         ]]>
     </select>
+
 
 
 

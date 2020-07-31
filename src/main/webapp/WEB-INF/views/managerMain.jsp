@@ -10,6 +10,7 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <html>
 <head>
+    <title>관리자페이지</title>
     <link href="https://fonts.googleapis.com/css2?family=Jua&display=swap" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/CSS/testtest.css"/>
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/CSS/testtest2.css"/>
@@ -68,16 +69,16 @@
 
         <ul id="menu">
             <a href="#">
-                <li><a href="/hire/hirelist.do">지역별 채용공고</a></li>
+                <li><a href="#">기업 승인</a></li>
             </a>
             <a href="#">
-                <li>BLIND-BOARD</li>
+                <li ><a href="/app/color">추천공고관리</a></li>
             </a>
             <a href="#">
-                <li>이력서 관리</li>
+                <li>지원통계관리</li>
             </a>
             <a href="#">
-                <li>지원 관리</li>
+                <li>공지등록</li>
             </a>
             <a href="#">
                 <li>기업서비스</li>
@@ -86,37 +87,20 @@
         </ul>
     </div>
 </nav>
-<c:choose>
-    <c:when test="${u_name!=null}">
-        <h1 id="main_username">${u_name} 님 안녕하세요</h1>
-        <h1 id="main_login" onclick='location.href="/logout"'>Logout</h1>
-    </c:when>
-    <c:otherwise>
-        <h1 id="main_login" onclick="location.href ='/user/login' ">Login</h1>
-    </c:otherwise>
-</c:choose>
+
 
 <section class="container">
     <div id="main_header_log"></div>
     <h1>
         <%--  <span class="title">This is</span>
           <span class="title">a long</span>--%>
-        <span class="title">일할래 Hoxy?</span>
+        <span class="title">Manager Page</span>
     </h1>
 
     <%--<div class="button">restart</div>--%>
 </section>
 
 
-<div class="wrap">
-    <div class="search">
-        <input type="text" class="searchTerm" placeholder="What are you looking for?">
-        <input type="text" class="searchTerm searchTerm1" placeholder="What are you looking for?">
-        <button type="submit" class="searchButton">
-            <i class="fas fa-search"></i>
-        </button>
-    </div>
-</div>
 
 <%--
 <div id = "main_box">
@@ -143,6 +127,24 @@
     </div>
 
 </div>--%>
+<nav class="menu">
+    <input type="checkbox" href="#" class="menu-open" name="menu-open" id="menu-open"/>
+    <label class="menu-open-button" for="menu-open">
+        <span class="hamburger hamburger-1"></span>
+        <span class="hamburger hamburger-2"></span>
+        <span class="hamburger hamburger-3"></span>
+    </label>
+
+    <a href="#" class="menu-item"> <i class="fa fa-bar-chart"></i> </a>
+    <a href="#" class="menu-item">기업 승인</a>
+    <a href="#" class="menu-item">공지 등록</a>
+    <a href="#" class="menu-item"></a>
+    <a href="#" class="menu-item">추천공고관리</a>
+    <a href="/app/color" class="menu-item">지원통계관리</a>
+
+</nav>
+
+
 
 
 </body>
