@@ -9,12 +9,12 @@ import org.mybatis.spring.annotation.MapperScan;
 public interface IWriteDAO {
 
 
-	public List<HWriteDTO> select();
-	public List<HWriteDTO> adminselect();
-	public int insert(final HWriteDTO dto);
-	public HWriteDTO selectByUid(final int h_uid);
-	public int update(int h_uid,@Param("a") HWriteDTO dto);
-	public int deleteByUid(final int h_uid);
+	List<HWriteDTO> select();
+	List<HWriteDTO> adminselect();
+	int insert(final HWriteDTO dto);
+	HWriteDTO selectByUid(final int h_uid);
+	int update(int h_uid, @Param("a") HWriteDTO dto);
+	int deleteByUid(final int h_uid);
 
 
 
