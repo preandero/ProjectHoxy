@@ -14,7 +14,7 @@ $('document').ready(function(){
 
 $('#btn-upload').on('click', function () {
     console.log('btn-upload');
-    var form = new FormData(document.getElementById('uploadForm'));
+    var form3 = new FormData(document.getElementById('uploadForm'));
 
     if($('#file-name').val() == ""){
         Swal.fire({
@@ -25,7 +25,7 @@ $('#btn-upload').on('click', function () {
     } else {
         $.ajax({
             url: "/resume/upload",
-            data: form,
+            data: form3,
             dataType: 'text',
             processData: false,
             contentType: false,

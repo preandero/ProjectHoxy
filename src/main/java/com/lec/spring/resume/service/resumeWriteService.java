@@ -14,7 +14,7 @@ public class resumeWriteService {
 
     public resumeDAO dao;
 
-    public void resumeWrite( int uid,  String subject,  String name,  int gender,  String birth,  String email,  String phonenum,  String address1,  String address2,  String status,  String education,  String schoolname,  String schoolarea,  String schoolperiod ,  String major,  String uniyear,  String uniname,  String uniperiod,  String unimajor,  String unidep,  String uniarea,  String finaledu,  String career,  String comname,  String comperiod,  String composition,  String comjobtype,  String comincome,  String totalcareer,  String servicetype,  String hopeincome,  String workarea,  String joptype, String introduction,  String introdTtile, int toeic,  String port ){
+    public void resumeWrite( int uid,  String subject,  String name,  int gender,  String birth,  String email,  String phonenum,  String address1,  String address2,  String status,  String education,  String schoolname,  String schoolarea,  String schoolperiod ,  String major,  String uniyear,  String uniname,  String uniperiod,  String unimajor,  String unidep,  String uniarea,  String finaledu,  String career,  String comname,  String comperiod,  String composition,  String comjobtype,  String comincome,  String totalcareer,  String servicetype,  String hopeincome,  String workarea,  String joptype, String introduction,  String introdTtile, String toeic,  String port ){
 
         dao =  sqlsession.getMapper(resumeDAO.class);
 

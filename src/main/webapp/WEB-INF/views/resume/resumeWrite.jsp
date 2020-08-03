@@ -80,6 +80,20 @@ To change this template use File | Settings | File Templates.
 
     <section class="mb-5">
 
+        <form id="uploadForm" enctype="multipart/form-data" method="post">
+        <div class="container p-3"><h4>프로필 사진 업로드</h4></div>
+
+        <div class="container border bg-white p-3 w-50">
+            <div class="custom-file">
+                <label class="my-3">프로필 업로드</label>
+                <label class="custom-file-label w-25 m-auto" for="file-name">Choose file</label>
+                <input class="custom-file-input w-25 m-auto" type="file" name="file" id="file-name"/>
+            </div>
+        <button type="button" class="input-group-text m-auto" id="btn-upload">사진 업로드</button>
+        </div>
+        </form>
+
+
             <form method="post" id="form1">
         <div class="d-flex justify-content-center my-5">
         <input type="text" id="subject" name="subject" class="p-4 my-3 border-5 w-50 border-dark" placeholder="이력서 제목을 입력하세요.">
@@ -106,20 +120,19 @@ To change this template use File | Settings | File Templates.
                         <option value="3">재직중</option>
                     </select>
 
-                <input type="hidden" id="resumeStatus" name="resumeStatus" value="1">
+<%--                <input class="container row" type="hidden" id="resumeStatus" name="resumeStatus" value="1">--%>
 
-<%--                        <form  id="uploadForm" enctype="multipart/form-data">--%>
+<%--                        <form id="uploadForm" enctype="multipart/form-data" method="post">--%>
 <%--                            <div class="custom-file row ml-3">--%>
-<%--                            <label class="custom-file-label w-75" for="file-name">Choose file</label>--%>
+<%--                            <label class="custom-file-label w-25" for="file-name">Choose file</label>--%>
 <%--                                <input class="custom-file-input" type="file" name="file" id="file-name"/>--%>
-<%--&lt;%&ndash;                                <button type="button" id="btn-upload" >upload</button>&ndash;%&gt;--%>
 <%--                            </div>--%>
 <%--                        </form>--%>
             </div>
 
             <div class="form-group row">
                 <label class="ml-3 my-3 mr-1">생년월일<span class="req my-3">필수</span></label>
-                <input type="text" class="form-control w-25 ml-3 my-2 mr-5" id="basicBirth" name="basicBirth">
+                <input type="text" class="form-control w-25 ml-3 my-2 mr-5" id="basicBirth" name="basicBirth" placeholder="YYYYMMDD">
                 <div class="btn-group btn-group-toggle ml-5 h-50 my-2 px-3 mr-5" data-toggle="buttons">
                     <label class="btn btn-secondary active">
                         <input type="radio" name="optionSelected" id="option1" autocomplete="off" value="남" checked> 남
@@ -129,7 +142,7 @@ To change this template use File | Settings | File Templates.
                     </label>
                 </div>
                 <div class="row d-flex justify-content-end align-items-start px-5 ml-5">
-                <button type="button" class="input-group-text h-50 my-2 ml-5" id="btn-upload">사진 업로드</button>
+
                 </div>
             </div>
             <div class="form-group row">
@@ -386,9 +399,7 @@ To change this template use File | Settings | File Templates.
             <div class="form-group row my-4">
                 <label class="ml-3 my-2">직종</label><span class="req my-2 mr-2">필수</span>
                 <input type="text" class="form-control w-25 ml-5" id="hopeService" name="hopeService">
-
             </div>
-
         </div>
 
         <div class="container p-3 mt-5"><h4>포트폴리오 및 기타문서</h4></div>

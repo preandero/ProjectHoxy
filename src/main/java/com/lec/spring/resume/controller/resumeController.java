@@ -69,6 +69,11 @@ public class resumeController {
         return "resume/upload";
     }
 
+    @RequestMapping("/resumeWriteOk")
+    public String resumeWriteOkA(){
+
+        return "resume/resumeWriteOk";
+    }
 
     @RequestMapping(value = "/resumeWriteOk", method = RequestMethod.POST)
     public String resumeWriteOk(resumeWriteVO resumeWriteVO, Model model, HttpSession session) {
@@ -76,10 +81,10 @@ public class resumeController {
         UserDTO dto = (UserDTO) session.getAttribute("userSession");
         int gender = 1;
         String total = "0";
-        int score = 0;
+        String score = "0";
         String career = "신입";
-        if(resumeWriteVO.getToeicScore() != null){
-            score = Integer.parseInt(resumeWriteVO.getToeicScore());
+        if(!resumeWriteVO.getToeicScore().equals("")){
+            score = resumeWriteVO.getToeicScore();
         }
 
         System.out.println(dto.getU_uid()+ resumeWriteVO.getSubject() + resumeWriteVO.getBasicName() + gender+ resumeWriteVO.getBasicBirth() + resumeWriteVO.getBasicEmail() + resumeWriteVO.getBasicPhone() + resumeWriteVO.getBasicAddrs() + resumeWriteVO.getBasicAddrs2() + resumeWriteVO.getResumeStatus() + "초등학교 졸업" + resumeWriteVO.getEleEduName() + resumeWriteVO.getEduEleArea() + resumeWriteVO.getEduElePeriod() + " ~ " + resumeWriteVO.getEduElePeriod2() + resumeWriteVO.getEduHighDep() + resumeWriteVO.getEduUniYear() + resumeWriteVO.getEduUniName() + resumeWriteVO.getEduUniPeriod() + " ~ " + resumeWriteVO.getEduElePeriod2() + resumeWriteVO.getEduUniMajor()+ resumeWriteVO.getEduUniDep()+ resumeWriteVO.getEduUniArea()+ "초등학교 졸업," + resumeWriteVO.getEleEduName()+ career+ resumeWriteVO.getComName()+ resumeWriteVO.getComPeriod() + " ~ " + resumeWriteVO.getComPeriod2()+ resumeWriteVO.getComPosition()+ resumeWriteVO.getComJobType()+ resumeWriteVO.getComIncome()+ total+ resumeWriteVO.getHopeService()+ resumeWriteVO.getHopeIncome() + resumeWriteVO.getHopeArea() + resumeWriteVO.getHopeJobType()+ resumeWriteVO.getIntroduction()+ resumeWriteVO.getIntroTitle()+ score + resumeWriteVO.getPortUrl());
@@ -106,10 +111,18 @@ public class resumeController {
         else if(!resumeWriteVO.getEduHighName().equals("")){
             resumeWriteService.resumeWrite(dto.getU_uid(), resumeWriteVO.getSubject(), resumeWriteVO.getBasicName(), gender, resumeWriteVO.getBasicBirth(), resumeWriteVO.getBasicEmail(), resumeWriteVO.getBasicPhone(), resumeWriteVO.getBasicAddrs(), resumeWriteVO.getBasicAddrs2(), resumeWriteVO.getResumeStatus(), "고등학교 졸업", resumeWriteVO.getEduHighName(), resumeWriteVO.getEduHighArea(), resumeWriteVO.getEduHighPeriod() + " ~ " + resumeWriteVO.getEduHighPeriod2(), resumeWriteVO.getEduHighDep(), resumeWriteVO.getEduUniYear(), resumeWriteVO.getEduUniName(), resumeWriteVO.getEduUniPeriod() + " ~ " + resumeWriteVO.getEduElePeriod2(), resumeWriteVO.getEduUniMajor(), resumeWriteVO.getEduUniDep(), resumeWriteVO.getEduUniArea(), "고등학교 졸업," + resumeWriteVO.getEduHighName(), career, resumeWriteVO.getComName(), resumeWriteVO.getComPeriod() + " ~ " + resumeWriteVO.getComPeriod2(), resumeWriteVO.getComPosition(), resumeWriteVO.getComJobType(), resumeWriteVO.getComIncome(), total, resumeWriteVO.getHopeService(), resumeWriteVO.getHopeIncome(), resumeWriteVO.getHopeArea(), resumeWriteVO.getHopeJobType(), resumeWriteVO.getIntroduction(), resumeWriteVO.getIntroTitle(), score, resumeWriteVO.getPortUrl());
         } else if(!resumeWriteVO.getEduUniName().equals("")){
-            resumeWriteService.resumeWrite(dto.getU_uid(), resumeWriteVO.getSubject(), resumeWriteVO.getBasicName(), gender, resumeWriteVO.getBasicBirth(), resumeWriteVO.getBasicEmail(), resumeWriteVO.getBasicPhone(), resumeWriteVO.getBasicAddrs(), resumeWriteVO.getBasicAddrs2(), resumeWriteVO.getResumeStatus(), resumeWriteVO.getEduUniYear() + " 졸업", resumeWriteVO.getEleEduName(), resumeWriteVO.getEduEleArea(), resumeWriteVO.getEduElePeriod() + " ~ " + resumeWriteVO.getEduElePeriod2(), resumeWriteVO.getEduHighDep(), resumeWriteVO.getEduUniYear(), resumeWriteVO.getEduUniName(), resumeWriteVO.getEduUniPeriod() + " ~ " + resumeWriteVO.getEduUniPeriod2(), resumeWriteVO.getEduUniMajor(), resumeWriteVO.getEduUniDep(), resumeWriteVO.getEduUniArea(),  resumeWriteVO.getEduUniYear()+" 졸업," + resumeWriteVO.getEduUniName(), career, resumeWriteVO.getComName(), resumeWriteVO.getComPeriod() + " ~ " + resumeWriteVO.getComPeriod2(), resumeWriteVO.getComPosition(), resumeWriteVO.getComJobType(), resumeWriteVO.getComIncome(), total, resumeWriteVO.getHopeService(), resumeWriteVO.getHopeIncome(), resumeWriteVO.getHopeArea(), resumeWriteVO.getHopeJobType(), resumeWriteVO.getIntroduction(), resumeWriteVO.getIntroTitle(), score, resumeWriteVO.getPortUrl());
+            resumeWriteService.resumeWrite(dto.getU_uid(), resumeWriteVO.getSubject(), resumeWriteVO.getBasicName(), gender, resumeWriteVO.getBasicBirth(), resumeWriteVO.getBasicEmail(), resumeWriteVO.getBasicPhone(), resumeWriteVO.getBasicAddrs(), resumeWriteVO.getBasicAddrs2(), resumeWriteVO.getResumeStatus(), resumeWriteVO.getEduUniYear() + " 졸업", resumeWriteVO.getEleEduName(), resumeWriteVO.getEduEleArea(), resumeWriteVO.getEduUniPeriod() + " ~ " + resumeWriteVO.getEduUniPeriod2(), resumeWriteVO.getEduHighDep(), resumeWriteVO.getEduUniYear(), resumeWriteVO.getEduUniName(), resumeWriteVO.getEduUniPeriod() + " ~ " + resumeWriteVO.getEduUniPeriod2(), resumeWriteVO.getEduUniMajor(), resumeWriteVO.getEduUniDep(), resumeWriteVO.getEduUniArea(),  resumeWriteVO.getEduUniYear()+" 졸업," + resumeWriteVO.getEduUniName(), career, resumeWriteVO.getComName(), resumeWriteVO.getComPeriod() + " ~ " + resumeWriteVO.getComPeriod2(), resumeWriteVO.getComPosition(), resumeWriteVO.getComJobType(), resumeWriteVO.getComIncome(), total, resumeWriteVO.getHopeService(), resumeWriteVO.getHopeIncome(), resumeWriteVO.getHopeArea(), resumeWriteVO.getHopeJobType(), resumeWriteVO.getIntroduction(), resumeWriteVO.getIntroTitle(), score, resumeWriteVO.getPortUrl());
         }
-
-
-        return "";
+        return "resume/resumeWriteOk";
     }
+
+
+    @RequestMapping(value = "/resumeList", method = RequestMethod.GET)
+    public String resumeList(){
+
+
+        return "resume/resumeList";
+    }
+
+
 }
