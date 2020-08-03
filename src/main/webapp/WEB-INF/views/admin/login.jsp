@@ -185,11 +185,11 @@
             <div class="form">
 
                 <p class="fieldset">
-                    <input class="full-width has-padding has-border" id="c_id" type="id" name="c_id" value="${cookie.user_check.value}" placeholder="ID">
+                    <input class="full-width has-padding has-border" id="a_id" type="id" name="a_id" value="${cookie.user_check.value}" placeholder="ID">
                 </p>
 
                 <p class="fieldset">
-                    <input class="full-width has-padding has-border" id="c_pw" type="password"  placeholder="Password">
+                    <input class="full-width has-padding has-border" id="a_pw" name="a_pw" type="password"  placeholder="Password">
                 </p>
 
                 <p class="fieldset">
@@ -199,9 +199,6 @@
 
                 <p class="fieldset">
                     <input id="loginBtn" class="full-width" type="submit" value="Login">
-                </p>
-                <p class="fieldset">
-                    <a class="full-width" href="${pageContext.request.contextPath}/user/c_register">회원가입</a>
                 </p>
             </div>
 
@@ -243,14 +240,14 @@
 <script>
     // 로그인 id / pw 확인
     $('#loginBtn').click(function() {
-        var id = $('#c_id').val();
-        var pw = $('#c_pw').val();
+        var a_id = $('#a_id').val();
+        var a_pw = $('#a_pw').val();
         $.ajax({
             type : 'post',
-            url : '/com/login',
+            url : '/admin/login',
             data : {
-                c_id : id,
-                c_pw : pw,
+                a_id : a_id,
+                a_pw : a_pw,
             },
             success : function(data) {
                 if (data == 0) { //로그인 실패시
