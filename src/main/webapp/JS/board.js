@@ -196,7 +196,22 @@ function chkWrite(){
 				loadPage(c);
 				
 				} else {
-					alert("INSERT 실패 " + data.status + " : " + data.message);
+					Swal.fire({
+						icon: 'success',
+						title: '등록 실패!',
+						text: '로그인 페이지로 이동합니다.!',
+						buttons : {
+							confirm : {
+								text : 'OK',
+								value : true
+							}
+						}
+
+					}).then((result) => {
+						if(result){
+							location.href = "../../user/login";
+						}
+					})
 				}
 			}
 		}

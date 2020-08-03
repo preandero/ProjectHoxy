@@ -287,9 +287,16 @@
 					<form id="frmWrite" name="frmWrite" method="post" >
 						<input type="hidden" name="buid" value="${list[0].uid }">
 						<input type="hidden" name="cuid" value="${userID}">
+		<c:choose>
+			<c:when test="${userID == 0 }">
+				<textarea name="content" placeholder="로그인 후 이용해주세요" readonly = readonly style="width: 80%; height: 100px" ></textarea>
+			</c:when>
+
+			<c:otherwise>
 						<textarea name="content" placeholder="댓글을 입력해주세요" style="width: 80%; height: 100px" ></textarea>
 
-
+			</c:otherwise>
+		</c:choose>
 						<button type="submit" style="width: 15%; height: 100px; float: right" class="gray_Btn">제출</button>
 					</form>
 				</div>
