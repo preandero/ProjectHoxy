@@ -1,7 +1,7 @@
 <%@ page import="com.lec.spring.resume.domain.resumeListDTO" %>
-<%@ page import="java.util.List" %>
 <%@ page import="java.text.SimpleDateFormat" %>
-<%@ page import="java.util.Date" %>
+<%@ page import="java.util.List" %>
+<%@ page import="com.lec.spring.user.domain.UserDTO" %>
 <!--
 Created by IntelliJ IDEA.
 User: suu
@@ -39,6 +39,7 @@ To change this template use File | Settings | File Templates.
 <% List<resumeListDTO> list = (List<resumeListDTO>) request.getAttribute("list");
 
     SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+
 
 
 
@@ -92,6 +93,7 @@ To change this template use File | Settings | File Templates.
 
     <section class="my-5 py-5">
 
+
         <div class="container border bg-light p-3 border-dark border-4 ">
             <div class="container p-3"><h2>이력서 현황</h2></div>
             <label class="ml-3 my-2 text-muted">이력서는 <span class="req my-2">최대 10개</span>까지 작성하여 등록 가능합니다. </label>
@@ -107,10 +109,10 @@ To change this template use File | Settings | File Templates.
 
 
 
-                <div class="container border border-3 border-dark bg-white p-3 my-3"><label class="ml-3 my-2 text-muted">수정 <span class="req my-2"><%= date%></span>  </label><button id="btn-delete" class="border bg-white btn-lg"> <i class="fas fa-times d-flex justify-content-end" id="rightup"></i></button>
+                <div class="container border border-3 border-dark bg-white p-3 my-3"><label class="ml-3 my-2 text-muted">수정 <span class="req my-2"><%= date%></span>  </label><button id="btn-delete_<%= list.get(i).getR_uid()%>" class="border bg-white btn-lg" > <i class="fas fa-times d-flex justify-content-end" id="rightup"></i></button>
                  <div class="container ml-5"><h2><strong><a class="text-dark" href="resumeView"><ins> <%=list.get(i).getR_title() %> </ins> </a></strong> </h2>
                  </div>
-                <a type="button" class="btn btn-success btn-light text-dark border border-3 border-dark mt-5 " id="resumeUpdate" href="resumeUpdate">수정하기</a>
+                <button type="button" class="btn btn-success btn-light text-dark border border-3 border-dark mt-5 " id="resumeUpdate_<%= list.get(i).getR_uid()%>">수정하기</button>
                 </div>
 
             <% } %>

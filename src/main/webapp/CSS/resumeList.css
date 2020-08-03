@@ -9,6 +9,10 @@
     margin-left: 1000px;
 }
 
+button[id^="btn-delete_"]{
+    margin-left: 1000px;
+}
+
 /*#rightup{*/
 /*    margin-left: 900px;*/
 /*}*/

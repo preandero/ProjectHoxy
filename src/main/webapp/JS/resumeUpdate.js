@@ -1,16 +1,3 @@
-$('document').ready(function(){
-
-    $('#eduEle').show();
-    $('#eduMed').hide();
-    $('#eduHigh').hide();
-    $('#eduUni').hide();
-
-    $('#careerform').hide();
-
-})
-
-
-
 
 $('#btn-upload').on('click', function () {
     console.log('btn-upload');
@@ -52,6 +39,10 @@ $('input[type="file"]').change(function(e){
     var fileName = e.target.files[0].name;
     $('.custom-file-label').html(fileName);
 });
+
+$('#selectStatus').change(function(){
+    $('#resumeStatus').val($('#selectStatus option:selected').text());
+})
 
 // 주소찾기---------------------------------------------------------------------------
 //본 예제에서는 도로명 주소 표기 방식에 대한 법령에 따라, 내려오는 데이터를 조합하여 올바른 주소를 구성하는 방법을 설명합니다.
@@ -113,51 +104,6 @@ function juso() {
 }
 
 
-$('#eduElebtn').on('click',function(){
-
-    $('#eduEle').show();
-    $('#eduMed').hide();
-    $('#eduHigh').hide();
-    $('#eduUni').hide();
-
-
-})
-
-$('#eduMedbtn').click(function(){
-
-    $('#eduEle').hide();
-    $('#eduMed').show();
-    $('#eduHigh').hide();
-    $('#eduUni').hide();
-})
-
-$('#eduHighbtn').click(function(){
-    $('#eduEle').hide();
-    $('#eduMed').hide();
-    $('#eduHigh').show();
-    $('#eduUni').hide();
-
-})
-
-$('#eduUnibtn').click(function(){
-
-    $('#eduEle').hide();
-    $('#eduMed').hide();
-    $('#eduHigh').hide();
-    $('#eduUni').show();
-})
-
-$('#careerbtn').click(function () {
-    $('#careerform').show();
-
-})
-
-$('#recruitsbtn').click(function () {
-    $('#careerform').hide();
-
-})
-
-
 $('.DOC_TEXT').keyup(function (e){
     var content = $(this).val();
     $('#counter').html("("+content.length+" / 최대 1000자)");    //글자수 실시간 카운팅
@@ -172,34 +118,6 @@ $('.DOC_TEXT').keyup(function (e){
         $('#counter').html("(1000 / 최대 1000자)");
     }
 });
-
-$('#selectStatus').change(function(){
-    $('#resumeStatus').val($('#selectStatus option:selected').text());
-})
-
-$('#selectEleArea').change(function(){
-    $('#eduEleArea').val($('#selectEleArea option:selected').text());
-})
-
-$('#selectMedArea').change(function(){
-    $('#eduMedArea').val($('#selectMedArea option:selected').text());
-})
-$('#selectHighArea').change(function(){
-    $('#eduHighArea').val($('#selectHighArea option:selected').text());
-})
-
-$('#selectUniArea').change(function(){
-    $('#eduUniArea').val($('#selectUniArea option:selected').text());
-})
-
-$('#selectHighDep').change(function(){
-    $('#eduHighDep').val($('#selectHighDep option:selected').text());
-})
-
-$('#selectUniYear').change(function(){
-    $('#eduUniYear').val($('#selectUniYear option:selected').text());
-})
-
 $('#selectJopType').change(function(){
     $('#HopeJobType').val($('#selectJopType option:selected').text());
 })
@@ -217,11 +135,11 @@ $('#option2').change(function () {
 })
 
 
-$('#resumeSave').on('click',function () {
+$('#resumeUpdate').on('click',function () {
     var form1 = new FormData(document.getElementById('form1'));
 
     $.ajax({
-        url: "/resume/resumeWriteOk",
+        url: "/resume/resumeUpdateOk",
         data: form1,
         processData: false,
         contentType: false,
@@ -233,7 +151,7 @@ $('#resumeSave').on('click',function () {
                 text: 'Upload Sucess!',
             }).then((result) => {
                 if(result){
-                    location.href = "resumeList";
+                    location.href = "../resumeList";
                 }
             })
         }
@@ -247,5 +165,4 @@ $('#resumeSave').on('click',function () {
         }
     });
 })
-
 
