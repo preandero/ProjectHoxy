@@ -149,7 +149,7 @@
         </div>
     </div>
     <div class="main_box_content">
-
+        <img class="width_100" src="${view[0].h_content}">
     </div>
     <div id="nav_position_3" class="main_box_content row">
         <h1 class="main_box_title inline col-md-12">지원자 통계</h1>
@@ -355,7 +355,7 @@
                     </c:when>
                     <c:otherwise>
                         <h2>저장된 이력서내역이 없습니다. </h2>
-                        <a href = "/resume/resumeWrite">이력서 작성 바로가기</a>
+                        <a href="/resume/resumeWrite">이력서 작성 바로가기</a>
                     </c:otherwise>
                 </c:choose>
             </c:when>

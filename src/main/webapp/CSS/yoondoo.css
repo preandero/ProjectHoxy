@@ -11,6 +11,9 @@
 
     margin: 0 auto;
 }
+.width_100{
+    width: 100%;
+}
 .inline{
     display: inline;
 }

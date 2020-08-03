@@ -31,6 +31,7 @@
 <link rel="shortcut icon" type="image/x-icon"
       href="https://i.imgur.com/8AyMFrx.png">
 <body>
+<div id="main_login" onclick="location.href='/logout'">LOGOUT</div>
 <script type="text/javascript" src="https://code.jquery.com/jquery-1.11.0.min.js"></script>
 <script type="text/javascript" src="https://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
 
@@ -79,7 +80,7 @@
                 <li>지원통계관리</li>
             </a>
             <a href="#">
-                <li>공지등록</li>
+                <li><a href="/board/gWrite.do">공지등록</a></li>
             </a>
             <a href="#">
                 <li>기업서비스</li>

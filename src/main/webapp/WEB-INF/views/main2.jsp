@@ -25,7 +25,7 @@
         <div id="main_username">${u_name} 님 안녕하세요</div>
     </c:when>
     <c:otherwise>
-        <div id="main_login" onclick="location.href ='/user/login' ">LOGIN</div>
+        <div id="main_login" onclick="location.href ='/user/loginchoice' ">LOGIN</div>
     </c:otherwise>
 </c:choose>
 
@@ -67,13 +67,13 @@
         -->
 
         <ul id="menu">
-            <a href="#">
-                <li><a href="/hire/hireSearch.do">지역별 채용공고</a></li>
+            <a href="/hire/hireSearch.do">
+                <li>지역별 채용공고</li>
             </a>
-            <a href="#">
+            <a href="/board/list.do">
                 <li>BLIND-BOARD</li>
             </a>
-            <a href="#">
+            <a href="/resume/resumeList">
                 <li>이력서 관리</li>
             </a>
             <a href="/app/appmyList">

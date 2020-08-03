@@ -51,7 +51,7 @@
 <div id="header" class="row">
 
     <div class="col-md-2"></div>
-    <div id="small_logo" class="col-md-2"></div>
+    <div id="small_logo" class="col-md-2" onclick="location.href='/managerMain'"></div>
 
     <ul class="col-md-4" class="inline">
         <li>
