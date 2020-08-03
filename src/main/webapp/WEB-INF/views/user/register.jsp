@@ -123,9 +123,24 @@
         display: none;
         padding-top: 120px;
     }
+    .arrow{
+        margin: 35px;
+        color: #fff;
+        font-size: 40px;
+    }
 </style>
 <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+<link rel="shortcut icon" type="image/x-icon"
+      href="https://i.imgur.com/8AyMFrx.png">
+<link rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css" />
+<script src="https://kit.fontawesome.com/a076d05399.js"></script>
 <body>
+
+<div class="arrow">
+    <i class="fas fa-arrow-left" onclick="history.back()"></i>
+</div>
+
 <div class="main-box">
 
 
