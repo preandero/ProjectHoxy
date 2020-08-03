@@ -1,8 +1,10 @@
 package com.lec.spring.resume.controller;
 
 
+import com.lec.spring.resume.domain.resumeListDTO;
 import com.lec.spring.resume.domain.resumeWriteVO;
 import com.lec.spring.resume.service.FileUploadService;
+import com.lec.spring.resume.service.resumeListService;
 import com.lec.spring.resume.service.resumeWriteService;
 import com.lec.spring.user.domain.UserDTO;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +19,7 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.io.File;
 import java.lang.reflect.Field;
+import java.util.List;
 
 @Controller
 @RequestMapping("/resume")
@@ -27,6 +30,10 @@ public class resumeController {
 
     @Autowired
     private com.lec.spring.resume.service.resumeWriteService resumeWriteService;
+
+    @Autowired
+    private resumeListService resumeListService;
+
 
     @RequestMapping("/resumeWrite")
     public String Write(Model model) {
@@ -118,7 +125,15 @@ public class resumeController {
 
 
     @RequestMapping(value = "/resumeList", method = RequestMethod.GET)
-    public String resumeList(){
+    public String resumeList(HttpSession session, Model model){
+
+        UserDTO dto = (UserDTO) session.getAttribute("userSession");
+
+
+        List<resumeListDTO> mylist = resumeListService.selectList(dto.getU_uid());
+
+        model.addAttribute("list", mylist);
+
 
 
         return "resume/resumeList";
