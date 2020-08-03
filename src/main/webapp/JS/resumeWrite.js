@@ -14,7 +14,7 @@ $('document').ready(function(){
 
 $('#btn-upload').on('click', function () {
     console.log('btn-upload');
-    var form = new FormData(document.getElementById('uploadForm'));
+    var form3 = new FormData(document.getElementById('uploadForm'));
 
     if($('#file-name').val() == ""){
         Swal.fire({
@@ -25,7 +25,7 @@ $('#btn-upload').on('click', function () {
     } else {
         $.ajax({
             url: "/resume/upload",
-            data: form,
+            data: form3,
             dataType: 'text',
             processData: false,
             contentType: false,
@@ -172,4 +172,75 @@ $('.DOC_TEXT').keyup(function (e){
         $('#counter').html("(1000 / 최대 1000자)");
     }
 });
+
+$('#selectStatus').change(function(){
+    $('#resumeStatus').val($('#selectStatus option:selected').text());
+})
+
+$('#selectEleArea').change(function(){
+    $('#eduEleArea').val($('#selectEleArea option:selected').text());
+})
+
+$('#selectMedArea').change(function(){
+    $('#eduMedArea').val($('#selectMedArea option:selected').text());
+})
+$('#selectHighArea').change(function(){
+    $('#eduHighArea').val($('#selectHighArea option:selected').text());
+})
+
+$('#selectUniArea').change(function(){
+    $('#eduUniArea').val($('#selectUniArea option:selected').text());
+})
+
+$('#selectHighDep').change(function(){
+    $('#eduHighDep').val($('#selectHighDep option:selected').text());
+})
+
+$('#selectUniYear').change(function(){
+    $('#eduUniYear').val($('#selectUniYear option:selected').text());
+})
+
+$('#selectJopType').change(function(){
+    $('#HopeJobType').val($('#selectJopType option:selected').text());
+})
+
+$('#option1').change(function () {
+    $(this).attr('name',"optionSelected");
+
+    $('#option2').attr('name',"notSelected");
+})
+
+$('#option2').change(function () {
+    $(this).attr('name',"optionSelected");
+
+    $('#option1').attr('name',"notSelected");
+})
+
+
+$('#resumeSave').on('click',function () {
+    var form1 = new FormData(document.getElementById('form1'));
+
+    $.ajax({
+        url: "/resume/resumeWriteOk",
+        data: form1,
+        processData: false,
+        contentType: false,
+        type: 'POST',
+        success: function () {
+            Swal.fire({
+                icon: 'success',
+                title: 'complete',
+                text: 'Upload Sucess!',
+            })
+        },
+        error: function ( ) {
+            Swal.fire({
+                icon: 'error',
+                title: 'Warning',
+                text: 'Upload Fail!',
+            })
+        }
+    });
+})
+
 

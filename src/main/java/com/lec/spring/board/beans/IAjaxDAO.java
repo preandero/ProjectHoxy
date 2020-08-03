@@ -9,6 +9,6 @@ public interface IAjaxDAO {
 	public int insertReply(String content, int buid, int cuid);
 	public int deleteByUid(int uid);
 	public int update(
-            		@Param("uid") int uid,
-            		@Param("content") String content);
+            @Param("uid") int uid,
+            @Param("content") String content);
 }

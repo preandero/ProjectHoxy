@@ -7,7 +7,7 @@ import org.apache.ibatis.annotations.Param;
 public interface IWriteDAO {
 	public List<BWriteDTO> select();
 //	public List<BWriteDTO> selectByCategory(String categoryName);
-	public List<String> selectCompany();
+    public List<String> selectCompany();
 	public int insert(final BWriteDTO dto);
 //	public int insert(String subject, String content, String name);
 //	public BWriteDTO readByUid(final int uid);
