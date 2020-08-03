@@ -181,7 +181,7 @@ $(document).ready(function(){
 					
 				</ul>
 		
-		
+
 		<table class="table border p-3">
 			<tr>
 				<th class="th1">UID</th>

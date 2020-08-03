@@ -188,7 +188,7 @@ function chkSubmit(){  // 폼 검증
 				<option>기업후기</option>
 				<option>면접후기</option>
 				<option>정보공유</option>
-				<option>공지사항</option>
+
 			</select>
 		</div>
 
