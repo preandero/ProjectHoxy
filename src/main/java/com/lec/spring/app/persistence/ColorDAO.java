@@ -7,7 +7,7 @@ import java.util.List;
 
 public interface ColorDAO {
 
-    public List<ColorDTO> select();
+    List<ColorDTO> select();
     int update(String color1, String color2, String color3);
 
 }

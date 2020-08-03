@@ -2,14 +2,16 @@ package com.lec.spring.resume.controller;
 
 
 import com.lec.spring.resume.domain.resumeListDTO;
+import com.lec.spring.resume.domain.resumeUpdateDTO;
+import com.lec.spring.resume.domain.resumeViewDTO;
 import com.lec.spring.resume.domain.resumeWriteVO;
-import com.lec.spring.resume.service.FileUploadService;
-import com.lec.spring.resume.service.resumeListService;
-import com.lec.spring.resume.service.resumeWriteService;
+import com.lec.spring.resume.service.*;
+import com.lec.spring.user.domain.ComDTO;
 import com.lec.spring.user.domain.UserDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -34,11 +36,33 @@ public class resumeController {
     @Autowired
     private resumeListService resumeListService;
 
+    @Autowired
+    private com.lec.spring.resume.service.resumeDeleteService resumeDeleteService;
+
+    @Autowired
+    private resumeUpdateService resumeUpdateService;
+
+    @Autowired
+    private resumeUpdateOkService resumeUpdateOkService;
+
+    @Autowired
+    private resumeViewService resumeViewService;
+
+
+    int r_uid = 0;
 
     @RequestMapping("/resumeWrite")
-    public String Write(Model model) {
+    public String Write(Model model, HttpSession session) {
 
-        return "resume/resumeWrite";
+        UserDTO dto = (UserDTO) session.getAttribute("userSession");
+        if (dto != null) {
+
+            return "resume/resumeWrite";
+        }else{
+            return "user/login";
+        }
+
+
     }
 
 
@@ -86,6 +110,9 @@ public class resumeController {
     public String resumeWriteOk(resumeWriteVO resumeWriteVO, Model model, HttpSession session) {
 
         UserDTO dto = (UserDTO) session.getAttribute("userSession");
+
+
+
         int gender = 1;
         String total = "0";
         String score = "0";
@@ -129,15 +156,78 @@ public class resumeController {
 
         UserDTO dto = (UserDTO) session.getAttribute("userSession");
 
-
+        if (dto != null) {
         List<resumeListDTO> mylist = resumeListService.selectList(dto.getU_uid());
 
         model.addAttribute("list", mylist);
 
+            return "resume/resumeList";
+        }else{
+            return "user/login";
+        }
 
-
-        return "resume/resumeList";
     }
+
+    @RequestMapping("/resumeDeleteOk/{uid}")
+    public String resumeDelete(@PathVariable("uid") int uid){
+
+
+        resumeDeleteService.Delete(uid);
+
+
+        return "resume/resumeDeleteOk";
+    }
+
+    @RequestMapping( value = "/resumeUpdateOk" ,method =RequestMethod.POST)
+    public String resumeUpdate(HttpSession session, resumeWriteVO resumeWriteVO){
+        UserDTO dto = (UserDTO) session.getAttribute("userSession");
+
+
+
+        int gender = 1;
+
+
+        if(resumeWriteVO.getOptionSelected().equals("남")){
+            gender = 0;
+        }
+
+        System.out.println(resumeWriteVO.getSubject());
+        System.out.println(resumeWriteVO.getBasicAddrs());
+        System.out.println(resumeWriteVO.getHopeIncome());
+            resumeUpdateOkService.resumeUpdateOk( r_uid, resumeWriteVO.getSubject(), resumeWriteVO.getBasicName(), gender, resumeWriteVO.getBasicBirth(), resumeWriteVO.getBasicEmail(), resumeWriteVO.getBasicPhone(), resumeWriteVO.getBasicAddrs(), resumeWriteVO.getBasicAddrs2(), resumeWriteVO.getResumeStatus(), resumeWriteVO.getHopeJobType(), resumeWriteVO.getHopeIncome(), resumeWriteVO.getHopeArea(), resumeWriteVO.getHopeService());
+
+        return "resume/resumeUpdateOk";
+
+
+    }
+
+
+    @RequestMapping("/resumeUpdate/{uid}")
+    public String resumeUpdateForm(Model model,@PathVariable("uid") int uid){
+            r_uid = uid;
+            resumeUpdateDTO vo = resumeUpdateService.resumeUpdate(uid);
+
+
+            model.addAttribute("list",vo);
+
+        return "resume/resumeUpdate";
+    }
+
+
+    @RequestMapping("/resumeView")
+    public String resumeView(HttpSession session, Model model){
+        UserDTO dto = (UserDTO) session.getAttribute("userSession");
+
+        resumeViewDTO obj = resumeViewService.resumeView(dto.getU_uid());
+
+        model.addAttribute("list", obj);
+
+
+
+        return "resume/resumeView";
+    }
+
+
 
 
 }
