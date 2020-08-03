@@ -37,6 +37,7 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script src="https://kit.fontawesome.com/a076d05399.js"></script>
 <script src="${pageContext.request.contextPath }/JS/board.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
 
 <c:choose>
 	<c:when test="${empty list || fn:length(list) == 0 }">
@@ -58,10 +59,23 @@
 		<script>
 			function chkDelete(uid){
 				// 삭제 여부, 다시 확인 하고 진행하기
-				var r = confirm("삭제하시겠습니까?");
-				if(r){
-					location.href = 'deleteOk.do?uid=' + uid;
-				}
+				Swal.fire({
+					title: '게시글을 삭제하시겠습니까?',
+					text: "삭제시 복구되지 않습니다.",
+					icon: 'warning',
+					showCancelButton: true,
+					confirmButtonColor: '#3085d6',
+					cancelButtonColor: '#d33',
+					confirmButtonText: 'YES'
+				}).then((result) => {
+					if (result.value) {
+							location.href = 'deleteOk.do?uid=' + uid;
+
+					}
+				})
+
+
+
 			}
 		</script>
 		<body>
@@ -154,7 +168,7 @@
 		</div>
 
 
-		<div class="container">
+		<div class="container" >
 
 
 			<br><br><br>
@@ -170,8 +184,10 @@
 				<div class="col-md-4">
 					<i class="fas fa-caret-right"></i>
 						${list[0].category}
+		<c:if test="${list[0].category ne '공지사항'}">
 					<i class="fas fa-caret-right"></i>
 						${list[0].companyName}
+		</c:if>
 				</div>
 
 				<div class="col-md-5"></div>
@@ -245,6 +261,7 @@
 
 			<c:set var="userID" value="<%=userID%>"></c:set>
 
+			<div id="us" style="display: none">${userID}</div>
 
 
 
@@ -269,7 +286,7 @@
 				<div class="col-md-12">
 					<form id="frmWrite" name="frmWrite" method="post" >
 						<input type="hidden" name="buid" value="${list[0].uid }">
-						<input type="hidden" name="cuid" value="1">
+						<input type="hidden" name="cuid" value="${userID}">
 						<textarea name="content" placeholder="댓글을 입력해주세요" style="width: 80%; height: 100px" ></textarea>
 
 
@@ -279,9 +296,10 @@
 
 			</div>
 		</div>
+		<br><br>
 
 
-		<div class="container" id="ajaxin">
+		<div class="container" id="ajaxin" style="margin-bottom: 30px">
 
 		</div>
 		<div id="main_footer">

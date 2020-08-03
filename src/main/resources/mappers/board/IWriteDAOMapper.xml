@@ -127,6 +127,8 @@
     	   UPDATE board SET b_subject = #{a.subject}, b_content = #{a.content}, b_category = #{a.category}, c_uid = #{a.c_uid} WHERE b_uid = #{param1}
     
     		</update>
+
+
     		
     		<delete id="deleteByUid">
     		DELETE FROM board WHERE b_uid = #{param1}
