@@ -93,84 +93,100 @@
 <div class="main_box div_950">
     <div class="main_box_content">
         <h1>지원 통계 목록</h1><br><br>
-        <form action="listUpdate" method="post">
+        <form action="listUpdate" method="post" class="row">
+            <div class="col-md-12 padding20"></div>
 
-        <c:forEach var="List" items="${List }">
-            <c:if test="${List.graphView1 == 1}">
-                <input type="checkbox" name="graphView1" value="1" checked="checked"> 지원자 수
-            </c:if>
-            <c:if test="${List.graphView1 != 1}">
-                <input type="checkbox" name="graphView1" value="1"> 지원자 수
-            </c:if>
+            <c:forEach var="List" items="${List }">
 
-
-            <c:if test="${List.graphView2 == 1}">
-                <input type="checkbox" name="graphView2" value="1" checked="checked"> 경력별 현황
-            </c:if>
-            <c:if test="${List.graphView2 != 1}">
-                <input type="checkbox" name="graphView2" value="1"> 경력별 현황
-            </c:if>
+                <div class="col-md-1"></div>
+                <div class="col-md-5 listupdate">
+                    <c:if test="${List.graphView1 == 1}">
+                        <input type="checkbox" name="graphView1" value="1" checked="checked"> 지원자 수<br>
+                    </c:if>
+                    <c:if test="${List.graphView1 != 1}">
+                        <input type="checkbox" name="graphView1" value="1"> 지원자 수<br>
+                    </c:if>
 
 
-            <c:if test="${List.graphView3 == 1}">
-                <input type="checkbox" name="graphView3" value="1" checked="checked"> 연봉별 현황
-            </c:if>
-            <c:if test="${List.graphView3 != 1}">
-                <input type="checkbox" name="graphView3" value="1"> 연봉별 현황
-            </c:if>
+                    <c:if test="${List.graphView2 == 1}">
+                        <input type="checkbox" name="graphView2" value="1" checked="checked"> 경력별 현황<br>
+                    </c:if>
+                    <c:if test="${List.graphView2 != 1}">
+                        <input type="checkbox" name="graphView2" value="1"> 경력별 현황<br>
+                    </c:if>
 
 
-            <c:if test="${List.graphView4 == 1}">
-                <input type="checkbox" name="graphView4" value="1" checked="checked"> 성별별 현황
-            </c:if>
-            <c:if test="${List.graphView4 != 1}">
-                <input type="checkbox" name="graphView4" value="1"> 성별별 현황
-            </c:if>
+                    <c:if test="${List.graphView3 == 1}">
+                        <input type="checkbox" name="graphView3" value="1" checked="checked"> 연봉별 현황<br>
+                    </c:if>
+                    <c:if test="${List.graphView3 != 1}">
+                        <input type="checkbox" name="graphView3" value="1"> 연봉별 현황<br>
+                    </c:if>
 
 
-            <c:if test="${List.graphView5 == 1}">
-                <input type="checkbox" name="graphView5" value="1" checked="checked"> 연령별 현황
-            </c:if>
-            <c:if test="${List.graphView5 != 1}">
-                <input type="checkbox" name="graphView5" value="1"> 연령별 현황
-            </c:if>
+                    <c:if test="${List.graphView4 == 1}">
+                        <input type="checkbox" name="graphView4" value="1" checked="checked"> 성별별 현황<br>
+                    </c:if>
+                    <c:if test="${List.graphView4 != 1}">
+                        <input type="checkbox" name="graphView4" value="1"> 성별별 현황<br>
+                    </c:if>
+
+                </div>
+                <div class="col-md-6 listupdate">
+                    <c:if test="${List.graphView5 == 1}">
+                        <input type="checkbox" name="graphView5" value="1" checked="checked"> 연령별 현황<br>
+                    </c:if>
+                    <c:if test="${List.graphView5 != 1}">
+                        <input type="checkbox" name="graphView5" value="1"> 연령별 현황<br>
+                    </c:if>
 
 
-            <c:if test="${List.graphView6 == 1}">
-                <input type="checkbox" name="graphView6" value="1" checked="checked"> 학력별 현황
-            </c:if>
-            <c:if test="${List.graphView6 != 1}">
-                <input type="checkbox" name="graphView6" value="1"> 학력별 현황
-            </c:if>
+                    <c:if test="${List.graphView6 == 1}">
+                        <input type="checkbox" name="graphView6" value="1" checked="checked"> 학력별 현황<br>
+                    </c:if>
+                    <c:if test="${List.graphView6 != 1}">
+                        <input type="checkbox" name="graphView6" value="1"> 학력별 현황<br>
+                    </c:if>
 
 
-            <c:if test="${List.graphView7 == 1}">
-                <input type="checkbox" name="graphView7" value="1" checked="checked"> TOEIC
-            </c:if>
-            <c:if test="${List.graphView7 != 1}">
-                <input type="checkbox" name="graphView7" value="1"> TOEIC
-            </c:if>
+                    <c:if test="${List.graphView7 == 1}">
+                        <input type="checkbox" name="graphView7" value="1" checked="checked"> TOEIC<br>
+                    </c:if>
+                    <c:if test="${List.graphView7 != 1}">
+                        <input type="checkbox" name="graphView7" value="1"> TOEIC<br>
+                    </c:if>
+                </div>
 
-        </c:forEach>
-
+            </c:forEach>
+            <div class="col-md-12 padding20"></div>
+            <div class="col-md-1"></div>
             <button type="submit" class="org_Btn">즉시적용</button>
         </form>
     </div>
+    <div class="padding20"></div>
     <div class="main_box_content">
         <h1>지원 통계 디자인</h1><br><br>
-        <form action="colorUpdate" method="post">
+        <form action="colorUpdate" method="post" class = "row">
             <c:forEach var="Color" items="${Color }">
-                Color1: <input id="color1" name="color1" value="${Color.color1 }" data-jscolor=""><br><br>
-                Color2: <input id="color2" name="color2" value="${Color.color2 }" data-jscolor=""><br><br>
-                Color3: <input id="color3" name="color3" value="${Color.color3 }" data-jscolor=""><br><br>
+                <div class="col-md-6">
+                    <br><br>
+                    Color1: <input id="color1" name="color1" value="${Color.color1 }" data-jscolor=""><br><br>
+                    Color2: <input id="color2" name="color2" value="${Color.color2 }" data-jscolor=""><br><br>
+                    Color3: <input id="color3" name="color3" value="${Color.color3 }" data-jscolor=""><br><br>
+                </div> <!-- 부트스트랩 -->
+                <div class="container col-md-5">
+
+                    <canvas id="myChart"></canvas>
+                </div> <!-- 부트스트랩 -->
+                <div class="col-md-1"></div>
+                <div class="padding20 col-md-12"></div>
+                <div class="col-md-1"></div>
                 <button type="submit" class="org_Btn">즉시적용</button>
             </c:forEach>
         </form>
 
 
-        <div class="container">
-            <canvas id="myChart"></canvas>
-        </div> <!-- 부트스트랩 -->
+
         <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
                 integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
                 crossorigin="anonymous"></script>

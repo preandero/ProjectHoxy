@@ -3,7 +3,7 @@ package com.lec.spring.hire.beans;
 public class HWriteDTO {
 
 
-    private int C_UID;
+    private int c_uid;
     private int h_uid;
     private String h_name;
     private String h_title;
@@ -26,8 +26,8 @@ public class HWriteDTO {
         super();
     }
 
-    public HWriteDTO(int c_UID, int h_uid, String h_name, String h_title, String h_content, String h_salary, String h_position1, String h_position2, String h_part, String h_career, String h_degree, String h_workform, int h_cnt, String h_upDate, String h_regDate, String h_remainDate, int dday) {
-        C_UID = c_UID;
+    public HWriteDTO(int c_uid, int h_uid, String h_name, String h_title, String h_content, String h_salary, String h_position1, String h_position2, String h_part, String h_career, String h_degree, String h_workform, int h_cnt, String h_upDate, String h_regDate, String h_remainDate, int dday) {
+        this.c_uid= c_uid;
         this.h_uid = h_uid;
         this.h_name = h_name;
         this.h_title = h_title;
@@ -54,12 +54,12 @@ public class HWriteDTO {
         this.dday = dday;
     }
 
-    public int getC_UID() {
-        return C_UID;
+    public int getC_uid() {
+        return c_uid;
     }
 
-    public void setC_UID(int c_UID) {
-        C_UID = c_UID;
+    public void setC_uid(int c_uid) {
+        this.c_uid = c_uid;
     }
 
     public int getH_uid() {

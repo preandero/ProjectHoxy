@@ -46,7 +46,7 @@
  				 b.b_uid "uid", b.b_subject subject,
  				 b.b_content content, b.b_regdate regdate,
  				 b.b_viewcnt viewcnt, b.b_category category,
- 				 u.u_id writeName, c.C_NAME companyName
+ 				 u.u_id writeName,u.u_uid , c.C_NAME companyName
  				  FROM board b , huser u, company c
  				   WHERE b.u_uid = u.u_uid AND b.C_UID  = c.C_UID  AND b.b_uid = #{param1}
     		</select>
@@ -127,6 +127,8 @@
     	   UPDATE board SET b_subject = #{a.subject}, b_content = #{a.content}, b_category = #{a.category}, c_uid = #{a.c_uid} WHERE b_uid = #{param1}
     
     		</update>
+
+
     		
     		<delete id="deleteByUid">
     		DELETE FROM board WHERE b_uid = #{param1}

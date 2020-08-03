@@ -29,6 +29,7 @@
 
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/CSS/reset.css"/>
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/CSS/yoondoo.css"/>
+    <script src="http://code.jquery.com/jquery-1.11.1.min.js" type="text/javascript"></script>
     <script src="${pageContext.request.contextPath }/JS/yj.js"></script>
 
 
@@ -93,30 +94,31 @@
         <br>
         <h3>유의사항</h3>
         <h3>최근 2년간의 지원내역에 대한 확인이 가능합니다. (단, 지원서류는 최근 2개월동안 확인 가능)</h3>
-        <form action="/app/appmyList" method="post">
+        <form action="/app/appcomList" method="post">
             <div class="select_option row">
                 <div class="col-md-2">
                     <h3>검색조건</h3>
                     <h3>(최근 2년)</h3>
                 </div>
-                <div class="col-md-9">
-                    <h3 class="inline">조회 기간</h3>
-                    <button id="period7" class="inline period" type="button">1주일</button>
-                    <button id="period31" class="inline period" type="button">1개월</button>
-                    <button id="period60" class="inline period" type="button">2개월</button>
-                    <button id="period91" class="inline period" type="button">3개월</button>
-                    <button id="period182" class="inline period" type="button">6개월</button>
-                    <button id="period365" class="inline period" type="button">1년</button>
-                    <input type="hidden" id="period_input" value="365" name="period">
-                    <br>
-                    <h3 class="inline">열람 여부</h3>
-                    <select class="inline" name="view">
+                <div class="col-md-9 row">
+                    <h3 class="inline col-md-3">공고 선택</h3>
+                    <select class= "appcomsel col-md-8 search_content_com" name="hid">
+                        <option value="0" >공고를 선택하세요</option>
+                        <c:forEach var="HList" items="${Hlist }">
+                            <option value="${HList.h_uid}">[ ${HList.h_uid} ] ${HList.h_name}
+                                : ${HList.h_title}</option>
+
+                        </c:forEach>
+                    </select>
+                    <div class="col-md-12"></div>
+                    <h3 class="inline col-md-3">열람 여부</h3>
+                    <select class="inline col-md-2" name="view">
                         <option value="2">모두</option>
                         <option value="1">열람</option>
                         <option value="0">미열람</option>
                     </select>
-                    <h3 class="inline">검색</h3>
-                    <input type="text" name="search" class="inline search_content" placeholder="내용을 입력해 주세요">
+                    <h3 class="inline col-md-2">검색</h3>
+                    <input type="text" name="search" class="inline search_content_com col-md-4" placeholder="내용을 입력해 주세요">
                 </div>
                 <div class="col-md-1">
                     <button class="search" type="submit">검색</button>
@@ -128,99 +130,92 @@
         <h2 class="inline"> 건</h2>
     </div>
     <c:choose>
-        <c:when test="${fn:length(Alist) == 0 }">
-            <div class="main_box_content center">
+    <c:when test="${fn:length(Alist) == 0 }">
+        <div class="main_box_content center">
 
-                <h2> 지원한 내역이 없습니다. </h2>
+            <h2> 지원한 내역이 없습니다. </h2>
 
+        </div>
+    </c:when>
+
+
+    <c:otherwise>
+    <div class="main_box_content row" id = "comaList">
+        <h1 class="col-md-1">상태</h1>
+        <h1 class="col-md-3">공고</h1>
+        <h1 class="col-md-1">NO</h1>
+        <h1 class="col-md-2">이름</h1>
+        <h1 class="col-md-1">직무</h1>
+        <h1 class="col-md-2">지원시간</h1>
+        <h1 class="col-md-2"></h1>
+        <c:forEach var="AList" items="${Alist }">
+            <c:choose>
+                <c:when test="${AList.a_view == 0 }">
+                    <h2 id="viewBtn_${AList.a_uid }" class="col-md-1 grey_box">미열람</h2>
+                </c:when>
+                <c:otherwise>
+                    <h2 class="col-md-1 grey_box red_box">열람</h2>
+                </c:otherwise>
+            </c:choose>
+            <h3 class="bold col-md-3">${AList.h_title }</h3>
+            <h3 class="col-md-1">${AList.a_uid }</h3>
+            <h3 class="col-md-2">${AList.u_name }</h3>
+            <h3 class="col-md-1">${AList.h_part }</h3>
+            <h3 class="col-md-2">${AList.a_date }</h3>
+            <div class="col-md-2">
+                <button class="app_btn" id="btnAUpdate_${AList.a_uid}"
+                >상세 보기
+                </button>
             </div>
-        </c:when>
-
-        <c:otherwise>
-
-            <c:forEach var="AList" items="${Alist }">
-                <div class="main_box_content row appmy">
-                    <div class="app col-md-7">
-                        <c:choose>
-                            <c:when test="${AList.a_view == 0 }">
-                                <h2 class="inline grey_box">미열람</h2>
-                            </c:when>
-                            <c:otherwise>
-                                <h2 class="inline grey_box red_box">열람</h2>
-                            </c:otherwise>
-                        </c:choose>
-                        <c:choose>
-                            <c:when test="${AList.dday < 0 }">
-                                <h2 class="inline grey_box">마감</h2>
-                            </c:when>
-                            <c:otherwise>
-                                <h2 class="inline grey_box green_box">모집중</h2>
-                            </c:otherwise>
-                        </c:choose>
-
-                        <br>
-                        <br>
-                        <h3>(주) ${AList.h_name }</h3>
-                        <h1>${AList.h_title }</h1>
-                        <h4> º 지원일 : ${AList.a_date }</h4>
-                        <h4> º 지원 부분 : ${AList.h_part }</h4>
-                    </div>
-                    <div class="col-md-5">
-                        <button class="app_btn2 inline" id="btnAUpdate_${AList.a_uid}"
-                                onclick="chkUpdateResume(${AList.a_uid },${AList.r_uid })">지원 수정
-                        </button>
-
-
-                        <button class="app_btn2" onclick="chkDelete(${AList.a_uid })">지원 취소</button>
-                    </div>
-                    <div class="col-md-12 ggrey_box">
-                            제출 이력서 : ${AList.r_title} <a href="/app/hireDetail?h_uid=${AList.h_uid }">해당공고 바로가기</a>
-                    </div>
-
-                    <div id="dlg_write_${AList.a_uid}" class="modal">
-                        <div class="modal-content">
-                            <span class="close" title="Close Modal">&times;</span>
-                            <h1 class="hire_title">지원 내역</h1><%--TODO--%>
-                            <form action="appUpdate" method="post">
-                                <input type="hidden" name="a_uid" value="${AList.a_uid}">
-                                <h2>지원 부분</h2>
-                                <h2 class="bold">${AList.h_title }</h2>
-                                <br>
-                                <h2>직무</h2>
-                                <h2 class="bold">${AList.h_part }</h2>
-                                <br>
-                                <h2>제출 서류</h2>
-                                <c:forEach var="RList" items="${Rlist }">
-
-                                    <table class="rlist_table">
-                                        <tr>
-                                            <th>
-                                                <input type="radio" name="r_uid" value="${RList.r_uid}">&nbsp;&nbsp;&nbsp;${RList.r_title }
-                                            </th>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                <h3 class="blue_a inline"> 이력서 </h3>${RList.r_date } 수정
-                                            </td>
-                                        </tr>
-                                    </table>
-                                </c:forEach>
-                                <input type="submit" value="지원 수정" class="org_Btn fullbutton">
-
-                            </form>
-                        </div>
-                    </div>
-                </div>
-
-            </c:forEach>
-
-
-        </c:otherwise>
-    </c:choose>
-    <div class="main_box_content">
-
-
+            <div class="padding20 col-md-12"></div>
+        </c:forEach>
     </div>
+
+    <c:forEach var="AList" items="${Alist }">
+        <div id="dlg_write_${AList.a_uid}" class="modal">
+            <div class="modal-content">
+                <span class="close" title="Close Modal">&times;</span>
+                <h1 class="hire_title">지원 내역</h1><%--TODO--%>
+                <input type="hidden" name="a_uid" value="${AList.a_uid}">
+                <h2>지원 부분</h2>
+                <h2 class="bold">${AList.h_title }</h2>
+                <br>
+                <h2>직무</h2>
+                <h2 class="bold">${AList.h_part }</h2>
+                <br>
+                <h2>제출 서류</h2>
+
+
+                <table class="rlist_table">
+                    <tr>
+                        <th>
+                            &nbsp;&nbsp;${AList.r_title }
+                        </th>
+                    </tr>
+                    <tr>
+                        <td>
+                            <h3 class="blue_a inline"> 이력서 </h3>${AList.r_date } 수정
+                        </td>
+                    </tr>
+                </table>
+
+                <div class="padding20"></div>
+                <input type="button" value="이력서 열람하기" class="org_Btn fullbutton"
+                       onclick="upView(${AList.a_uid })">
+            </div>
+        </div>
+
+
+    </c:forEach>
+
+</div>
+
+</c:otherwise>
+</c:choose>
+<div class="main_box_content">
+
+
+</div>
 
 
 </div>

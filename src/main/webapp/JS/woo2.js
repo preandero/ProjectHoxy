@@ -1,11 +1,12 @@
 var page = 1  // 현재 페이지
 var pageRows = 10   // 한 페이지에 보여지는 게시글 개수
 var viewItem = undefined;   // 가장 최근에 view 한 글 데이터
-var search = "%%"
-var searchWord = "%%"
+var search = "%%";
+var searchWord = "%%";
+
 $(document).ready(function () {
     loadPage(page);
-    $("#searchbtn").click(function(){
+    $("#searchbtn").click(function () {
         search = $("#localSearch").val();
         searchWord = $("#searchWord").val();
         loadPage(page);
@@ -19,25 +20,19 @@ $(document).ready(function () {
 //page 번째 페이지 로딩
 function loadPage(page) {
     $.ajax({
-        url: "hireSearch.ajax?page=" + page + "&pageRows=" + pageRows+"&search="+search+"&searchWord="+searchWord
+        url: "hireSearch.ajax?page=" + page + "&pageRows=" + pageRows + "&search=" + search + "&searchWord=" + searchWord
         , type: "GET"
         , cache: false
         , success: function (data, status) {
             if (status == "success") {
                 if (updateList1(data)) {
 
-                    // $(".deletebtn").click(function () {
-                    //
-                    //     deleteUid($(this).attr('data-uid'));
-
-                    // });
-                   /* $("#searchbtn").click(function(){
-                        search = $("#ddddd");
-                        search = $("#ddddd");
-                    });*/
-
                 }
+            }else{
+                alert("공고가 없습니다")
+                history.back();
             }
+
         }
     });
 } // end loadPage()
@@ -52,57 +47,36 @@ function updateList1(jsonObj) {
         var i;
         var items = jsonObj.data;
         for (i = 0; i < count; i++) {
-            // if (items[i].h_remainDate < 0) {
-            //     remain = "<td>" + "<hr2>" + "모집 마감" + "</hr2>" + "</td>\n";
-            // }
-            // if (items[i].h_remainDate == 0) {
-            //     remain = "<td>" + "<hr2>" + "오늘 종료" + "</hr2>" + "</td>\n";
-            // }
-            // if (items[i].h_remainDate > 0) {
-            //     remain = "<td>" + "<hr2>" + "D-" + items[i].h_remainDate + "</hr2>" + "</td>\n";
-            // }
+            if (items[i].h_remainDate >= 0) {
 
-            // result += "<tr>\n";
-            // result += "<td>" + items[i].h_title + "</td>\n";
-            // result += "<td>" + items[i].h_name + "</td>\n";
-            // result += "<td>" + items[i].h_career + "</td>\n";
-            // result += "<td>" + items[i].h_position1 + "</td>\n";
-            // result += "<td>" + items[i].h_position2 + "</td>\n";
-            // result += "<td>" + items[i].h_part + "</td>\n";
-            // result += "<td>" + items[i].h_workform + "</td>\n";
-            // result += "<td>" + items[i].h_degree + "</td>\n";
-            // result += remain;
-            //
-            // result += "</tr>\n";
+                if (items[i].h_remainDate == 0) {
+                    remain = "오늘 종료"
+                }
+                if (items[i].h_remainDate > 0) {
+                    remain = "D-" + items[i].h_remainDate
+                }
 
-            if (items[i].h_remainDate < 0) {
-                remain = "모집 마감"
-            }
-            if (items[i].h_remainDate == 0) {
-                remain = "오늘 종료"
-            }
-            if (items[i].h_remainDate > 0) {
-                remain =  "D-" + items[i].h_remainDate
-            }
 
-            result += "<div>\n";
-            result += "<p>"+"<a href='view.do?h_uid="+items[i].h_uid+"'>"+items[i].h_title+"</a>"+"</p>";
-            result += "<p>"+items[i].h_name+"</p>";
-            result += "<p>"+"경력:"+"&nbsp"+
-                items[i].h_career+
-                "&nbsp"+"*"+"&nbsp"+
-                items[i].h_position1+
-                "&nbsp"+items[i].h_position2+
-                "&nbsp"+"*"+"&nbsp"+
-                items[i].h_part+
-                "&nbsp"+"*"+"&nbsp"+
-                items[i].h_workform+
-                "&nbsp"+"*"+"&nbsp"+
-                items[i].h_degree+"</p>";
-            result += "<p>"+remain;+"</p>";
-            result += "<hr>"
-            result += "</div>\n";
-        } // end for
+                // result += "<div id='h_search_"+items[i].h_uid+"'>\n";
+                result += "<tr>" + "<td id='h_search_list'>\n"
+                    + "<a id='h_search_title' href='/app/hireDetail?h_uid=" + items[i].h_uid + "'>" + items[i].h_title +"["+"&nbsp"+items[i].h_cnt+"&nbsp"+"]"+"</a>" + "<br>" + "<br>"
+                    + "기업:" + "&nbsp" + items[i].h_name + "<br>" +
+                    "<h id='h_search_content'>" + "&nbsp" +
+                    items[i].h_career +
+                    "&nbsp" + "*" + "&nbsp" + "&nbsp" + "&nbsp" +
+                    items[i].h_position1 +
+                    "&nbsp" + items[i].h_position2 +
+                    "&nbsp" + "*" + "&nbsp" + "&nbsp" + "&nbsp" +
+                    items[i].h_part +
+                    "&nbsp" + "*" + "&nbsp" + "&nbsp" + "&nbsp" +
+                    items[i].h_workform +
+                    "&nbsp" + "*" + "&nbsp" + "&nbsp" + "&nbsp" +
+                    items[i].h_degree + "</h>" + "<br>" + "<br>" + "<br>" + "<h id='h_search_date'>" + remain + "</h>" +
+                    "</td>" + "</tr>";
+            } // end for
+        }
+
+
         $("#list tbody").html(result);  // 테이블 업데이트!
 
 

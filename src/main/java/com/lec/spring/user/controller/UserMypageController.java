@@ -20,7 +20,7 @@ public class UserMypageController {
 
     //@RequestMapping(value = "/user/userMypage", method = RequestMethod.GET)
     //public String getusermy() throws Exception{
-    //    return "/user/userMypage";
+     //  return "/user/userMypage";
     //}
 
     @RequestMapping(value = "/user/userMypage")

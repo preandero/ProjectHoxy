@@ -6,15 +6,175 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <title>Title</title>
 </head>
+<style>
+    @import url('https://fonts.googleapis.com/css?family=Roboto:100,300,400,700');
+    /************ Start Main Rules **************/
+    *{
+        margin: 0;
+        padding: 0;
+        outline: none;
+        box-sizing: border-box;
+        /*   font-family: 'Roboto', sans-serif; */font-family: 'Raleway', sans-serif;
+    }
+
+    body{background: #ffd203  }
+
+    .main-box{
+        position: relative;
+        display: block;
+        width: 58%;
+        height: auto;
+        margin: 50px auto;
+        border-radius: 8px;
+        overflow: hidden;
+        background:#FFF;
+    }
+
+
+
+    /************ Start Form Container **************/
+
+    .top-buttons {
+        position: relative;
+        display: block;
+        width: 100%;
+        height: 9%;
+        padding: 25px;
+        text-align: right;
+    }
+
+    .form{
+        width: 100%;
+        height: 85%;
+        padding: 10px 40px;
+    }
+
+    .form form {
+        width: 100%;
+        height: 100%;
+    }
+
+    .form form
+    lable,
+    input[type="text"],
+    input[type="email"],
+    input[type="password"] {
+        display: block;
+    }
+
+    .form form lable {
+        font-size: 16px;
+        font-weight: 300;
+        margin: 6px 0;
+    }
+
+    p.terms {
+        color: #9E9E9E;
+        margin-bottom: 60px;
+    }
+
+    .form form
+    input[type="text"],
+    input[type="email"],
+    input[type="password"] {
+        width: 100%;
+        border: none;
+        font-size: 16px;
+        font-weight: 200;
+        margin-bottom: 20px;
+        padding: 5px 0 10px 0;
+        background: transparent;
+        border-bottom: 1px solid #4c5c72;
+    }
+
+    .form form input::placeholder{
+        color: #cecece;
+    }
+
+    .form form a {
+        color: #fff;
+    }
+
+    input.form-btn {
+        color: #fff;
+        margin-top: 22px;
+        font-size: 18px;
+        font-weight: 300;
+        padding: 12px 55px;
+        margin-right: 20px;
+        border: none;
+        cursor: pointer;
+        border-radius: 35px;
+        transition: all 0.3s linear;
+        background: #ffd203;
+    }
+
+    input.form-btn:hover{
+        box-shadow: none
+    }
+
+    .form-signin{
+        display: none;
+        padding-top: 120px;
+    }
+</style>
 <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
 <body>
-<div>
+<div class="main-box">
+
+
+    <div class="">
+
+        <div class="top-buttons">
+
+        </div>
+
+        <div class="form form-signup">
+            <form method="post">
+                <lable>아이디</lable>
+                <input type="text" id="u_id" name="u_id" placeholder="ID">
+                <div class="check_font" id="id_check"></div>
+
+                <lable>비밀번호</lable>
+                <input type="password" id="u_pw" name="u_pw" placeholder="password">
+                <div class="check_font" id="pw_check"></div>
+
+                <lable>비밀번호 확인</lable>
+                <input type="password" id="u_pw2" name="u_pw2" placeholder="Confirm Password">
+                <div class="check_font" id="pw2_check"></div>
+
+                <lable>이름</lable>
+                <input type="text"  id="u_name" name="u_name" placeholder="name">
+                <div class="check_font" id="name_check"></div>
+
+                <lable>주민번호</lable>
+                <input type="text" id="u_jumin" name="u_jumin" placeholder="JUMIN">
+
+                <lable>핸드폰번호</lable>
+                <input type="text" id="u_phoneNum" name="u_phoneNum" placeholder="PhoneNum">
+                <div class="check_font" id="phone_check"></div>
+
+                <label>이메일</label>
+                <input type="text" id="u_email" name="u_email" placeholder="EMAIL">
+                <div class="check_font" id="email_check"></div>
+
+                <input type="submit" id="reg_submit" class="form-btn" value="Sign Up"/>
+                <br><br>
+            </form>
+        </div>
+    </div>
+    <div class="clear-fix"></div>
+</div>
+</body>
+<!--<div>
     <p>회원가입</p>
     <form method="post">
-        <!-- 아이디 -->
         <div class = "form-group">
             <label for="u_id">아이디</label>
             <input type="text" class="form-control" id="u_id" name="u_id" placeholder="ID" required>
@@ -57,7 +217,7 @@
         <div class="check_font" id="email_check"></div>
 
         <div class="reg_button">
-            <a class="btn btn-danger px-3" href="${pageContext.request.contextPath}">
+            <a class="btn btn-danger px-3" href="">
                 <i class="fa fa-rotate-right pr-2" aria-hidden="true"></i>취소하기
             </a>&emsp;&emsp;
             <button class="btn btn-primary px-3" id="reg_submit">
@@ -65,7 +225,7 @@
             </button>
         </div>
     </form>
-</div>
+</div>-->
 </body>
 <script>
 

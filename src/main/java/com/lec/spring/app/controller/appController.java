@@ -4,6 +4,7 @@ import com.lec.spring.app.*;
 import com.lec.spring.app.domain.AppDTO;
 import com.lec.spring.hire.command.HCommand;
 import com.lec.spring.hire.command.HViewCommand;
+import com.lec.spring.user.domain.ComDTO;
 import com.lec.spring.user.domain.UserDTO;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -50,6 +51,7 @@ public class appController {
         new HViewCommand().excute(model);
         new GCommand().execute(model);
         new RListCommand().execute(model);
+        new CCommand().execute(model);
         return "/hire/hireDetail";
     }
 
@@ -71,8 +73,8 @@ public class appController {
             //열람, 미열람
             //검색
             if(period!=null) model.addAttribute("period", period);
-            if(period!=null) model.addAttribute("view", view);
-            if(period!=null) model.addAttribute("search", search);
+            if(view!=null) model.addAttribute("view", view);
+            if(search!=null) model.addAttribute("search", search);
 
             new AListCommand().execute(model);
             new RListCommand2().execute(model);
@@ -80,6 +82,30 @@ public class appController {
         }else {
 
             return "/user/login";
+        }
+
+
+    }
+
+    @RequestMapping("/appcomList")
+    public String appcomList(HttpSession session,Model model
+            ,String hid,String view, String search) {
+        if (session.getAttribute("comSession") != null) {
+            ComDTO dto = (ComDTO) session.getAttribute("comSession");
+            model.addAttribute("c_uid", dto.getC_uid());
+
+            //공고 선택
+            //열람, 미열람
+            //검색
+            if(hid!=null) model.addAttribute("hid", hid);
+            if(view!=null) model.addAttribute("view", view);
+            if(search!=null) model.addAttribute("search", search);
+
+            new AListCommand2().execute(model);
+            return "/application/appcomList";
+        }else {
+
+            return "/com/login";
         }
 
 
@@ -132,5 +158,13 @@ public class appController {
         new LCommand().execute(model);
         new GCommand().execute(model);
         return "index";
+    }
+
+    @RequestMapping("/appviewUpdate")
+    public String appviewUpdate(int a_uid ,Model model) {
+
+        model.addAttribute("a_uid", a_uid);
+        new AUpdateCommand2().execute(model);
+        return "/application/appUpdateOk2";
     }
 }
