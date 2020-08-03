@@ -60,5 +60,9 @@
                           )
     </insert>
 
+    <select id="selectAll" resultType="com.lec.spring.resume.domain.resumeListDTO">
+			select r_title , r_date  from resume WHERE u_uid = #{param1}
+	</select>
+
 
 </mapper>
