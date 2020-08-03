@@ -104,7 +104,7 @@
 </div>
 
 <div class="main_box div_950">
-    <div class="main_box_content row">
+    <div id="nav_position_1" class="main_box_content row">
 
         <%--공고 타이틀 자리임--%>
 
@@ -133,7 +133,7 @@
             <div class="nav_box nav_box3" id="nav_box3"><i class="fas fa-chart-bar"></i>지원자통계</div>
             <div class="nav_box nav_box4" id="nav_box4"><i class="far fa-building"></i>기업정보</div>
             <h2 class="col-md-4 bold">경력</h2>
-            <h2 class="col-md-8 "></h2>
+            <h2 class="col-md-8 ">${view[0].h_career }</h2>
             <h2 class="col-md-4 bold">학력</h2>
             <h2 class="col-md-8">${view[0].h_degree }</h2>
             <h2 class="col-md-4 bold">근무형태</h2>
@@ -141,17 +141,17 @@
         </div>
         <div class="col-md-6 row updown padding20 margin_auto">
             <h2 class="col-md-4 bold">급여</h2>
-            <h2 class="col-md-8"></h2>
-            <h2 class="col-md-4 bold">직급/직책</h2>
-            <h2 class="col-md-8">${view[0].h_degree }</h2>
+            <h2 class="col-md-8">${view[0].h_salary }</h2>
+            <h2 class="col-md-4 bold">직무</h2>
+            <h2 class="col-md-8">${view[0].h_part }</h2>
             <h2 class="col-md-4 bold">근무지역</h2>
-            <h2 class="col-md-8">${view[0].h_workform }</h2>
+            <h2 class="col-md-8">${view[0].h_position1 } ${view[0].h_position2 }</h2>
         </div>
     </div>
     <div class="main_box_content">
 
     </div>
-    <div class="main_box_content row">
+    <div id="nav_position_3" class="main_box_content row">
         <h1 class="main_box_title inline col-md-12">지원자 통계</h1>
         <div class="padding20 col-md-12"></div>
         <c:if test="${graphList[0].graphView1 == 1}">
@@ -249,7 +249,6 @@
         </c:if>
 
 
-
         <c:if test="${graphList[0].graphView7 == 1}">
             <div class="col-md-6 chartbox">
                 <h2 class="bold">TOEIC 현황</h2>
@@ -258,7 +257,7 @@
             <!-- 부트스트랩 -->
 
             <script>
-                
+
                 const ctx4 = document.getElementById('myChart6');
                 const myChart8 = new Chart(ctx4, {
                     type: 'bar',
@@ -279,7 +278,40 @@
 
 
     </div>
+    <div class="padding20"></div>
+    <div id="nav_position_4" class="main_box_content row">
+        <h1 class="col-md-12">기업정보</h1>
+        <div class="col-md-12 row" id="conpanyInfo_d">
+            <div class="col-md-5 row">
+                <input type="hidden" id="location" value="${ComInfo.c_address1}">
+                <div id="map" style="width:100%;height:200px"></div>
 
+
+                <script src="http://code.jquery.com/jquery-1.11.1.min.js" type="text/javascript"></script>
+                <script type="text/javascript"
+                        src="//dapi.kakao.com/v2/maps/sdk.js?appkey=ad5d4e40850394cbdf4da8bbdd046a92"></script>
+                <script type="text/javascript" src="${pageContext.request.contextPath }/JS/Ajax.js"></script>
+
+
+            </div>
+            <div class="col-md-7 row">
+                <h1 class="col-md-12 bold medium">${ComInfo.c_name}</h1>
+                <h2 class="col-md-4 bold">기업형태</h2>
+                <h2 class="col-md-8 ">${ComInfo.c_form}</h2>
+                <h2 class="col-md-4 bold">대표자명</h2>
+                <h2 class="col-md-8">${ComInfo.c_ceoName }</h2>
+                <h2 class="col-md-4 bold">사원수</h2>
+                <h2 class="col-md-8 ">${ComInfo.c_form}</h2>
+                <h2 class="col-md-4 bold">업종</h2>
+                <h2 class="col-md-8">${ComInfo.c_category }</h2>
+                <h2 class="col-md-12"></h2>
+                <h2 class="col-md-4 bold">기업주소</h2>
+                <h2 class="col-md-8">${ComInfo.c_address1} ${ComInfo.c_address2}</h2>
+            </div>
+        </div>
+
+
+    </div>
 
 </div>
 
@@ -289,34 +321,43 @@
             <c:when test="${loginChk!='false' }">
                 <span class="close" title="Close Modal">&times;</span>
                 <h1 class="hire_title">${view[0].h_title }</h1>
-                <form action="/app/appWriteOk" method="post">
-                    <input type="hidden" value="1" name="u_uid">
-                    <input type="hidden" value="${view[0].h_uid }" name="h_uid">
+                <c:choose>
+                    <c:when test="${fn:length(Rlist) != 0 }">
+                        <form action="/app/appWriteOk" method="post">
+                            <input type="hidden" value="1" name="u_uid">
+                            <input type="hidden" value="${view[0].h_uid }" name="h_uid">
 
-                    <h2>직무</h2><br>
-                    <h2 class="bold">${view[0].h_part }</h2>
-                    <div class="padding20"></div>
-                    <h2>제출 서류</h2><br>
-                    <c:forEach var="RList" items="${Rlist }">
+                            <h2>직무</h2><br>
+                            <h2 class="bold">${view[0].h_part }</h2>
+                            <div class="padding20"></div>
+                            <h2>제출 서류</h2><br>
+                            <c:forEach var="RList" items="${Rlist }">
 
-                        <table class="rlist_table">
-                            <tr>
-                                <th>
-                                    <input type="radio" name="r_uid"
-                                           value="${RList.r_uid}">&nbsp;&nbsp;&nbsp;${RList.r_title }
-                                </th>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <h3 class="blue_a inline"> 이력서 </h3>${RList.r_date } 수정
-                                </td>
-                            </tr>
-                        </table>
-                    </c:forEach>
-                    <div class="padding20"></div>
-                    <input type="submit" value="지원하기" class="org_Btn fullbutton">
+                                <table class="rlist_table">
+                                    <tr>
+                                        <th>
+                                            <input type="radio" name="r_uid"
+                                                   value="${RList.r_uid}"
+                                                   required="required">&nbsp;&nbsp;&nbsp;${RList.r_title }
+                                        </th>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <h3 class="blue_a inline"> 이력서 </h3>${RList.r_date } 수정
+                                        </td>
+                                    </tr>
+                                </table>
+                            </c:forEach>
+                            <div class="padding20"></div>
+                            <input type="submit" value="지원하기" class="org_Btn fullbutton">
 
-                </form>
+                        </form>
+                    </c:when>
+                    <c:otherwise>
+                        <h2>저장된 이력서내역이 없습니다. </h2>
+                        <a href = "/resume/resumeWrite">이력서 작성 바로가기</a>
+                    </c:otherwise>
+                </c:choose>
             </c:when>
             <c:otherwise>
                 <span class="close" title="Close Modal">&times;</span>

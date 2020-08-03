@@ -137,10 +137,10 @@
         </c:when>
 
         <c:otherwise>
-            <div class="main_box_content row">
 
-                <c:forEach var="AList" items="${Alist }">
-                    <div class="app col-md-9">
+            <c:forEach var="AList" items="${Alist }">
+                <div class="main_box_content row appmy">
+                    <div class="app col-md-7">
                         <c:choose>
                             <c:when test="${AList.a_view == 0 }">
                                 <h2 class="inline grey_box">미열람</h2>
@@ -160,16 +160,21 @@
 
                         <br>
                         <br>
-                        <h2>${AList.h_title }</h2>
-                        <h2> º 지원일 : ${AList.a_date }</h2>
-                        <h2> º 지원 부분 : ${AList.h_part }</h2>
-                        <br>
+                        <h3>(주) ${AList.h_name }</h3>
+                        <h1>${AList.h_title }</h1>
+                        <h4> º 지원일 : ${AList.a_date }</h4>
+                        <h4> º 지원 부분 : ${AList.h_part }</h4>
                     </div>
-                    <div class="app_btn col-md-3">
-                        <button id="btnAUpdate_${AList.a_uid}"
+                    <div class="col-md-5">
+                        <button class="app_btn2 inline" id="btnAUpdate_${AList.a_uid}"
                                 onclick="chkUpdateResume(${AList.a_uid },${AList.r_uid })">지원 수정
                         </button>
-                        <button onclick="chkDelete(${AList.a_uid })">지원 취소</button>
+
+
+                        <button class="app_btn2" onclick="chkDelete(${AList.a_uid })">지원 취소</button>
+                    </div>
+                    <div class="col-md-12 ggrey_box">
+                            제출 이력서 : ${AList.r_title} <a href="/app/hireDetail?h_uid=${AList.h_uid }">해당공고 바로가기</a>
                     </div>
 
                     <div id="dlg_write_${AList.a_uid}" class="modal">
@@ -205,9 +210,10 @@
                             </form>
                         </div>
                     </div>
-                </c:forEach>
+                </div>
 
-            </div>
+            </c:forEach>
+
 
         </c:otherwise>
     </c:choose>

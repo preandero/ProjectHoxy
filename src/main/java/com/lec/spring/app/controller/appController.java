@@ -4,6 +4,7 @@ import com.lec.spring.app.*;
 import com.lec.spring.app.domain.AppDTO;
 import com.lec.spring.hire.command.HCommand;
 import com.lec.spring.hire.command.HViewCommand;
+import com.lec.spring.user.domain.ComDTO;
 import com.lec.spring.user.domain.UserDTO;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -50,6 +51,7 @@ public class appController {
         new HViewCommand().excute(model);
         new GCommand().execute(model);
         new RListCommand().execute(model);
+        new CCommand().execute(model);
         return "/hire/hireDetail";
     }
 
@@ -88,9 +90,9 @@ public class appController {
     @RequestMapping("/appcomList")
     public String appcomList(HttpSession session,Model model
             ,String hid,String view, String search) {
-        if (session.getAttribute("userSession") != null) {
-            UserDTO dto = (UserDTO) session.getAttribute("userSession");
-            model.addAttribute("u_uid", dto.getU_uid());
+        if (session.getAttribute("comSession") != null) {
+            ComDTO dto = (ComDTO) session.getAttribute("comSession");
+            model.addAttribute("c_uid", dto.getC_uid());
 
             //공고 선택
             //열람, 미열람
@@ -103,7 +105,7 @@ public class appController {
             return "/application/appcomList";
         }else {
 
-            return "/user/login";
+            return "/com/login";
         }
 
 

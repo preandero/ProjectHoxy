@@ -2,6 +2,7 @@ package com.lec.spring.app.persistence;
 
 import com.lec.spring.app.domain.AppDTO;
 import com.lec.spring.hire.beans.HWriteDTO;
+import com.lec.spring.user.domain.ComDTO;
 
 import java.util.List;
 
@@ -46,6 +47,8 @@ public interface AppDAO {
     int updateByAid2(final int aid);
 
     int selectAppList(final AppDTO dto);
+
+    public ComDTO companyInfo(final int hid);
 
 }
 

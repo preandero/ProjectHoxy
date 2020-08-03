@@ -1,6 +1,7 @@
 package com.lec.spring;
 
 import com.lec.spring.app.ACommand;
+import com.lec.spring.user.domain.ComDTO;
 import com.lec.spring.user.domain.UserDTO;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -25,6 +26,18 @@ public class HomeController {
     public String managerMain(Model model) {
 
         return "managerMain";
+    }
+    @RequestMapping("companyMain")
+    public String companyMain(Model model,  HttpSession session) {
+        if (session.getAttribute("comSession") != null) {
+            ComDTO dto = (ComDTO) session.getAttribute("comSession");
+            model.addAttribute("c_uid", dto.getC_uid());
+            model.addAttribute("c_name", dto.getC_name());
+            return "companyMain";
+        }else{
+            return "com/login";
+        }
+
     }
 
 }
