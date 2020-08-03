@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>    
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
-
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/CSS/woo.css"/>
 
 <c:choose>
 	<c:when test="${empty view || fn:length(view) == 0 }">
@@ -39,7 +39,17 @@
 		학위 : ${view[0].h_degree }<br>
 		근무 형태 : ${view[0].h_workform }<br>
 		기간: ${view[0].h_remainDate}
-		<hr>
+		<hr><br><br>
+
+		<div class="main_box_content1 row">
+			<div class="col-md-1"></div>
+			<img id="hContent" class="col-md-10"
+				 src="${view[0].h_content}">
+			<div class="col-md-1"></div>
+		</div>
+
+
+
 		<br>
 		<button onclick="location.href='update.do?h_uid=${view[0].h_uid }'">수정하기</button>
 		<button onclick="history.back()">이전으로</button>

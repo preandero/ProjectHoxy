@@ -189,6 +189,11 @@ form#frm{
 
 /*      hirelist */
 
+#HessionHide{
+    display: none;
+}
+
+
 #pageinfo{
     font-weight: 900;
     color: darkslateblue;
@@ -223,8 +228,27 @@ button#upbtn{
     background-color: coral;
 
 }
+
+#hcnt{
+    font-size: small;
+    color: firebrick;
+    font-weight: 900;
+    font-family: inherit;
+}
 /*      hirelist 끝*/
 
+
+/* hireDetail*/
+
+#main_box_content1{
+    margin: 10px;
+    padding: 10px;
+    border: 0;
+
+}
+
+
+/* hireDetail끝*/
 
 
 /* 페이징 */

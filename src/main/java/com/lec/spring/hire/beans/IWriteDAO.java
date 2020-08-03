@@ -15,7 +15,7 @@ public interface IWriteDAO {
 	public HWriteDTO selectByUid(final int h_uid);
 	public int update(int h_uid,@Param("a") HWriteDTO dto);
 	public int deleteByUid(final int h_uid);
-
+	public int incViewCnt(int h_uid); // 조회수 증가
 
 
 

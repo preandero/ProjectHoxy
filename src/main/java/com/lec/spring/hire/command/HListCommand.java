@@ -27,8 +27,9 @@ public class HListCommand implements Command {
 		int writePages = 7;  // 한 [페이징] 에 몇개의 '페이지' 를 표시? (디폴트 10)
 		int totalCnt = 0;    // 글은 총 몇개인지?
 		int totalPage = 0;   // 총 몇 '페이지' 분량인지?
-
 		String param;
+
+
 
 		// page 값 : 현재 몇 페이지?
 		param = request.getParameter("page");
@@ -50,6 +51,10 @@ public class HListCommand implements Command {
 			}
 		}
 
+		param = request.getParameter("c_uid");
+		int c_uid = Integer.parseInt(param);
+
+
 
 		try {
 			// 글 전체 개수 구하기
@@ -60,10 +65,11 @@ public class HListCommand implements Command {
 
 			// 몇번재 row 부터 ?
 			int fromRow = (page - 1) * pageRows + 1;  // ORACLE 은 1부터 ROWNUM시작
-			//int fromRow = (page - 1) * pageRows;  // MySQL 은 0부터 시작
+
 
 			//dao = new WriteDAO();
-			arr = dao.selectHireList(fromRow,pageRows);
+//			arr = dao.selectHireList(c_uid);
+			arr = dao.selectHireList(c_uid);
 
 			if(arr == null) {
 				message.append("[리스트할 데이터가 없습니다]");

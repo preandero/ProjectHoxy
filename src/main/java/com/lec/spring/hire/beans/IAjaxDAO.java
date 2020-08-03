@@ -17,8 +17,10 @@ public interface IAjaxDAO {
     );
 
     public List<HWriteDTO> selectHireList(
-            @Param("from") int from,
-            @Param("pageRows") int pageRows
+            int c_uid
+//            @Param("from") int from,
+//            @Param("pageRows") int pageRows
+//            @Param("c_uid") int c_uid
     );
 
     public int deleteByUid(int uid);
