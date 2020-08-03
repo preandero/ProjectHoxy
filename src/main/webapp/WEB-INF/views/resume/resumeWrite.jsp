@@ -29,7 +29,7 @@ To change this template use File | Settings | File Templates.
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/CSS/resumeWrite.css"/>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/CSS/yoondoo.css"/>
-
+    <script src="https://kit.fontawesome.com/a076d05399.js"></script>
 </head>
 <body>
 <div>
@@ -120,7 +120,7 @@ To change this template use File | Settings | File Templates.
                         <option value="3">재직중</option>
                     </select>
 
-<%--                <input class="container row" type="hidden" id="resumeStatus" name="resumeStatus" value="1">--%>
+                <input class="container row" type="hidden" id="resumeStatus" name="resumeStatus" value="1">
 
 <%--                        <form id="uploadForm" enctype="multipart/form-data" method="post">--%>
 <%--                            <div class="custom-file row ml-3">--%>
