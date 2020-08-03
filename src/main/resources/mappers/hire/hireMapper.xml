@@ -17,16 +17,19 @@
 	</select>
 
 
-
     <select id="adminselect"
             resultType="com.lec.spring.hire.beans.HWriteDTO">
 		SELECT h_uid, h_name , h_part  , to_date(h_regDate, 'YYYY-MM-DD')-round(sysdate) remainDate FROM Hire ORDER BY  remainDate ASC
 	</select>
 
-	<select id="selectByUid"
-			resultType="com.lec.spring.hire.beans.HWriteDTO">
-		<![CDATA[SELECT h.* , to_date(H_REGDATE, 'YYYY-MM-DD')-round(sysdate) h_remainDate FROM Hire h WHERE h_uid=#{param}
-		]]>
+    <select id="selectByUid"
+            resultType="com.lec.spring.hire.beans.HWriteDTO">
+		<![CDATA[
+
+                SELECT h.* , to_date(H_REGDATE, 'YYYY-MM-DD')-round(sysdate) h_remainDate FROM Hire h WHERE h_uid=#{param}
+
+
+        ]]>
 	</select>
 
     <insert id="insert" flushCache="true"
@@ -35,9 +38,9 @@
 			INSERT
 		INTO
 		Hire
-		(C_UID,h_uid,h_name,h_title, h_salary,h_position1, h_position2, h_part,h_career,h_degree,h_workform,h_upDate,h_regDate)
+		(c_uid,h_uid,h_name,h_title, h_salary,h_content,h_position1, h_position2, h_part,h_career,h_degree,h_workform,h_upDate,h_regDate)
 		VALUES
-		(#{C_UID},hire_seq.nextval,#{h_name},#{h_title},#{h_salary},#{h_position1} ,#{h_position2}, #{h_part},#{h_career},#{h_degree},#{h_workform},#{h_upDate},#{h_regDate})
+		(#{c_uid},hire_seq.nextval,#{h_name},#{h_title},#{h_salary},#{h_content},#{h_position1} ,#{h_position2}, #{h_part},#{h_career},#{h_degree},#{h_workform},#{h_upDate},#{h_regDate})
 	</insert>
 
     <!-- 	 <insert id="insert" flushCache="true">
@@ -59,6 +62,12 @@
 		DELETE FROM Hire WHERE
 		h_uid = #{param1}
 	</delete>
+
+
+    <update id="incViewCnt" flushCache="true">
+    		UPDATE Hire SET h_cnt = h_cnt + 1 WHERE h_uid = #{param1}
+
+    </update>
 
 
 </mapper>

@@ -27,6 +27,7 @@ public class HViewCommand implements HCommand {
 		IWriteDAO dao = C.sqlSession.getMapper(IWriteDAO.class);
 
 		HWriteDTO dto= dao.selectByUid(h_uid);
+		dao.incViewCnt(h_uid);
 		model.addAttribute("view", Arrays.asList(dto));
 
 	}

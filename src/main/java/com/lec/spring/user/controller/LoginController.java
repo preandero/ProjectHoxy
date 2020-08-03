@@ -1,7 +1,9 @@
 package com.lec.spring.user.controller;
 
+import com.lec.spring.user.domain.AdmDTO;
 import com.lec.spring.user.domain.ComDTO;
 import com.lec.spring.user.domain.UserDTO;
+import com.lec.spring.user.service.AdmService;
 import com.lec.spring.user.service.ComLoginService;
 import com.lec.spring.user.service.UserLoginService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,6 +28,18 @@ public class LoginController {
     @Autowired
     private ComLoginService comLoginService;
 
+    @Autowired
+    private AdmService admService;
+
+    @RequestMapping(value = "/user/loginchoice", method = RequestMethod.GET)
+    public String userLoginCh(HttpSession session, Model model) {
+
+        // 세션만료
+        session.invalidate();
+
+        return "user/loginchoice";
+    }
+
     @RequestMapping(value = "/user/login", method = RequestMethod.GET)
     public String userLogin(HttpSession session, Model model) {
 
@@ -39,6 +53,12 @@ public class LoginController {
     public String comLogin(HttpSession session, Model model){
         session.invalidate();
         return "com/login";
+    }
+
+    @RequestMapping(value = "/admin/login", method = RequestMethod.GET)
+    public String admLogin(HttpSession session, Model model){
+        session.invalidate();
+        return "admin/login";
     }
 
     @RequestMapping(value = "/user/login", method = RequestMethod.POST)
@@ -67,6 +87,18 @@ public class LoginController {
         return result;
     }
 
+    @RequestMapping(value = "/admin/login", method = RequestMethod.POST)
+    @ResponseBody
+    public int admLoginPass(AdmDTO admDTO, HttpSession httpSession, HttpServletRequest request, HttpServletResponse response, Model model){
+        String adm_check = request.getParameter("remember_admId");
+
+        int result = admService.admLogin_service(admDTO, httpSession, adm_check, response);
+
+        System.out.println(result);
+
+        return result;
+    }
+
     @RequestMapping(value = "/logout")
     public ModelAndView logout(HttpSession session){
         session.invalidate();
@@ -76,7 +108,6 @@ public class LoginController {
 
     @RequestMapping(value = "user/regSuccess", method = RequestMethod.GET)
     public String user() {
-
         return "user/regSuccess";
     }
 

@@ -11,6 +11,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import javax.servlet.http.HttpSession;
+
 @Controller
 @RequestMapping("/hire")
 public class HireController {
@@ -32,40 +34,24 @@ public class HireController {
 
 //    @RequestMapping("/hirelist.do")
 //    public String list(Model model) {
-//        command = new BListCommand();
+//        command = new HListCommand();
 //        command.excute(model);
 //        return "hire/hirelist";
 //    }
 
-    @RequestMapping(value = "/hirelist.do")
-    public String hirelist() {
 
-        return "hire/hirelist";
-    }
 
     @RequestMapping(value = "/hireSearch.do")
     public String hireSearch() {
 
         return "hire/hireSearch";
 
-    }
+    }    @RequestMapping(value = "/hirelist.do")
+    public String hirelist() {
 
-    @RequestMapping(value = "/session.do")
-    public String session() {
-        return "hire/session";
-
-    }
-    @RequestMapping(value = "/sessionCreate.do")
-    public String sessionCreate() {
-        return "hire/sessionCreate";
+        return "hire/hirelist";
 
     }
-    @RequestMapping(value = "/sessionDelete.do")
-    public String sessionDelete() {
-        return "hire/sessionDelete";
-
-    }
-
 
 
     @RequestMapping("/write.do")

@@ -147,13 +147,13 @@
     <div id="main_header_search" class="div_1260">
         <form class="row col-md-10" name='frm' method='get' action='list.do'>
             <select id="localSearch" name="localSearch" class="col-md-5">
-                <option value="강남">강남</option>
-                <option value="2">역삼</option>
-                <option value="3">수원</option>
-                <option value="서울">서울</option>
-                <option value="5">서초</option>
-                <option value="6">방배</option>
-                <option value="7">교대</option>
+                <option value="서울시">서울시</option>
+                <option value="경기도">경기도</option>
+                <option value="부산광역시">부산광역시</option>
+                <option value="인천광역시">인천광역시</option>
+                <option value="대전광역시">대전광역시</option>
+                <option value="대구광역시">대구광역시</option>
+                <option value="울산광역시">울산광역시</option>
                 <option value="" selected> 지역 선택</option>
             </select>
             <input type="text" class="col-md-5" type="text" name='searchWord' id="searchWord"

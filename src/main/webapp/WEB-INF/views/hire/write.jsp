@@ -1,3 +1,4 @@
+<%@ page import="com.lec.spring.user.domain.ComDTO" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
@@ -64,7 +65,37 @@
 </style>
 
 <title>기업 공고 등록</title>
+
 <body>
+<%
+    int CID = 0;
+    String CeoName="";
+    String CName="";
+    if (session.getAttribute("comSession") == null) {
+%>
+
+<script>
+    alert('로그인이 필요한 페이지 입니다');
+    location.href = "/com/login"
+</script>
+
+<%
+    } else {
+
+        ComDTO dto = (ComDTO) session.getAttribute("comSession");
+        CID = dto.getC_uid();
+        CeoName = dto.getC_ceoName();
+        CName = dto.getC_name();
+    }
+%>
+
+<div id="HessionHide">
+    <div id="CID"><%=CID%></div>
+    <div id="CeoName"><%=CeoName%></div>
+    <div id="CName"><%=CName%></div>
+</div>
+
+
 <div id="main_header">
     <div class="div_1260 row">
         <div id="main_header_log" class="col-md-2"></div>
@@ -150,25 +181,26 @@
         <div id="hirewrite" class="col-md-8 row">
             <form id="frm" name="frm" action="writeOk.do" method="post" onsubmit="return chkSubmit()">
                 <div class="col-md-12 row">
-                    기업명:<input class="col-md-5" type="text" name="C_UID"/>
-
-                    기업명:<input class="col-md-5" type="text" name="C_UID"/>
+                    기업명:<input class="col-md-5" type="text" name="h_name" value="<%=CName%>"/>
+                    <input type="hidden" name="c_uid" value="<%=CID%>"/>
                 </div>
                 <br>
                 공고 제목:
                 <input class="col-md-8" type="text" name="h_title"/><br><br>
                 급여:
                 <input class="col-md-5" type="text" name="h_salary"/><br><br>
+                내용:
+                <input class="col-md-8" type="text" name="h_content"/><br>
                 <br>
                 근무지역:
                 <select class="col-md-4" id="h_position1" name="h_position1">
-                    <option value="1">강남</option>
-                    <option value="2">역삼</option>
-                    <option value="3">수원</option>
-                    <option value="4">서울</option>
-                    <option value="5">서초</option>
-                    <option value="6">방배</option>
-                    <option value="7">교대</option>
+                    <option value="1">서울시</option>
+                    <option value="2">경기도</option>
+                    <option value="3">부산광역시</option>
+                    <option value="4">인천광역시</option>
+                    <option value="5">대전광역시</option>
+                    <option value="6">대구광역시</option>
+                    <option value="7">을산광역시</option>
                     <option value="" selected>지역 선택</option>
                 </select>
                 <input class="col-md-6" type="text" name="h_position2" placeholder="상세 주소입력" id="h_position2"/><br>
