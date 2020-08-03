@@ -41,4 +41,8 @@
     <select id="loginCom" resultType="com.lec.spring.user.domain.ComDTO">
         select * from company where c_id = #{c_id}
     </select>
+
+    <select id="checkOverId" parameterType="string" resultType="int">
+        Select count(*) from company where c_id = #{c_id}
+    </select>
 </mapper>

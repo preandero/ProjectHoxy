@@ -27,6 +27,7 @@ public class UserLoginService {
         System.out.println("UserLoginService // 로그인 객체 확인 userVO : " + userDTO);
         String u_id = userDTO.getU_id();
         String u_pw = userDTO.getU_pw();
+        System.out.println(u_id + " " + u_pw);
 
         userDao = userSqlSession.getMapper(UserDAO.class);
         UserDTO dto = userDao.loginUser(u_id);
@@ -49,24 +50,25 @@ public class UserLoginService {
         //    return result;
         //}
 
-        // 입력한 아이디와 스토어id값을 통해 정보가 존재 할 경우
+        // 입력한 아이디 통해 정보가 존재 할 경우
         if (dto != null) {
-            // 아이디,비번,스토어id가 모두 같은경우
+            // 아이디,비번 모두 같은경우
             System.out.println("1단계");
             if (dto.getU_id().equals(u_id) && dto.getU_pw().equals(u_pw)) {
                 System.out.println("2단계");
                 // 쿠키 체크 검사
                 Cookie cookie = new Cookie("user_check", u_id);
-                if (user_check.equals("true")) {
-                    response.addCookie(cookie);
-                    System.out.println("3단계-쿠키 아이디저장 O");
+                System.out.println(cookie);
+                //if (user_check.equals("true")) {
+                 //   response.addCookie(cookie);
+                 //   System.out.println("3단계-쿠키 아이디저장 O");
                     // 쿠키 확인
-                    // System.out.println("Service check" + cookie);
-                } else {
-                    System.out.println("3단계-쿠키 아이디저장 X");
-                    cookie.setMaxAge(0);
-                    response.addCookie(cookie);
-                }
+                //     System.out.println("Service check" + cookie);
+                //} else {
+                //    System.out.println("3단계-쿠키 아이디저장 X");
+                //    cookie.setMaxAge(0);
+                //    response.addCookie(cookie);
+                //}
 
                 //System.out.println("3단계-로그인단계");
                 // 세션 저장하기 전에 비밀번호 가리기
