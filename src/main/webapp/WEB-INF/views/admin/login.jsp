@@ -255,7 +255,7 @@
                     $('#spanLoginCheck').text('로그인 정보를 정확히 입력해주세요.');
                 } else { //로그인 성공시
                     console.log(data);
-                    location.href = '${pageContext.request.contextPath}/';
+                    location.href = '${pageContext.request.contextPath}/managerMain';
                 }
             }
         });
