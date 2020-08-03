@@ -100,24 +100,25 @@
                     <h3>검색조건</h3>
                     <h3>(최근 2년)</h3>
                 </div>
-                <div class="col-md-9">
-                    <h3 class="inline" >공고 선택</h3>
-                    <select name = "hid">
-                        <option value="0">공고를 선택하세요</option>
-                    <c:forEach var="HList" items="${Hlist }">
-                        <option value="${HList.h_uid}">[ ${HList.h_uid} ] ${HList.h_name} : ${HList.h_title}</option>
+                <div class="col-md-9 row">
+                    <h3 class="inline col-md-3">공고 선택</h3>
+                    <select class= "appcomsel col-md-8 search_content_com" name="hid">
+                        <option value="0" >공고를 선택하세요</option>
+                        <c:forEach var="HList" items="${Hlist }">
+                            <option value="${HList.h_uid}">[ ${HList.h_uid} ] ${HList.h_name}
+                                : ${HList.h_title}</option>
 
-                    </c:forEach>
+                        </c:forEach>
                     </select>
-                    <br>
-                    <h3 class="inline">열람 여부</h3>
-                    <select class="inline" name="view">
+                    <div class="col-md-12"></div>
+                    <h3 class="inline col-md-3">열람 여부</h3>
+                    <select class="inline col-md-2" name="view">
                         <option value="2">모두</option>
                         <option value="1">열람</option>
                         <option value="0">미열람</option>
                     </select>
-                    <h3 class="inline">검색</h3>
-                    <input type="text" name="search" class="inline search_content" placeholder="내용을 입력해 주세요">
+                    <h3 class="inline col-md-2">검색</h3>
+                    <input type="text" name="search" class="inline search_content_com col-md-4" placeholder="내용을 입력해 주세요">
                 </div>
                 <div class="col-md-1">
                     <button class="search" type="submit">검색</button>
@@ -129,86 +130,92 @@
         <h2 class="inline"> 건</h2>
     </div>
     <c:choose>
-        <c:when test="${fn:length(Alist) == 0 }">
-            <div class="main_box_content center">
+    <c:when test="${fn:length(Alist) == 0 }">
+        <div class="main_box_content center">
 
-                <h2> 지원한 내역이 없습니다. </h2>
+            <h2> 지원한 내역이 없습니다. </h2>
 
+        </div>
+    </c:when>
+
+
+    <c:otherwise>
+    <div class="main_box_content row" id = "comaList">
+        <h1 class="col-md-1">상태</h1>
+        <h1 class="col-md-3">공고</h1>
+        <h1 class="col-md-1">NO</h1>
+        <h1 class="col-md-2">이름</h1>
+        <h1 class="col-md-1">직무</h1>
+        <h1 class="col-md-2">지원시간</h1>
+        <h1 class="col-md-2"></h1>
+        <c:forEach var="AList" items="${Alist }">
+            <c:choose>
+                <c:when test="${AList.a_view == 0 }">
+                    <h2 id="viewBtn_${AList.a_uid }" class="col-md-1 grey_box">미열람</h2>
+                </c:when>
+                <c:otherwise>
+                    <h2 class="col-md-1 grey_box red_box">열람</h2>
+                </c:otherwise>
+            </c:choose>
+            <h3 class="bold col-md-3">${AList.h_title }</h3>
+            <h3 class="col-md-1">${AList.a_uid }</h3>
+            <h3 class="col-md-2">${AList.u_name }</h3>
+            <h3 class="col-md-1">${AList.h_part }</h3>
+            <h3 class="col-md-2">${AList.a_date }</h3>
+            <div class="col-md-2">
+                <button class="app_btn" id="btnAUpdate_${AList.a_uid}"
+                >상세 보기
+                </button>
             </div>
-        </c:when>
-
-        <c:otherwise>
-            <div class="main_box_content row">
-
-                <c:forEach var="AList" items="${Alist }">
-
-                    <div class="app col-md-9">
-
-                        <c:choose>
-                            <c:when test="${AList.a_view == 0 }">
-                                <h2 id ="viewBtn_${AList.a_uid }" class="inline grey_box">미열람</h2>
-                            </c:when>
-                            <c:otherwise>
-                                <h2 class="inline grey_box red_box">열람</h2>
-                            </c:otherwise>
-                        </c:choose>
-
-                        <br>
-                        <br>
-                        <h2>${AList.h_title }</h2>
-                        <h2>지원번호 ${AList.a_uid }</h2>
-                        <h2>이름 ${AList.u_name }</h2>
-                        <h2 class="blue_a"> º 지원일 : ${AList.a_date }</h2>
-                        <h2> º 지원 부분 : ${AList.h_part }</h2>
-                        <br>
-                    </div>
-                    <div class="app_btn col-md-3">
-                        <button id="btnAUpdate_${AList.a_uid}"
-                               >지원 열람
-                        </button>
-                    </div>
-
-                    <div id="dlg_write_${AList.a_uid}" class="modal">
-                        <div class="modal-content">
-                            <span class="close" title="Close Modal">&times;</span>
-                            <h1 class="hire_title">지원 내역</h1><%--TODO--%>
-                                <input type="hidden" name="a_uid" value="${AList.a_uid}">
-                                <h2>지원 부분</h2>
-                                <h2 class="bold">${AList.h_title }</h2>
-                                <br>
-                                <h2>직무</h2>
-                                <h2 class="bold">${AList.h_part }</h2>
-                                <br>
-                                <h2>제출 서류</h2>
-
-
-                                    <table class="rlist_table">
-                                        <tr>
-                                            <th>
-                                               &nbsp;&nbsp;${AList.r_title }
-                                            </th>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                <h3 class="blue_a inline"> 이력서 </h3>${AList.r_date } 수정
-                                            </td>
-                                        </tr>
-                                    </table>
-
-                                <div class="padding20"></div>
-                                <input type="button" value="이력서 열람하기" class="org_Btn fullbutton"  onclick="upView(${AList.a_uid })">
-                        </div>
-                    </div>
-                </c:forEach>
-
-            </div>
-
-        </c:otherwise>
-    </c:choose>
-    <div class="main_box_content">
-
-
+            <div class="padding20 col-md-12"></div>
+        </c:forEach>
     </div>
+
+    <c:forEach var="AList" items="${Alist }">
+        <div id="dlg_write_${AList.a_uid}" class="modal">
+            <div class="modal-content">
+                <span class="close" title="Close Modal">&times;</span>
+                <h1 class="hire_title">지원 내역</h1><%--TODO--%>
+                <input type="hidden" name="a_uid" value="${AList.a_uid}">
+                <h2>지원 부분</h2>
+                <h2 class="bold">${AList.h_title }</h2>
+                <br>
+                <h2>직무</h2>
+                <h2 class="bold">${AList.h_part }</h2>
+                <br>
+                <h2>제출 서류</h2>
+
+
+                <table class="rlist_table">
+                    <tr>
+                        <th>
+                            &nbsp;&nbsp;${AList.r_title }
+                        </th>
+                    </tr>
+                    <tr>
+                        <td>
+                            <h3 class="blue_a inline"> 이력서 </h3>${AList.r_date } 수정
+                        </td>
+                    </tr>
+                </table>
+
+                <div class="padding20"></div>
+                <input type="button" value="이력서 열람하기" class="org_Btn fullbutton"
+                       onclick="upView(${AList.a_uid })">
+            </div>
+        </div>
+
+
+    </c:forEach>
+
+</div>
+
+</c:otherwise>
+</c:choose>
+<div class="main_box_content">
+
+
+</div>
 
 
 </div>

@@ -9,7 +9,7 @@ public class AListCommand2 implements ACommand {
     @Override
     public void execute(Model model) {
         Map<String, Object> map = model.asMap();
-        int c_uid = (Integer) map.get("u_uid");
+        int c_uid = (Integer) map.get("c_uid");
         //period, view, search
 
         int hid = 0;

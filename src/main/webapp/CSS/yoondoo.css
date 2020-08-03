@@ -34,6 +34,22 @@
     padding: 5px;
     border-radius: 3px;
     margin-bottom: 10px;
+    text-align: center;
+    width: 90%;
+    height: auto;
+}
+.ggrey_box{
+    border-bottom: 1px solid #bbbbbb;
+    background-color: rgba(245,245,245,0.8);
+    padding: 10px;
+    padding-left: 20px;
+    color: #555555;
+    font-size: x-small;
+    font-weight: bold;
+
+}
+.ggrey_box a{
+    float: right;
 }
 .red_box {
     background-color: rgba(230,0,0,0.5);
@@ -94,6 +110,9 @@
 }
 .padding20{
     padding: 20px;
+}
+.padding10{
+    padding: 10px;
 }
 .margin_auto{
     margin: 20px auto;
@@ -359,17 +378,46 @@ div.select_option{
     width: max-content;
 }
 
-.app_btn button{
-    padding: 8px 20px ;
+.app_btn{
+    padding: 4px 8px ;
     background-color: white;
     border: 1px solid #888888;
+    color: #888888;
     left: 0px;
     margin: 5px;
+    font-size: medium;
+    border-radius: 5px;
+}
+.app_btn2{
+    padding: 8px 16px ;
+    background-color: white;
+    border: 1px solid #444444;
+    color: #444444;
+    float: right;
+    margin: 5px;
+    font-size: medium;
+    margin-right: 20px;
 }
 
 .app {
 
     padding: 20px;
+}
+div.app h1{
+    font-size: medium;
+    font-weight: bold;
+    color: #333333;
+    margin-bottom: 8px;
+}
+div.app h3{
+    font-size: small;
+    margin-bottom: 8px
+}
+div.app h4{
+    font-size: smaller;
+    margin-bottom: 8px;
+    margin-left: 5px;
+    color: #444444;
 }
 
 table.rlist_table{
@@ -454,5 +502,66 @@ div.nav_box4{
 }
 
 
+#nav_position_4 h2{
+    font-size: small;
+}
+#conpanyInfo_d h1{
+    font-size: large;
+    font-weight: normal;
+    color: #333333;
+}
+#conpanyInfo_d{
+    border: 1px solid #cccccc;
+    border-top: 2px solid #999999;
+    margin: 30px auto;
+    padding: 30px 20px;
+}
 
+div.org_box{
 
+    border: 2px solid #FAD291;
+    margin: 0 auto;
+    margin-top: 60px;
+
+}
+div.org_box h3{
+    font-size: medium;
+    margin: 10px 0;
+}
+div.org_bottom{
+    background-color: #FAD291;
+    border: 2px solid #FAD291;
+    color: white;
+    font-size: small;
+    padding: 10px;
+    width: 100%;
+    margin: 0 auto;
+}
+
+.appcomsel{
+    margin-bottom: 10px;
+}
+.search_content_com{
+    padding: 10px;
+
+}
+div#comaList h3{
+    font-size: medium;
+    text-align: center;
+    margin: auto auto;
+}
+
+div#comaList h3.bold{
+    font-size: medium;
+    font-weight: 500;
+}
+div#comaList h1{
+    font-size: small;
+    font-weight: 100;
+    border-right: #888888;
+    margin: 20px auto;
+    text-align: center;
+    border-right: 2px solid white;
+    background-color: #FACD8760;
+    padding: 10px;
+}

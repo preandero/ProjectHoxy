@@ -20,10 +20,8 @@ public class RListCommand implements ACommand{
         ListDAO listDAO = C.sqlSession.getMapper(ListDAO.class);
         if(map.get("u_name")!=null) {
             int u_uid = (Integer) map.get("u_uid");
-            System.out.println("으악"+u_uid);
             model.addAttribute("Rlist", dao.selectRByUid(u_uid));
         }else{
-            System.out.println("으악");
             model.addAttribute("loginChk","false");
         }
         int h_uid = (Integer) map.get("h_uid");
@@ -90,7 +88,8 @@ public class RListCommand implements ACommand{
         */
 
 
-        List<AppDTO> toeic =  dao.toeic(h_uid);//토익
+        List<AppDTO> toeic = age;//토익
+        //List<AppDTO> toeic =  dao.toeic(h_uid);//토익
 
         int toeic500=0;
         int toeic600=0;
@@ -143,7 +142,8 @@ public class RListCommand implements ACommand{
 */
 
 
-        List<AppDTO> career =  dao.career(h_uid);//토익
+        List<AppDTO> career =  age;
+        //List<AppDTO> career =  dao.career(h_uid);//토익
 
         int career0=0;
         int career1=0;
