@@ -113,28 +113,34 @@ function chkSubmit() {
 
 
     if (h_name == "") {
-        alert("이름 반드시 작성해야 합니다");
+        alert("기업명 반드시 작성해야 합니다");
         frm["h_title"].focus();
         return false;
     }
     if (h_title == "") {
-        alert("이름 반드시 작성해야 합니다");
+        alert("공고 제목 반드시 작성해야 합니다");
         frm["h_title"].focus();
         return false;
     }
     if (h_salary == "") {
-        alert("직책 반드시 작성해야 합니다");
+        alert("급여 반드시 작성해야 합니다");
         frm["h_salary"].focus();
         return false;
     }
     if (h_position2 == "") {
-        alert("직책 반드시 작성해야 합니다");
+        alert("모집내용 반드시 작성해야 합니다");
         frm["h_position2"].focus();
         return false;
     }
     if (h_part == "") {
-        alert("직책 반드시 작성해야 합니다");
+        alert("직무 반드시 작성해야 합니다");
         frm["h_part"].focus();
+        return false;
+    }
+
+    if(h_content ==""){
+        ("모집내용 반드시 작성해야 합니다");
+        frm["h_content"].focus();
         return false;
     }
 
@@ -216,17 +222,17 @@ function updateList(jsonObj) {
         $("#list tbody").html(result);  // 테이블 업데이트!
 
         // 페이지 정보 업데이트
-        $("#pageinfo").text(jsonObj.page + "/" + jsonObj.totalpage + "페이지, " + jsonObj.totalcnt + "개의 글");
-
+        // $("#pageinfo").text(jsonObj.page + "/" + jsonObj.totalpage + "페이지, " + jsonObj.totalcnt + "개의 글");
+        //
 
         // pageRows
-        var txt = "<select id='rows' onchange='changePageRows()'>\n";
-        txt += "<option " + ((window.pageRows == 5) ? "selected" : "") + " value='5'>5개씩</option>\n";
-        txt += "<option " + ((window.pageRows == 10) ? "selected" : "") + " value='10'>10개씩</option>\n";
-        txt += "<option " + ((window.pageRows == 15) ? "selected" : "") + " value='15'>15개씩</option>\n";
-        txt += "<option " + ((window.pageRows == 20) ? "selected" : "") + " value='20'>20개씩</option>\n";
-        txt += "</select>\n";
-        $("#pageRows").html(txt);
+        // var txt = "<select id='rows' onchange='changePageRows()'>\n";
+        // txt += "<option " + ((window.pageRows == 5) ? "selected" : "") + " value='5'>5개씩</option>\n";
+        // txt += "<option " + ((window.pageRows == 10) ? "selected" : "") + " value='10'>10개씩</option>\n";
+        // txt += "<option " + ((window.pageRows == 15) ? "selected" : "") + " value='15'>15개씩</option>\n";
+        // txt += "<option " + ((window.pageRows == 20) ? "selected" : "") + " value='20'>20개씩</option>\n";
+        // txt += "</select>\n";
+        // $("#pageRows").html(txt);
 
 
         // 페이징 업데이트
@@ -243,20 +249,20 @@ function updateList(jsonObj) {
 
 
 function deleteUid(h_uid) {
-    var c = $.trim($('#a').html());
-    if (!confirm(h_uid + "글을 삭제 하시겠습니까?")) return false;
+    var cuid = document.getElementById("CID").innerText;
+    if (!confirm( "선택한 공고를 삭제 하시겠습니까?")) return false;
 
     // POST 방식
     $.ajax({
         url: "deleteOk.ajax",
         type: "POST",
-        data: "uid=" + h_uid,
+        data: "h_uid=" + h_uid,
         cache: false,
         success: function (data, status) {
             if (status == "success") {
                 if (data.status == "OK") {
                     alert("DELETE 성공" + data.count + "개");
-                    loadPage(c); // 현재 페이지 리로딩
+                    loadPage(cuid); // 현재 페이지 리로딩
                 } else {
                     alert("DELETE 실패" + data.message);
 
@@ -319,10 +325,62 @@ function deleteUid(h_uid) {
 //
 //
 // } // end buildPagination()
+//
+//
+// function changePageRows() {
+//     window.pageRows = $("#rows").val();
+//     loadPage(window.page);
+// }
+//
+//
+//
 
 
-function changePageRows() {
-    window.pageRows = $("#rows").val();
-    loadPage(window.page);
+function chkUpdate() {
+    frm = document.forms['chkUpdate'];
+    var h_uid=frm["h_uid"].value.trim();
+    var h_name = frm["h_name"].value.trim();
+    var h_title = frm["h_title"].value.trim();
+    var h_career = frm["h_career"].value.trim();
+    var h_position1 = frm["h_position1"].value.trim();
+    var h_position2 = frm["h_position2"].value.trim();
+    var h_part = frm["h_part"].value.trim();
+    var h_degree= frm["h_degree"].value.trim();
+    var h_workform = frm["h_workform"].value.trim();
+    var h_salary= frm["h_salary"].value.trim();
+    var h_content= frm["h_content"].value.trim();
+    var h_upDate= frm["h_upDate"].value.trim();
+    var h_regDate= frm["h_regDate"].value.trim();
+
+    if (h_name == "") {
+        alert("기업명 반드시 작성해야 합니다");
+        frm["h_title"].focus();
+        return false;
+    }
+    if (h_title == "") {
+        alert("공고 제목 반드시 작성해야 합니다");
+        frm["h_title"].focus();
+        return false;
+    }
+    if (h_salary == "") {
+        alert("급여 반드시 작성해야 합니다");
+        frm["h_salary"].focus();
+        return false;
+    }
+    if (h_position2 == "") {
+        alert("모집내용 반드시 작성해야 합니다");
+        frm["h_position2"].focus();
+        return false;
+    }
+    if (h_part == "") {
+        alert("직무 반드시 작성해야 합니다");
+        frm["h_part"].focus();
+        return false;
+    }
+    if(h_content ==""){
+        ("모집내용 반드시 작성해야 합니다");
+        frm["h_content"].focus();
+        return false;
+    }
+    return true;
 }
-

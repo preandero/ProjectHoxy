@@ -58,7 +58,7 @@ public class HListCommand implements Command {
 
 		try {
 			// 글 전체 개수 구하기
-			totalCnt = dao.countAll();
+			totalCnt = dao.hcountAll();
 
 			// 총 몇 페이지 분량인가?
 			totalPage = (int)Math.ceil(totalCnt / (double)pageRows);

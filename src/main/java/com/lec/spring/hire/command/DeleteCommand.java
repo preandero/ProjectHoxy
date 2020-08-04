@@ -19,11 +19,11 @@ public class DeleteCommand implements Command {
 		
 		String param;
 		
-		param = request.getParameter("uid");
-		int uid = Integer.parseInt(param);
+		param = request.getParameter("h_uid");
+		int h_uid = Integer.parseInt(param);
 		
 		try {
-			cnt = dao.deleteByUid(uid);
+			cnt = dao.deleteByUid(h_uid);
 			if(cnt == 0) {
 				message.append("[트랙잭셕 실패: 0 delete");
 			} else {

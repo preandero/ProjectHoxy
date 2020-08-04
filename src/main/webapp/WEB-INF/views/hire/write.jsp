@@ -194,13 +194,13 @@
                 <br>
                 근무지역:
                 <select class="col-md-4" id="h_position1" name="h_position1">
-                    <option value="1">서울시</option>
-                    <option value="2">경기도</option>
-                    <option value="3">부산광역시</option>
-                    <option value="4">인천광역시</option>
-                    <option value="5">대전광역시</option>
-                    <option value="6">대구광역시</option>
-                    <option value="7">을산광역시</option>
+                    <option value="서울시">서울시</option>
+                    <option value="경기도">경기도</option>
+                    <option value="부산광역시">부산광역시</option>
+                    <option value="인천광역시">인천광역시</option>
+                    <option value="대전광역시">대전광역시</option>
+                    <option value="대구광역시">대구광역시</option>
+                    <option value="을산광역시">을산광역시</option>
                     <option value="" selected>지역 선택</option>
                 </select>
                 <input class="col-md-6" type="text" name="h_position2" placeholder="상세 주소입력" id="h_position2"/><br>
@@ -216,12 +216,12 @@
                 <hr>
 
                 경력:
-                <input type="checkbox" name="h_career" value="무관"/>무관(신입/경력에 상관없이 모집)
-                <input type="checkbox" name="h_career" value="신입"/>신입
-                <input type="checkbox" name="h_career" value="경력"/>경력
+                <input type="radio" name="h_career" value="무관" required/>무관(신입/경력에 상관없이 모집)
+                <input type="radio" name="h_career" value="신입"/>신입
+                <input type="radio" name="h_career" value="경력"/>경력
 
-                <!-- <input type="checkbox" name="career" value="mango"/>3년이상
-                <input type="checkbox" name="career" value="melon"/
+                <!-- <input type="radio" name="career" value="mango"/>3년이상
+                <input type="radio" name="career" value="melon"/
 
                 1,2,번호로 중복값가져오기
                 >메론 -->
@@ -229,27 +229,27 @@
                 <br>
                 <hr>
                 학력:
-                <input type="checkbox" name="h_degree" value="학력무관"/>학력무관
-                <input type="checkbox" name="h_degree" value="고졸"/>고졸
-                <input type="checkbox" name="h_degree" value="대졸"/>대졸
-                <input type="checkbox" name="h_degree" value="초대졸"/>초대졸
+                <input type="radio" name="h_degree" value="학력무관" required/>학력무관
+                <input type="radio" name="h_degree" value="고졸"/>고졸
+                <input type="radio" name="h_degree" value="대졸"/>대졸
+                <input type="radio" name="h_degree" value="초대졸"/>초대졸
                 <br>
                 <hr>
                 근무형태:
-                <input type="checkbox" name="h_workform" value="정규직"/>정규직
-                <input type="checkbox" name="h_workform" value="파견직"/>파견직
-                <input type="checkbox" name="h_workform" value="계약직"/>계약직
-                <input type="checkbox" name="h_workform" value="인턴직"/>인턴직
+                <input type="radio" name="h_workform" value="정규직" required/>정규직
+                <input type="radio" name="h_workform" value="파견직"/>파견직
+                <input type="radio" name="h_workform" value="계약직"/>계약직
+                <input type="radio" name="h_workform" value="인턴직"/>인턴직
                 <br>
                 <hr>
                 모집마감일:
-                <input type="checkbox" name="Date" value="마감일 선택" id="h_endDate"/>마감일 선택
-                <input type="checkbox" name="Date" value="상시모집" id="h_always"/>상시모집<br><br>
+                <input type="radio" name="Date" value="마감일 선택" id="h_endDate"/>마감일 선택
+                <input type="radio" name="Date" value="상시모집" id="h_always"/>상시모집<br><br>
 
                 <div id="h_date">
-                    From: <input type="text" id="h_upDate" name="h_upDate">&nbsp;&nbsp;&nbsp; To: <input type="text"
+                    From: <input type="text" id="h_upDate" name="h_upDate" required>&nbsp;&nbsp;&nbsp; To: <input type="text"
                                                                                                          id="h_regDate"
-                                                                                                         name="h_regDate">
+                                                                                                         name="h_regDate" required>
                 </div>
 
                 <br><br>

@@ -110,7 +110,7 @@ To change this template use File | Settings | File Templates.
 
 
                 <div class="container border border-3 border-dark bg-white p-3 my-3"><label class="ml-3 my-2 text-muted">수정 <span class="req my-2"><%= date%></span>  </label><button id="btn-delete_<%= list.get(i).getR_uid()%>" class="border bg-white btn-lg" > <i class="fas fa-times d-flex justify-content-end" id="rightup"></i></button>
-                 <div class="container ml-5"><h2><strong><a class="text-dark" href="resumeView"><ins> <%=list.get(i).getR_title() %> </ins> </a></strong> </h2>
+                 <div class="container ml-5"><h2><strong><a class="text-dark" href="resumeView/<%= list.get(i).getR_uid()%>"><ins> <%=list.get(i).getR_title() %> </ins> </a></strong> </h2>
                  </div>
                 <button type="button" class="btn btn-success btn-light text-dark border border-3 border-dark mt-5 " id="resumeUpdate_<%= list.get(i).getR_uid()%>">수정하기</button>
                 </div>
