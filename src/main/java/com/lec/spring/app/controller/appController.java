@@ -81,7 +81,7 @@ public class appController {
             return "/application/appmyList";
         }else {
 
-            return "/user/login";
+            return "/user/userchoice";
         }
 
 
@@ -105,7 +105,7 @@ public class appController {
             return "/application/appcomList";
         }else {
 
-            return "/com/login";
+            return "/user/userchoice";
         }
 
 
