@@ -12,6 +12,8 @@
 <%@ taglib prefix="fmt2" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <jsp:useBean id="today" class="java.util.Date"/>
 <fmt2:formatDate value="${today}" pattern="YYYY-MM-dd" var="today"/>
+<%@ page import="com.lec.spring.user.domain.UserDTO"%>
+<%@ page import="com.lec.spring.user.domain.AdmDTO" %>
 <html>
 <head>
     <!--부트스트랩 차트 그리기-->
@@ -63,15 +65,15 @@
 <div id="header" class="row">
 
     <div class="col-md-2"></div>
-    <div id="small_logo" class="col-md-2"></div>
+    <div id="small_logo" class="col-md-2" onclick="location.href='/'"></div>
 
     <ul class="col-md-4" class="inline">
         <li>
             <a href="#"><i class="fas fa-bars"></i></a>
-            <a href="#">
-                지역별
+            <a href="/hire/hireSearch.do">
+                지역별 채용공고
             </a>
-            <a href="#">
+            <a href="/board/list.do">
                 BLIND_BOARD
             </a>
         </li>
@@ -81,18 +83,22 @@
     <ul class="col-md-4" class="inline">
         <li>
             <a href="#"><i class="fas"></i></a>
-            <a href="#">
-                로그인
-            </a>
-            <a href="#" id="header_sub_a1">
+            <%
+                if(session.getAttribute("userSession") != null) {
+            %>
+                    <a href="/logout">로그아웃</a>
+             <% }else{%>
+                    <a href="/user/loginchoice">로그인</a>
+            <%}%>
+            <a href="/resume/resumeList">
                 이력서 관리
 
             </a>
 
-            <a href="#">
+            <a href="/app/appmyList">
                 지원 관리
             </a>
-            <a href="#">
+            <a href="/companyMain" class = "white_board_btn">
                 기업 서비스
             </a>
         </li>
@@ -103,7 +109,7 @@
 
 </div>
 
-<div class="main_box div_950">
+<div class="main_box div_60">
     <div id="nav_position_1" class="main_box_content row">
 
         <%--공고 타이틀 자리임--%>
@@ -149,7 +155,7 @@
         </div>
     </div>
     <div class="main_box_content">
-
+        <img class="width_100" src="${view[0].h_content}">
     </div>
     <div id="nav_position_3" class="main_box_content row">
         <h1 class="main_box_title inline col-md-12">지원자 통계</h1>
@@ -324,7 +330,7 @@
                 <c:choose>
                     <c:when test="${fn:length(Rlist) != 0 }">
                         <form action="/app/appWriteOk" method="post">
-                            <input type="hidden" value="1" name="u_uid">
+                            <input type="hidden" value="${u_uid }" name="u_uid">
                             <input type="hidden" value="${view[0].h_uid }" name="h_uid">
 
                             <h2>직무</h2><br>
@@ -355,7 +361,7 @@
                     </c:when>
                     <c:otherwise>
                         <h2>저장된 이력서내역이 없습니다. </h2>
-                        <a href = "/resume/resumeWrite">이력서 작성 바로가기</a>
+                        <a href="/resume/resumeWrite">이력서 작성 바로가기</a>
                     </c:otherwise>
                 </c:choose>
             </c:when>

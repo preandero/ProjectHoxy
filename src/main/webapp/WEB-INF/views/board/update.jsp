@@ -3,6 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <%@ page import="com.lec.spring.user.domain.UserDTO"%>
+<%@ page import="com.lec.spring.user.domain.AdmDTO" %>
 
 <c:choose>
 	<c:when test="${empty list || fn:length(list) == 0 }">
@@ -83,8 +84,20 @@
 
 
 %>
+<%
+	int adminID = 0;
+	AdmDTO dto2;
+	if (session.getAttribute("admSession") != null) {
+
+		dto2 = (AdmDTO) session.getAttribute("admSession");
+		adminID = dto2.getA_uid();
+	}
+%>
+
+
 <c:set var="userID" value="<%=userID%>"></c:set>
-<c:if test="<%=userID == 0%>">
+<c:set var="adminID" value="<%=adminID%>"></c:set>
+<c:if test="<%=userID == 0 && adminID == 0 %>">
 	<script>
 		alert('로그인 후 이용할 수 있습니다.')
 		history.back();

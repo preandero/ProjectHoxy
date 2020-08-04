@@ -4,6 +4,7 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <%@ page import="com.lec.spring.user.domain.UserDTO"%>
 
+
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -51,6 +52,7 @@
 		  href="https://i.imgur.com/8AyMFrx.png">
 </head>
 <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
 <title>글작성</title>
 
 <script>
@@ -73,11 +75,28 @@ function chkSubmit(){  // 폼 검증
 
 
 %>
+
+
 <c:set var="userID" value="<%=userID%>"></c:set>
 <c:if test="<%=userID == 0%>">
 	<script>
-		alert('로그인 후 이용할 수 있습니다.')
-		history.back();
+
+		Swal.fire({
+			icon: 'success',
+			title: '접속 실패!',
+			text: '로그인 페이지로 이동합니다.!',
+			buttons : {
+				confirm : {
+					text : 'OK',
+					value : true
+				}
+			}
+
+		}).then((result) => {
+			if(result){
+				location.href = "../../user/login";
+			}
+		})
 
 	</script>
 </c:if>
