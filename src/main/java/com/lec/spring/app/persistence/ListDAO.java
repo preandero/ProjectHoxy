@@ -7,7 +7,7 @@ import java.util.List;
 
 public interface ListDAO {
 
-    public List<ListDTO> select();
+    List<ListDTO> select();
     int update(int graphView1,int graphView2,int graphView3,int graphView4,int graphView5,int graphView6,int graphView7);
 
 }
