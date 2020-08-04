@@ -43,15 +43,15 @@ To change this template use File | Settings | File Templates.
         <div id="header" class="row">
 
             <div class="col-md-2"></div>
-            <div id="small_logo" class="col-md-2"></div>
+            <div id="small_logo" class="col-md-2" onclick="location.href='/'"></div>
 
             <ul class="col-md-4" class="inline">
                 <li>
                     <a href="#"><i class="fas fa-bars"></i></a>
-                    <a href="#">
-                        지역별
+                    <a href="/hire/hireSearch.do">
+                        지역별 채용공고
                     </a>
-                    <a href="#">
+                    <a href="/board/list.do">
                         BLIND_BOARD
                     </a>
                 </li>
@@ -61,18 +61,22 @@ To change this template use File | Settings | File Templates.
             <ul class="col-md-4" class="inline">
                 <li>
                     <a href="#"><i class="fas"></i></a>
-                    <a href="#">
-                        로그인
-                    </a>
-                    <a href="#" id="header_sub_a1">
+                    <%
+                        if(session.getAttribute("userSession") != null) {
+                    %>
+                    <a href="/logout">로그아웃</a>
+                    <% }else{%>
+                    <a href="/user/loginchoice">로그인</a>
+                    <%}%>
+                    <a href="/resume/resumeList">
                         이력서 관리
 
                     </a>
 
-                    <a href="#">
+                    <a href="/app/appmyList">
                         지원 관리
                     </a>
-                    <a href="#">
+                    <a href="/companyMain" class = "white_board_btn">
                         기업 서비스
                     </a>
                 </li>

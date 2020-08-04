@@ -105,17 +105,18 @@
     <h1>
         <%--  <span class="title">This is</span>
           <span class="title">a long</span>--%>
-        <span class="title">COMPANY</span>
+        <span class="title" >COMPANY</span>
     </h1>
     <%--<div class="button">restart</div>--%>
 
 
-</section>
+
 <div id="companyMainBtn">
-    <button class="white_board_btn" onclick="location.href='hire/hirelist.do'">채용공고 바로가기</button>
-    <button class="white_board_btn" onclick="location.href='app/appcomList'">지원관리 바로가기</button>
+    <button class="white_board_btn"  onclick="location.href='hire/hirelist.do'">채용공고 바로가기</button>
+    <button class="white_board_btn"  onclick="location.href='app/appcomList'">지원관리 바로가기</button>
 
 </div>
+</section>
 
 
 

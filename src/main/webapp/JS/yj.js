@@ -59,7 +59,7 @@ $(document).ready(function() {
 
 
 });
-function upView(aid){
+function upView(aid, rid){
 
     $.ajax({
         url : '/app/appviewUpdate',
@@ -69,7 +69,7 @@ function upView(aid){
             $(".modal").hide();
             $("#viewBtn_"+aid).addClass('red_box');
             $("#viewBtn_"+aid).text('열람');
-            window.open('http://www.naver.com')
+            window.open('/resume/resumeView/'+rid)
             return true
         },
         error:function(){

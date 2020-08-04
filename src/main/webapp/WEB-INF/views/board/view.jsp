@@ -105,8 +105,8 @@
 		%>
 
 		<div id="main_header">
-			<div class = "div_1260 row" style="background-color: white">
-				<div id = "main_header_log" class="col-md-2"></div>
+			<div class = "div_1260 row">
+				<div id = "main_header_log" class="col-md-2" onclick="location.href='/'"></div>
 				<div class="col-md-7"><h2 id = "main_header_sub">일할래 Hoxy?</h2></div>
 				<div id="demo" class="carousel slide col-md-3" data-ride="carousel">
 					<div class="carousel-inner demo">
@@ -136,10 +136,10 @@
 						<ul class = "col-md-7" class = "inline">
 							<li >
 								<a href="#"><i class="fas fa-bars"></i></a>
-								<a href="#">
-									지역별
+								<a href="/hire/hireSearch.do">
+									지역별 채용공고
 								</a>
-								<a href="#">
+								<a href="/board/list.do">
 									BLIND_BOARD
 								</a>
 							</li>
@@ -149,24 +149,21 @@
 						<ul class = "col-md-5" class = "inline">
 							<li>
 								<a href="#"><i class="fas"></i></a>
-								<a href="#">
-									로그인
-								</a>
-								<a href="#" id="header_sub_a1">
+								<%
+									if(session.getAttribute("comSession") != null|| session.getAttribute("comSession") != null) {
+								%>
+								<a href="/logout">로그아웃</a>
+								<% }else{%>
+								<a href="/user/loginchoice">로그인</a>
+								<%}%>
+								<a href="/resume/resumeList" id="header_sub_a1">
 									이력서 관리
-									<div id = "header_sub_nav1" class="inline">
-										<ul class = "inline">
-											<li >이력서 등록</li>
-											<li >이력서 현황</li>
-											<li >이력서 수정</li>
-										</ul>
-									</div>
 								</a>
 
-								<a href="#">
+								<a href="/app/appmyList">
 									지원 관리
 								</a>
-								<a href="#">
+								<a href="companyMain.jsp" class="white_board_btn">
 									기업 서비스
 								</a>
 							</li>
@@ -177,8 +174,10 @@
 					</div>
 				</nav>
 			</div>
-		</div>
 
+
+
+		</div>
 
 		<div class="container" >
 

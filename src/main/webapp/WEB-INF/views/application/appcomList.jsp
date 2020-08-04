@@ -44,41 +44,31 @@
 </head>
 
 <body class="bk_gray">
-
 <div id="header" class="row">
 
     <div class="col-md-2"></div>
-    <div id="small_logo" class="col-md-2"></div>
+    <div id="small_logo" class="col-md-2" onclick="location.href='/'"></div>
 
     <ul class="col-md-4" class="inline">
-        <li>
-            <a href="#"><i class="fas fa-bars"></i></a>
-            <a href="#">
-                지역별
-            </a>
-            <a href="#">
-                BLIND_BOARD
-            </a>
-        </li>
+
 
 
     </ul>
     <ul class="col-md-4" class="inline">
         <li>
             <a href="#"><i class="fas"></i></a>
-            <a href="#">
-                로그인
-            </a>
-            <a href="#" id="header_sub_a1">
-                이력서 관리
-
-            </a>
-
-            <a href="#">
+            <%
+                if(session.getAttribute("comSession") != null) {
+            %>
+            <a href="/logout"  class = "white_board_btn">로그아웃</a>
+            <% }else{%>
+            <a href="/user/loginchoice"  class = "white_board_btn">로그인</a>
+            <%}%>
+            <a href="/app/appcomList">
                 지원 관리
             </a>
-            <a href="#">
-                기업 서비스
+            <a href="/hire/hirelist.do">
+                채용 공고
             </a>
         </li>
 
@@ -201,7 +191,7 @@
 
                 <div class="padding20"></div>
                 <input type="button" value="이력서 열람하기" class="org_Btn fullbutton"
-                       onclick="upView(${AList.a_uid })">
+                       onclick="upView(${AList.a_uid },${AList.r_uid })">
             </div>
         </div>
 
