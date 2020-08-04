@@ -128,7 +128,7 @@ function chkSubmit() {
         return false;
     }
     if (h_position2 == "") {
-        alert("모집내용 반드시 작성해야 합니다");
+        alert("상세주소는 반드시 작성해야 합니다");
         frm["h_position2"].focus();
         return false;
     }
@@ -261,8 +261,19 @@ function deleteUid(h_uid) {
         success: function (data, status) {
             if (status == "success") {
                 if (data.status == "OK") {
-                    alert("DELETE 성공" + data.count + "개");
-                    loadPage(cuid); // 현재 페이지 리로딩
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Delete Success',
+                        text: 'Show list',
+                        buttons : {
+                            confirm : {
+                                text : 'OK',
+                                value : true
+                            }
+                        }
+
+                    })
+                    loadPage(cuid);
                 } else {
                     alert("DELETE 실패" + data.message);
 
