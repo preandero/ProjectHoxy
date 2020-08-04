@@ -138,11 +138,11 @@
     </label>
 
     <a href="#" class="menu-item"> <i class="fa fa-bar-chart"></i> </a>
-    <a href="#" class="menu-item">기업 승인</a>
-    <a href="#" class="menu-item">공지 등록</a>
+    <a href="/board/gWrite.do" class="menu-item">공지등록<br><i class="fas fa-bullhorn"></i></a>
     <a href="#" class="menu-item"></a>
-    <a href="#" class="menu-item">추천공고관리</a>
-    <a href="/app/color" class="menu-item">지원통계관리</a>
+    <a href="#" class="menu-item"></a>
+    <a href="#" class="menu-item"></a>
+    <a href="/app/color" class="menu-item">지원통계관리<br><i class="fas fa-palette"></i></a>
 
 </nav>
 

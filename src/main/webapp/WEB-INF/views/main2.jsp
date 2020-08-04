@@ -19,9 +19,12 @@
 <link rel="shortcut icon" type="image/x-icon"
       href="https://i.imgur.com/8AyMFrx.png">
 <body>
+<img class = "main_img" src="https://i.imgur.com/DguGnWE.png">
+<h1 id = "main_img_message">HI! I'm Nam Publisher ♥</h1>
 <c:choose>
     <c:when test="${u_name!=null}">
         <div id="main_login" onclick="location.href='/logout'">LOGOUT</div>
+        <div id="main_mypage" onclick="location.href='/user/userMypage'">MY PAGE</div>
         <div id="main_username">${u_name} 님 안녕하세요</div>
     </c:when>
     <c:otherwise>
@@ -29,7 +32,7 @@
     </c:otherwise>
 </c:choose>
 
-<script type="text/javascript" src="https://code.jquery.com/jquery-1.11.0.min.js"></script>
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 <script type="text/javascript" src="https://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
 
 
@@ -79,7 +82,7 @@
             <a href="/app/appmyList">
                 <li>지원 관리</li>
             </a>
-            <a href="#">
+            <a href="/companyMain">
                 <li>기업서비스</li>
             </a>
 
@@ -123,36 +126,8 @@
 
         </div>
     </form>
+
 </div>
-
-
-<%--
-<div id = "main_box">
-    <div id="Awesome" class="anim750">
-
-        <div class="reveal circle_wrapper">
-            <div class="circle">Hello!</div>
-        </div>
-
-        <div class="sticky anim750">
-            <div class="front circle_wrapper anim750">
-                <div class="circle anim750"></div>
-            </div>
-        </div>
-
-        <h4>Peel Me!</h4>
-
-        <div class="sticky anim750">
-            <div class="back circle_wrapper anim750">
-                <div class="circle anim750"></div>
-            </div>
-        </div>
-
-    </div>
-
-</div>--%>
-
-
 </body>
 
 </html>

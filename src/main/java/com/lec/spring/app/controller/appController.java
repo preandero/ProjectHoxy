@@ -131,6 +131,8 @@ public class appController {
     @RequestMapping("/colorUpdate")
     public String colorUpdate(String color1, String color2, String color3, Model model) {
 
+
+
         model.addAttribute("color1", color1);
         model.addAttribute("color2", color2);
         model.addAttribute("color3", color3);

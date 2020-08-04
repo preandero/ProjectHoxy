@@ -31,6 +31,7 @@
 <link rel="shortcut icon" type="image/x-icon"
       href="https://i.imgur.com/8AyMFrx.png">
 <body>
+<img class="main_img" src="https://i.imgur.com/csiWkSa.png">
 <c:choose>
     <c:when test="${c_name!=null}">
         <div id="main_login" onclick="location.href='/logout'">LOGOUT</div>
