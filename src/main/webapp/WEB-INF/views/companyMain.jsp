@@ -11,6 +11,7 @@
 <html>
 <head>
     <title>관리자페이지</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <link href="https://fonts.googleapis.com/css2?family=Jua&family=Nanum+Brush+Script&display=swap" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/CSS/testtest.css"/>
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/CSS/testtest2.css"/>
@@ -30,6 +31,7 @@
 <link rel="shortcut icon" type="image/x-icon"
       href="https://i.imgur.com/8AyMFrx.png">
 <body>
+<img class="main_img" src="https://i.imgur.com/csiWkSa.png">
 <c:choose>
     <c:when test="${c_name!=null}">
         <div id="main_login" onclick="location.href='/logout'">LOGOUT</div>

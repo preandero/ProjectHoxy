@@ -151,7 +151,7 @@ function chkSubmit() {
 function updatebtn(h_uid) {
         location.href = 'view.do?h_uid=' + h_uid;
 
-};
+}
 
 
 //page 번째 페이지 로딩

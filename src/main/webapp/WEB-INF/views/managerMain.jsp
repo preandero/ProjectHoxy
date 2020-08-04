@@ -11,6 +11,7 @@
 <html>
 <head>
     <title>관리자페이지</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <link href="https://fonts.googleapis.com/css2?family=Jua&family=Nanum+Brush+Script&display=swap" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/CSS/testtest.css"/>
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/CSS/testtest2.css"/>
@@ -30,6 +31,7 @@
 <link rel="shortcut icon" type="image/x-icon"
       href="https://i.imgur.com/8AyMFrx.png">
 <body>
+<div id="main_login" onclick="location.href='/logout'">LOGOUT</div>
 <script type="text/javascript" src="https://code.jquery.com/jquery-1.11.0.min.js"></script>
 <script type="text/javascript" src="https://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
 
@@ -78,7 +80,7 @@
                 <li>지원통계관리</li>
             </a>
             <a href="#">
-                <li>공지등록</li>
+                <li><a href="/board/gWrite.do">공지등록</a></li>
             </a>
             <a href="#">
                 <li>기업서비스</li>
@@ -136,11 +138,11 @@
     </label>
 
     <a href="#" class="menu-item"> <i class="fa fa-bar-chart"></i> </a>
-    <a href="#" class="menu-item">기업 승인</a>
-    <a href="#" class="menu-item">공지 등록</a>
+    <a href="/board/gWrite.do" class="menu-item">공지등록<br><i class="fas fa-bullhorn"></i></a>
     <a href="#" class="menu-item"></a>
-    <a href="#" class="menu-item">추천공고관리</a>
-    <a href="/app/color" class="menu-item">지원통계관리</a>
+    <a href="#" class="menu-item"></a>
+    <a href="#" class="menu-item"></a>
+    <a href="/app/color" class="menu-item">지원통계관리<br><i class="fas fa-palette"></i></a>
 
 </nav>
 

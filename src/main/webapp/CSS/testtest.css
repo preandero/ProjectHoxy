@@ -1,14 +1,15 @@
 html {
-    /*height: 100%;*/
+
+    font-family: 'Nanum Brush Script', cursive;
 }
 body {
-
     background: linear-gradient(to bottom,#ffd203 0%, #f2de80 100%);
 }
 span.title{
-    font-family: 'Nanum Pen Script', cursive;
+    font-family: 'Nanum Brush Script', cursive;
+
 }
-div#main_login ,div#main_username{
+div#main_login ,div#main_username, div#main_mypage{
     background-color: #ffd203;
     color: #111111;
     font-family: 'Jua', sans-serif;
@@ -27,7 +28,13 @@ div#main_login{
 
 
 }
-div#main_login:hover{
+div#main_mypage{
+    margin-left: 280px;
+    border: 2px solid #111111;
+    border-radius: 20px;
+    padding: 2px 12px;
+}
+div#main_login:hover, div#main_mypage:hover{
     border: 2px solid #ffffff;
     color: #ffd203;
     background-color: #ffffff;
@@ -35,7 +42,7 @@ div#main_login:hover{
 }
 div#main_username {
     display: inline;
-    margin-left: 300px;
+    margin-left: 430px;
 }
 
 
@@ -272,6 +279,7 @@ div#main_header_log {
 
 
 .main {
+    top: -200px;
     width:500px;
     display:block;
     margin:0 auto;
@@ -477,13 +485,14 @@ h3 {
 /*Resize the wrap to see the search bar change!*/
 .wrap{
     width: 35%;
-    margin: 350px auto;
+    margin: 380px auto;
     position: center;
     top: 100%;
     left: 50%;
     box-shadow: 0 5px 20px 0 rgba(0, 0, 0, 0.3);
 
 }
+
 
 
 #companyMainBtn{
@@ -494,4 +503,24 @@ h3 {
 
 .inline{
     display: inline;
+}
+
+.main_img{
+    width: 60%;
+    position: fixed;
+    bottom: 0px;
+    left: 20%;
+    z-index: 0;
+}
+#main_img_message{
+    position: fixed;
+    bottom: 10px;
+    left: 85%;
+    z-index: 1;
+    font-size: medium;
+    color: rgba(97,05,02,0);
+}
+#main_img_message:hover{
+  color: #FFFFFF;
+
 }

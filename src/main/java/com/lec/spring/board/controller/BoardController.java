@@ -51,6 +51,12 @@ public class BoardController {
 		command.execute(model);
 		return "board/write";
 	}
+
+	@RequestMapping("/gWrite.do")
+	public String gwrite(Model model) {
+
+		return "board/gwrite";
+	}
 	
 	@RequestMapping(value = "/writeOk.do", method = RequestMethod.POST)
 	public String writeOk(BWriteDTO dto, Model model) {
