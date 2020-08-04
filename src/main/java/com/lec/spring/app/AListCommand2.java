@@ -14,20 +14,20 @@ public class AListCommand2 implements ACommand {
 
         int hid = 0;
         if(map.get("hid")!=null){
-            hid=(int)Integer.parseInt((String)map.get("hid"));
+            hid= Integer.parseInt((String)map.get("hid"));
         }
 
 
         int view1 = 0;
         int view2 = 1;
-        if(map.get("view")!=null&&(int)Integer.parseInt((String)map.get("view"))!=2){
-            view1=(int)Integer.parseInt((String)map.get("view"));
-            view2=(int)Integer.parseInt((String)map.get("view"));
+        if(map.get("view")!=null&& Integer.parseInt((String)map.get("view")) !=2){
+            view1= Integer.parseInt((String)map.get("view"));
+            view2= Integer.parseInt((String)map.get("view"));
 
         }
         String search = "%%";
         if(map.get("view")!=null){
-            search = "%"+(String)map.get("search")+"%";
+            search = "%"+ map.get("search") +"%";
         }
         AppDAO dao = C.sqlSession.getMapper(AppDAO.class);
 

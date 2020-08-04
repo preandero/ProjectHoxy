@@ -23,7 +23,7 @@
     }
     .user-modal {
         position: fixed;
-        top: 80px;
+        top: 150px;
         left: 0;
         width: 100%;
         height: 100%;
@@ -170,14 +170,25 @@
             padding: 16px 0;
         }
     }
+    .arrow{
+        margin: 35px;
+        color: #fff;
+        font-size: 40px;
+    }
 </style>
 <link rel="shortcut icon" type="image/x-icon"
       href="https://i.imgur.com/8AyMFrx.png">
+<link rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css" />
+<script src="https://kit.fontawesome.com/a076d05399.js"></script>
 <body>
 <!-- Cookie가 비어있지 않을 때 checked 속성을 줌 -->
 <c:if test="${not empty cookie.user_check}">
     <c:set value="checked" var="checked"/>
 </c:if>
+<div class="arrow">
+    <i class="fas fa-arrow-left" onclick="history.back()"></i>
+</div>
 <div class="user-modal">
     <div class="user-modal-container">
 
@@ -258,7 +269,7 @@
                     $('#spanLoginCheck').text('로그인 정보를 정확히 입력해주세요.');
                 } else { //로그인 성공시
                     console.log(data);
-                    location.href = '${pageContext.request.contextPath}/';
+                    location.href = '${pageContext.request.contextPath}/companyMain';
                 }
             }
         });

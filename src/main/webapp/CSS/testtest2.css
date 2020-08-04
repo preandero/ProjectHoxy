@@ -10,6 +10,7 @@ h1, h2, h3, h4 {
 h1 {
     font-size: 3em;
 }
+
 .menu {
     display: block;
     filter: url('#goo');
@@ -127,11 +128,14 @@ h1 {
     transform: translate3d(0.079px, -105px, 0);
 }
 .menu-open:checked ~ .menu-item:nth-child(4) {
+    width: 180px;
+    height: 180px;
     color: #333333;
     transition-duration: 280ms;
     transform: translate3d(91px, -52.47px, 0);
 }
 .menu-open:checked ~ .menu-item:nth-child(5) {
+    display: none;
     color: #333333;
     transition-duration: 380ms;
     transform: translate3d(90.94px, 52.4758px, 0);
@@ -142,26 +146,33 @@ h1 {
     transform: translate3d(0.083px, 105px, 0);
 }
 .menu-open:checked ~ .menu-item:nth-child(7) {
+    display: none;
     color: #333333;
     transition-duration: 580ms;
     transform: translate3d(-90.8px, 52.62px, 0);
+
 }
 .menu-open:checked ~ .menu-item:nth-child(8) {
     color: #333333;
     transition-duration: 680ms;
-    transform: translate3d(-91.03px, -52.3px, 0);
+    transform: translate3d(-196.03px, -52.3px, 0);
+    width: 180px;
+    height: 180px;
 }
 .menu-open:checked ~ .menu-item:nth-child(9) {
+    display: none;
     color: #333333;
     transition-duration: 780ms;
     transform: translate3d(-0.25px, -105px, 0);
 }
 
 a:link { text-decoration: none;}
-a:visited { color: black; text-decoration: none;}
-a:hover { color: blue; text-decoration: none;}
 
 
+.menu-open:checked ~ .menu-item:nth-child(4) i, .menu-open:checked ~ .menu-item:nth-child(8) i{
+    font-size: 60px;
+    color: #f2de80;
+}
 .white_board_btn{
     background-color: rgba(0,0,0,0);
     border : 2px solid #ffffff;

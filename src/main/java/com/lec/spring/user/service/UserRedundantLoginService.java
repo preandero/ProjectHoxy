@@ -15,7 +15,7 @@ public class UserRedundantLoginService implements HttpSessionBindingListener {
     private static UserRedundantLoginService loginManager = null;
 
     // 로그인한 접속자를 담기위한 해시테이블
-    private static Hashtable loginUsers = new Hashtable();
+    private static final Hashtable loginUsers = new Hashtable();
 
     /*
      * 싱글톤 패턴 사용

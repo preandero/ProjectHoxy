@@ -29,7 +29,7 @@
         .main-box{
             position: relative;
             display: block;
-            width: 90%;
+            width: 58%;
             height: auto;
             margin: 50px auto;
             border-radius: 8px;
@@ -142,9 +142,24 @@
             -o-transition: all 0.30s ease-in-out;
             width: 25%;
         }
+        .arrow{
+            margin: 35px;
+            color: #fff;
+            font-size: 40px;
+        }
     </style>
 </head>
+<link rel="shortcut icon" type="image/x-icon"
+      href="https://i.imgur.com/8AyMFrx.png">
+<link rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css" />
+<script src="https://kit.fontawesome.com/a076d05399.js"></script>
 <body>
+
+<div class="arrow">
+    <i class="fas fa-arrow-left" onclick="history.back()"></i>
+</div>
+
 <div class="main-box">
 
 
