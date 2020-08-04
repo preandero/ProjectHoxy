@@ -53,15 +53,15 @@
 
     <update id="update" flushCache="true">
 		UPDATE Hire SET
-		h_name=#{a.name},h_part=#{a.part}
+		h_name=#{a.h_name},h_title=#{a.h_title},h_salary=#{a.h_salary},h_content=#{a.h_content},h_career=#{a.h_career},h_position1=#{a.h_position1},h_position2=#{a.h_position2},h_part=#{a.h_part},h_degree=#{a.h_degree},h_workform=#{a.h_workform},h_upDate=#{a.h_upDate},h_regDate=#{a.h_regDate}
 		WHERE
 		h_uid = #{param1}
 	</update>
 
-    <delete id="deleteByUid" flushCache="true">
-		DELETE FROM Hire WHERE
-		h_uid = #{param1}
-	</delete>
+<!--    <delete id="deleteByUid" flushCache="true">-->
+<!--		DELETE FROM Hire WHERE-->
+<!--		h_uid = #{param1}-->
+<!--	</delete>-->
 
 
     <update id="incViewCnt" flushCache="true">

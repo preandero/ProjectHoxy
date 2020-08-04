@@ -1,6 +1,6 @@
 package com.lec.spring.hire.beans;
 
-public class 	AjaxWriteResult {
+public class AjaxWriteResult {
 	private int count;   // 데이터 개수
 	private String status;  // 처리 결과
 	private String message;  // 결과 메세지

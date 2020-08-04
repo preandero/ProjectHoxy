@@ -11,8 +11,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import javax.servlet.http.HttpSession;
-
 @Controller
 @RequestMapping("/hire")
 public class HireController {
@@ -40,16 +38,23 @@ public class HireController {
 //    }
 
 
-
     @RequestMapping(value = "/hireSearch.do")
     public String hireSearch() {
 
         return "hire/hireSearch";
 
-    }    @RequestMapping(value = "/hirelist.do")
+    }
+
+    @RequestMapping(value = "/hirelist.do")
     public String hirelist() {
 
         return "hire/hirelist";
+
+    }
+    @RequestMapping(value = "/deleteOk.do")
+    public String deleteOk() {
+
+        return "hire/deleteOk";
 
     }
 
@@ -58,8 +63,6 @@ public class HireController {
     public String write(Model model) {
         return "hire/write";
     }
-
-
 
 
     @RequestMapping(value = "/writeOk.do", method = RequestMethod.POST)
@@ -97,14 +100,14 @@ public class HireController {
 //        command.excute(model);
 //        return "hire/hireSearch";
 //    }
-
-    @RequestMapping("/deleteOk.do")
-    public String delete(Model model, int h_uid) {
-        model.addAttribute("h_uid", h_uid);
-        command = new HDeleteCommand();
-        command.excute(model);
-        return "hire/deleteOk";
-    }
+//
+//    @RequestMapping("/deleteOk.do")
+//    public String delete(Model model, int h_uid) {
+//        model.addAttribute("h_uid", h_uid);
+//        command = new HDeleteCommand();
+//        command.excute(model);
+//        return "hire/deleteOk";
+//    }
 
 
 

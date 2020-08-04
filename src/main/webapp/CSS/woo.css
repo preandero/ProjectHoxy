@@ -169,7 +169,7 @@ select#rows {
 }
 
 input#register{
-    background-color:orange;
+    background-color:darkolivegreen;;
 }
 
 
@@ -234,6 +234,10 @@ button#upbtn{
     color: firebrick;
     font-weight: 900;
     font-family: inherit;
+}
+
+p#endhire{
+    color: darkred;
 }
 /*      hirelist 끝*/
 

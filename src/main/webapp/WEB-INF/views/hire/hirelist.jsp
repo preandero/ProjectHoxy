@@ -164,9 +164,9 @@
         </div>
         <%-- 글목록 --%>
         <div id="list" class="col-md-12 row">
-            <div class="d01 col-md-2">
+            <div class="d01 col-md-1">
 <%--                <div class="left" id="pageinfo"></div>--%>
-                <button id="register" class="org_Btn" onclick="location.href='write.do'">공고등록</button>
+
 
             </div>
 
@@ -181,7 +181,11 @@
 
             <%--버튼 --%>
 
-            <div class="right col-md-1" id="pageRows"></div>
+            <div class="right col-md-2" id="pageRows">
+
+                <button id="register" class="org_Btn" onclick="location.href='write.do'">공고등록</button>
+            </div>
+
             <div id="HessionHide">
 <%--                <input type="hidden" value="<%=CID%>" id="CID"/>--%>
                 <div id="CID"><%=CID%></div>
