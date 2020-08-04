@@ -4,6 +4,7 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <%@ page import="com.lec.spring.user.domain.UserDTO"%>
 
+
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -74,6 +75,8 @@ function chkSubmit(){  // 폼 검증
 
 
 %>
+
+
 <c:set var="userID" value="<%=userID%>"></c:set>
 <c:if test="<%=userID == 0%>">
 	<script>

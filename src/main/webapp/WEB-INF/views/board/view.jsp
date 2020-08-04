@@ -1,4 +1,5 @@
 <%@ page import="com.lec.spring.user.domain.UserDTO" %>
+<%@ page import="com.lec.spring.user.domain.AdmDTO" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 		 pageEncoding="UTF-8"%>
 
@@ -91,6 +92,17 @@
 
 		%>
 
+		<%
+
+			int adminID = 0;
+			AdmDTO dto2;
+			if(session.getAttribute("admSession") != null) {
+				dto2 = (AdmDTO) session.getAttribute("admSession");
+				adminID = dto2.getA_uid();
+			}
+
+
+		%>
 
 		<div id="main_header">
 			<div class = "div_1260 row" style="background-color: white">
@@ -202,7 +214,7 @@
 
 				</div>
 
-				<div class="col-md-4">
+				<div class="col-md-11">
 					<h1>${list[0].subject}</h1>
 				</div>
 
@@ -216,7 +228,12 @@
 				</div>
 
 				<div class="col-md-3">
+					<c:if test="${list[0].category ne '공지사항'}">
 						${list[0].writeName}<br>
+					</c:if>
+					<c:if test="${list[0].category eq '공지사항'}">
+						ADMIN<br>
+					</c:if>
 						${list[0].regDate}
 				</div>
 
@@ -260,12 +277,18 @@
 
 
 			<c:set var="userID" value="<%=userID%>"></c:set>
+			<c:set var="adminID" value="<%=adminID%>"></c:set>
 
 			<div id="us" style="display: none">${userID}</div>
 
 
 
 				<c:if test="${userID == list[0].u_uid}">
+				<button onclick="location.href='update.do?uid=${list[0].uid}'" class="org_Btn regist_Btn">수정</button>
+				<button onclick="chkDelete(${list[0].uid})" class="org_Btn regist_Btn">삭제</button>
+			</c:if>
+
+			<c:if test="${adminID != 0}">
 				<button onclick="location.href='update.do?uid=${list[0].uid}'" class="org_Btn regist_Btn">수정</button>
 				<button onclick="chkDelete(${list[0].uid})" class="org_Btn regist_Btn">삭제</button>
 			</c:if>

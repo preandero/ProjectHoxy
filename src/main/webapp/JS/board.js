@@ -68,15 +68,16 @@ function loadPage(page){
 						$(".updatebtn").hide();
 						$("#btnclick"+($(this).attr('updata-uid'))).css("marginTop", "0px")
 						var lastcontent = $("#btnclick"+($(this).attr('updata-uid'))).html();
+
 						var result = "";
 							result += "<div class='input-group'>"
 							result +=  "<textarea class='input newtextarea form-control' style='width: 50%; resize: none;'>"+lastcontent + "</textarea>"
 							result += "<div class='input-group-append' id='button-addon4'>"
-							result += "<button type='button' class='submitbtn btn btn-outline-secondary' com-uid='"+ ($(this).attr('updata-uid'))+ "'>수정완료</button><div class='output' style='display: none'>출력</div>";
+							result += "<button type='button' class='submitbtn btn btn-outline-secondary' com-uid='"+ ($(this).attr('updata-uid'))+ "'>수정완료</button><div class='output' style='display: none'></div>";
 							result += "<button type='button' class='canclebtn btn btn-outline-secondary' com-uid='"+ ($(this).attr('updata-uid'))+ "'>취소</button>"
 							result += "</div></div>"
 						
-						
+
 					
 						$("#btnclick"+($(this).attr('updata-uid'))).html(result);
 						      
@@ -86,8 +87,9 @@ function loadPage(page){
 							$(".output").text($(".input").val());
 						})
 					  $(".submitbtn").click(function(){
-					   
-									  var content = $.trim($('.output').html());
+
+
+					  	      var content = $.trim($('.output').html());
 							  var uid =(($(this).attr('com-uid')));
 
 							  updateUid(uid,content);
@@ -96,11 +98,11 @@ function loadPage(page){
 
 						$(".canclebtn").click(function () {
 
-							var content = $.trim($('.output').html());
+							var content2 = $.trim($('.input').html());
 
 							$(".updatebtn").show();
 							$("#btnclick"+($(this).attr('com-uid'))).css("marginTop", "20px")
-							$("#btnclick"+($(this).attr('com-uid'))).html(content);
+							$("#btnclick"+($(this).attr('com-uid'))).html(content2);
 						})
 						
 
