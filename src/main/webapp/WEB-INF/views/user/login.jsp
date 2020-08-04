@@ -215,9 +215,10 @@
                 <p class="fieldset">
                     <a class="full-width" href="${pageContext.request.contextPath}/user/register">회원가입</a>
                 </p>
+                <p class="fieldset">
+                <a class="full-width" href="${pageContext.request.contextPath}/user/userSearch">Forgot your ID?</a>
+                </p>
             </div>
-
-            <!--<p class="form-bottom-message"><a href="#0">Forgot your password?</a></p>-->
             <!-- <a href="#0" class="close-form">Close</a> -->
         </div>
         </div>

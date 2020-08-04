@@ -383,9 +383,9 @@ To change this template use File | Settings | File Templates.
                 <label class="ml-3 my-3 mr-4 pr-2">근무형태<span class="req my-2">필수</span></label>
                 <select class="browser-default custom-select w-25  my-2" id="selectJopType">
                     <option selected>선택</option>
-                    <option value="1">서울</option>
-                    <option value="2">경기</option>
-                    <option value="3">인천</option>
+                    <option value="1">정규직</option>
+                    <option value="2">인턴</option>
+                    <option value="3">파견직</option>
                 </select>
                 <input type="hidden" id="HopeJobType" name="HopeJobType" value="1">
 
