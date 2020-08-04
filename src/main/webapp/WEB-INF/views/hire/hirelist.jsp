@@ -125,7 +125,7 @@
                         <li>
                             <a href="#"><i class="fas fa-bars"></i></a>
                             <a href="#">
-                              Welcome <%=CName%> Company
+                                Welcome <%=CName%> Company
                             </a>
                         </li>
 
@@ -134,26 +134,21 @@
                     <ul class="col-md-5" class="inline">
                         <li>
                             <a href="#"><i class="fas"></i></a>
-                            <a href="#">
-                                로그인
-                            </a>
-                            <a href="#" id="header_sub_a1">
-                                이력서 관리
-                                <div id="header_sub_nav1" class="inline">
-                                    <ul class="inline">
-                                        <li>이력서 등록</li>
-                                        <li>이력서 현황</li>
-                                        <li>이력서 수정</li>
-                                    </ul>
-                                </div>
-                            </a>
+                            <%
+                                if(session.getAttribute("comSession") != null) {
+                            %>
+                            <a href="/logout" class="white_board_btn">로그아웃</a>
+                            <% }else{%>
+                            <a href="/user/loginchoice" class="white_board_btn">로그인</a>
+                            <%}%>
 
-                            <a href="#">
+                            <a href="/app/appcomList">
                                 지원 관리
                             </a>
-                            <a href="#">
-                                기업 서비스
+                            <a href="/hire/hirelist.do" >
+                                채용 공고
                             </a>
+
                         </li>
 
 
@@ -165,7 +160,7 @@
         <%-- 글목록 --%>
         <div id="list" class="col-md-12 row">
             <div class="d01 col-md-1">
-<%--                <div class="left" id="pageinfo"></div>--%>
+                <%--                <div class="left" id="pageinfo"></div>--%>
 
 
             </div>
@@ -187,7 +182,7 @@
             </div>
 
             <div id="HessionHide">
-<%--                <input type="hidden" value="<%=CID%>" id="CID"/>--%>
+                <%--                <input type="hidden" value="<%=CID%>" id="CID"/>--%>
                 <div id="CID"><%=CID%></div>
                 <div id="CeoName"><%=CeoName%></div>
                 <div id="CName"><%=CName%></div>
@@ -248,7 +243,6 @@
 
 </body>
 </html>
-
 
 
 

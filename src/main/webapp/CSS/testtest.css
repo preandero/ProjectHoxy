@@ -495,10 +495,11 @@ h3 {
 
 
 
-#companyMainBtn{
+div#companyMainBtn{
     position: inherit;
-    margin: 350px 0px;
     text-align: center;
+    margin-top: 50px;
+    width: fit-content;
 }
 
 .inline{
