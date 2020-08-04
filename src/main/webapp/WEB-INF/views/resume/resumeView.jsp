@@ -89,7 +89,7 @@ To change this template use File | Settings | File Templates.
 
         <div class="container mt-5 d-flex justify-content-center"><h4>이력서 제목</h4></div>
 
-            <div class="d-flex justify-content-center my-2">
+            <div class="d-flex justify-content-center my-2 ">
                 <input type="text" id="subject" name="subject" class="p-4 my-3 border-5 w-50 border-dark" value="<%= dto.getR_title() %>" readonly>
                     <%--            <input type="text" placeholder="이력서 제목을 입력하세요."/>--%>
                 </input>

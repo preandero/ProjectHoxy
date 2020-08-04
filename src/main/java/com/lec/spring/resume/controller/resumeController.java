@@ -214,11 +214,11 @@ public class resumeController {
     }
 
 
-    @RequestMapping("/resumeView")
-    public String resumeView(HttpSession session, Model model){
+    @RequestMapping("/resumeView/{r_uid}")
+    public String resumeView(HttpSession session, Model model,@PathVariable("r_uid") int r_uid){
         UserDTO dto = (UserDTO) session.getAttribute("userSession");
 
-        resumeViewDTO obj = resumeViewService.resumeView(dto.getU_uid());
+        resumeViewDTO obj = resumeViewService.resumeView(r_uid);
 
         model.addAttribute("list", obj);
 
