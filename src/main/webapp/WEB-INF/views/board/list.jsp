@@ -179,7 +179,7 @@ $(document).ready(function(){
 
 		<table class="table border p-3">
 			<tr>
-				<th class="th1">UID</th>
+				<th class="th1">N</th>
 				<th class="th2">기업명</th>
 				<th class="th3">제목</th>
 				<th class="th4">작성자</th>
