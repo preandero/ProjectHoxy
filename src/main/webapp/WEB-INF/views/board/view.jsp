@@ -150,7 +150,7 @@
 							<li>
 								<a href="#"><i class="fas"></i></a>
 								<%
-									if(session.getAttribute("comSession") != null|| session.getAttribute("comSession") != null) {
+									if(session.getAttribute("userSession") != null|| session.getAttribute("comSession") != null) {
 								%>
 								<a href="/logout">로그아웃</a>
 								<% }else{%>
