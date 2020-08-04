@@ -7,14 +7,11 @@
     <select id="selectFromRow"
             resultType="com.lec.spring.hire.beans.HWriteDTO">
 		<![CDATA[
-
-
-                        SELECT
-
+				SELECT
                             h_uid,
                             c_uid,
+                            h_title,
                             h_name,
-
                             h_career,
                             h_position1,
                             h_position2,
@@ -24,8 +21,8 @@
                             h_cnt,
                             to_date(h_regDate, 'YYYY-MM-DD')-round(sysdate) h_remainDate
                         FROM
-                            (SELECT ROWNUM AS RNUM, * FROM
-                                (SELECT * FROM Hire where h_position1 like #{search} and (h_name like #{searchWord} or h_title like #{searchWord} or h_part like #{searchWord}) ORDER BY h_uid DESC))
+                            (SELECT ROWNUM AS RNUM, T.* FROM
+                                (SELECT * FROM Hire where h_position1 like #{search} and (h_name like #{searchWord} or h_title like #{searchWord} or h_part like #{searchWord}) ORDER BY h_uid DESC) T)
                         where RNUM >= #{from} AND RNUM < (#{from} + #{pageRows})
 
 
