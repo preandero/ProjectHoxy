@@ -12,7 +12,7 @@
 <html lang="ko">
 <head>
     <meta charset="UTF-8">
-    <title>MS</title>
+    <title>NEXT</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css" rel="stylesheet">
@@ -21,7 +21,6 @@
     <style>
         *{
             font-size: 20px;
-            font-family: 'BMHANNAPro';
         }
         input{
             font-family: sans-serif;
@@ -37,7 +36,7 @@
             position: relative;
         }
         .full {
-            background-color: black;
+            background-color: #ffd203;
             background-position: center;
             background-repeat: no-repeat;
             background-size: cover;
@@ -73,19 +72,49 @@
             border-radius: 15px;
         }
 
+        #background_modal{
+            display: none;
+            z-index: 1;
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+        }
+
+        .modal_contents{
+            background-color: #fff;
+            margin: 15% auto;
+            padding: 20px;
+            border: 1px solid #555;
+            width: 80%;
+        }
+        .arrow{
+            position: fixed;
+            margin: 35px;
+            color: #fff;
+            font-size: 40px;
+        }
     </style>
 </head>
+<link rel="shortcut icon" type="image/x-icon"
+      href="https://i.imgur.com/8AyMFrx.png">
+<link rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css" />
+<script src="https://kit.fontawesome.com/a076d05399.js"></script>
 <body>
+
+<div class="arrow">
+    <i class="fas fa-arrow-left" onclick="history.back()"></i>
+</div>
 
 <div id="background_modal" class="background_modal">
     <div class="modal_contents">
         <h4>
-            <b>손님 아이디는?</b><span class="close">&times;</span>
+            <b>아이디는?</b><span class="close">&times;</span>
         </h4><br>
         <h2 id="id_value"></h2>
         <br>
-        <button type="button" id="pwSearch_btn" class="btn peach-gradient btn-rounded waves-effect">
-            <i class="fa fa-envelope"></i>비밀번호 찾기</button>
+        <button type="button" id="pwSearch_btn" class="btn peach-gradient btn-rounded waves-effect">확인</button>
     </div>
 </div>
 
@@ -94,7 +123,6 @@
         <div class="area_inputs wow fadeIn">
             <div class="sub_title font-weight-bold text-white">
                 <h3>아이디/비밀번호 찾기</h3>
-                <p>인증된 이메일만 정보 찾기가 가능합니다 :)</p>
             </div>
             <div style="margin-bottom: 10px;"
                  class="custom-control custom-radio custom-control-inline">
@@ -109,26 +137,16 @@
                 <div class="form-group">
                     <label class="font-weight-bold text-white" for="inputName_1">이름</label>
                     <div>
-                        <input type="text" class="form-control" id="inputName_1" name="inputName_1" placeholder="ex) 갓민수">
+                        <input type="text" class="form-control" id="inputName_1" name="inputName_1">
                     </div>
                 </div>
                 <div class="form-group">
                     <label class="font-weight-bold text-white" for="inputPhone_1">휴대폰번호</label>
                     <div>
-                        <input type="text" class="form-control" id="inputPhone_1" name="inputPhone_1" placeholder="ex) 01077779999">
+                        <input type="text" class="form-control" id="inputPhone_1" name="inputPhone_1">
                     </div>
                 </div>
-                <%-- <!-- 매장 선택 후 값을 비교하려 했으나 같은 값이 있다면 모두 출력해주는 걸로 바꿈 -->
-                <div class="form-group">
-                    <c:if test="${!empty search_store }">
-                        <select class="select_pick" id="store_id1" name="search_store1" required>
-                            <option class="select_pick" disabled selected>매장을 선택해주세요</option>
-                            <c:forEach var="search_store" items="${search_store }">
-                                <option class="select_pick" value="${search_store.store_id }">${search_store.store_name }</option>
-                            </c:forEach>
-                        </select>
-                    </c:if>
-                </div> --%>
+
                 <div class="form-group">
                     <button id="searchBtn" type="button" onclick="idSearch_click()" class="btn btn-primary btn-block">확인</button>
                     <a class="btn btn-danger btn-block"	href="${pageContext.request.contextPath}/">취소</a>
