@@ -23,10 +23,16 @@ public interface IAjaxDAO {
 //            @Param("c_uid") int c_uid
     );
 
-    public int deleteByUid(int uid);
+    public int deleteByUid(int h_uid);
 
     // 전체글의 개수
-    public int countAll();
+    public int countAll(
+            @Param("search") String search,
+            @Param("searchWord") String searchWord
+
+    );
+
+    public int hcountAll();
 
 }
 
