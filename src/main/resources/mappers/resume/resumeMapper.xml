@@ -93,7 +93,7 @@
 
 
     <select id="select" flushCache="true" resultType="com.lec.spring.resume.domain.resumeViewDTO">
-        select * from resume where u_uid = #{param1}
+        select * from resume where r_uid = #{param1}
     </select>
 
 </mapper>
