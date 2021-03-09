@@ -1,1 +1,1 @@
-# ProjectHoxy
+Project Platform "NEXT"
